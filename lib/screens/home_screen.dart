@@ -185,9 +185,7 @@ class _HomeState extends State<Home> {
     return percentage;
   }
 
-  _startPomodoroCountdown() {
-    pomodoroStatus = PomodoroStatus.runingPomodoro;
-    _cancelTime();
+  _startPomodoroWithoutDelay() {
     Timer.run(() {
       if (remainingTime > 0) {
         setState(() {
@@ -196,6 +194,12 @@ class _HomeState extends State<Home> {
         });
       }
     });
+  }
+
+  _startPomodoroCountdown() {
+    pomodoroStatus = PomodoroStatus.runingPomodoro;
+    _startPomodoroWithoutDelay();
+    _cancelTime();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (remainingTime > 0) {
         setState(() {

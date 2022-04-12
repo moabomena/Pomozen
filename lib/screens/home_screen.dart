@@ -188,6 +188,14 @@ class _HomeState extends State<Home> {
   _startPomodoroCountdown() {
     pomodoroStatus = PomodoroStatus.runingPomodoro;
     _cancelTime();
+    Timer.run(() {
+      if (remainingTime > 0) {
+        setState(() {
+          remainingTime--;
+          mainBtnText = _btnTextPause;
+        });
+      }
+    });
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (remainingTime > 0) {
         setState(() {

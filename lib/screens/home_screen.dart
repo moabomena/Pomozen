@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:pomodoro_app/utils/constants.dart';
+import 'package:pomodoro_app/utils/notifications.dart';
 import 'package:pomodoro_app/widgets/custom_button.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -190,6 +191,9 @@ class _HomeState extends State<Home> {
     _cancelTime();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (remainingTime > 0) {
+        localNotifications(
+            title: 'Pomodoro: foque na tarefa',
+            body: _secondsToFormatedString(remainingTime));
         setState(() {
           remainingTime--;
           mainBtnText = _btnTextPause;
@@ -223,6 +227,9 @@ class _HomeState extends State<Home> {
     _cancelTime();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (remainingTime > 0) {
+        localNotifications(
+            title: 'Pomodoro: Descanse por 5 minutos',
+            body: _secondsToFormatedString(remainingTime));
         setState(() {
           remainingTime--;
         });
@@ -246,6 +253,9 @@ class _HomeState extends State<Home> {
     _cancelTime();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (remainingTime > 0) {
+        localNotifications(
+            title: 'Pomodoro: Descanse por 15 minutos',
+            body: _secondsToFormatedString(remainingTime));
         setState(() {
           remainingTime--;
         });

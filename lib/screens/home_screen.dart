@@ -186,8 +186,20 @@ class _HomeState extends State<Home> {
     return percentage;
   }
 
+  _startPomodoroWithoutDelay() {
+    Timer.run(() {
+      if (remainingTime > 0) {
+        setState(() {
+          remainingTime--;
+          mainBtnText = _btnTextPause;
+        });
+      }
+    });
+  }
+
   _startPomodoroCountdown() {
     pomodoroStatus = PomodoroStatus.runingPomodoro;
+    _startPomodoroWithoutDelay();
     _cancelTime();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (remainingTime > 0) {

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/home_screen.dart';
-import 'package:pomodoro_app/utils/notifications.dart';
+// import 'package:pomodoro_app/utils/notifications.dart';
 
 Future<void> main() async {
-  localNotifications();
   runApp(const MyApp());
 }
 

@@ -34,6 +34,7 @@ class _HomeState extends State<Home> {
   Timer? _timer;
   static int pomodoroNum = 0;
   static int setNum = 0;
+  int removeDelayOfNotification = pomodoroTotalTime - 1;
 
   @override
   void initState() {
@@ -190,6 +191,7 @@ class _HomeState extends State<Home> {
     Timer.run(() {
       if (remainingTime > 0) {
         setState(() {
+          removeDelayOfNotification--;
           remainingTime--;
           mainBtnText = _btnTextPause;
         });
@@ -205,24 +207,29 @@ class _HomeState extends State<Home> {
       if (remainingTime > 0) {
         localNotifications(
             title: 'Pomodoro: foque na tarefa',
-            body: _secondsToFormatedString(remainingTime));
+            body: _secondsToFormatedString(removeDelayOfNotification));
         setState(() {
+          removeDelayOfNotification--;
           remainingTime--;
           mainBtnText = _btnTextPause;
         });
       } else {
+        localNotifications(
+            title: 'Pomodoro: FINALIZADO!', body: 'Iniciar pausa de 5 minutos');
         _playSound();
         pomodoroNum++;
         _cancelTime();
         if (pomodoroNum % pomodoriPerset == 0) {
           pomodoroStatus = PomodoroStatus.pausedLongBreak;
           setState(() {
+            removeDelayOfNotification = longBreakTime - 1;
             remainingTime = longBreakTime;
             mainBtnText = _btnTextStartLongBreak;
           });
         } else {
           pomodoroStatus = PomodoroStatus.pausedShortBreak;
           setState(() {
+            removeDelayOfNotification = shortBreakTime - 1;
             remainingTime = shortBreakTime;
             mainBtnText = _btnTextStartShortBreak;
           });
@@ -236,17 +243,22 @@ class _HomeState extends State<Home> {
     setState(() {
       mainBtnText = _btnTextPause;
     });
+    _startPomodoroWithoutDelay();
     _cancelTime();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (remainingTime > 0) {
         localNotifications(
             title: 'Pomodoro: Descanse por 5 minutos',
-            body: _secondsToFormatedString(remainingTime));
+            body: _secondsToFormatedString(removeDelayOfNotification));
         setState(() {
+          removeDelayOfNotification--;
           remainingTime--;
         });
       } else {
+        localNotifications(
+            title: 'Pomodoro: FINALIZADO!', body: 'Retorne ao trabalho!');
         _playSound();
+        removeDelayOfNotification = pomodoroTotalTime - 1;
         remainingTime = pomodoroTotalTime;
         _cancelTime();
         pomodoroStatus = PomodoroStatus.pausedPomodoro;
@@ -262,17 +274,23 @@ class _HomeState extends State<Home> {
     setState(() {
       mainBtnText = _btnTextPause;
     });
+    _startPomodoroWithoutDelay();
     _cancelTime();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (remainingTime > 0) {
         localNotifications(
             title: 'Pomodoro: Descanse por 15 minutos',
-            body: _secondsToFormatedString(remainingTime));
+            body: _secondsToFormatedString(removeDelayOfNotification));
         setState(() {
+          removeDelayOfNotification--;
           remainingTime--;
         });
       } else {
+        localNotifications(
+            title: 'Pomodoro: CICLO FINALIZADO!',
+            body: 'Inicie um novo ciclo!');
         _playSound();
+        removeDelayOfNotification = pomodoroTotalTime - 1;
         remainingTime = pomodoroTotalTime;
         _cancelTime();
         pomodoroStatus = PomodoroStatus.setFinished;
@@ -302,6 +320,7 @@ class _HomeState extends State<Home> {
     pomodoroStatus = PomodoroStatus.pausedPomodoro;
     setState(() {
       mainBtnText = _btnTextStart;
+      removeDelayOfNotification = pomodoroTotalTime - 1;
       remainingTime = pomodoroTotalTime;
     });
   }

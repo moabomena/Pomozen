@@ -62,3 +62,38 @@ class CustomSliderThumbCircle extends SliderComponentShape {
     return (min + (max - min) * value).round().toString();
   }
 }
+
+// ignore: must_be_immutable
+class SliderSettingsTimers extends StatelessWidget {
+  SliderSettingsTimers(
+      {required this.activeTrackColor,
+      required this.inactiveTrackColor,
+      required this.thumbColor,
+      required this.overlayColor,
+      required this.thumbRadius,
+      required this.slider,
+      Key? key})
+      : super(key: key);
+
+  Color activeTrackColor;
+  Color inactiveTrackColor;
+  Color thumbColor;
+  Color overlayColor;
+  double thumbRadius;
+  Slider slider;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliderTheme(
+      data: SliderTheme.of(context).copyWith(
+          activeTrackColor: activeTrackColor,
+          inactiveTrackColor: inactiveTrackColor,
+          trackShape: const RectangularSliderTrackShape(),
+          trackHeight: 4.0,
+          thumbColor: thumbColor,
+          thumbShape: CustomSliderThumbCircle(thumbRadius: thumbRadius),
+          overlayColor: overlayColor),
+      child: slider,
+    );
+  }
+}

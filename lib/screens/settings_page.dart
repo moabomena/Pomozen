@@ -94,26 +94,22 @@ class _SettingsPageState extends State<SettingsPage> {
               'Work',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
-            SliderTheme(
-              data: SliderTheme.of(context).copyWith(
-                activeTrackColor: Colors.red[700],
-                inactiveTrackColor: Colors.red[100],
-                trackShape: const RectangularSliderTrackShape(),
-                trackHeight: 4.0,
-                thumbColor: Colors.redAccent,
-                thumbShape: const CustomSliderThumbCircle(thumbRadius: 20),
-                overlayColor: Colors.red.withAlpha(32),
+            SliderSettingsTimers(
+              activeTrackColor: Colors.red[700]!,
+              inactiveTrackColor: Colors.red[100]!,
+              thumbColor: Colors.redAccent,
+              overlayColor: Colors.red.withAlpha(32),
+              thumbRadius: 20,
+              slider: Slider(
+                value: _currentSliderValueWork,
+                min: 0,
+                max: 60,
+                onChanged: (double value) {
+                  setState(() {
+                    _currentSliderValueWork = value;
+                  });
+                },
               ),
-              child: Slider(
-                  value: _currentSliderValueWork,
-                  min: 0,
-                  max: 60,
-                  divisions: 60,
-                  onChanged: (double value) {
-                    setState(() {
-                      _currentSliderValueWork = value;
-                    });
-                  }),
             ),
             const SizedBox(
               height: 40,
@@ -122,26 +118,22 @@ class _SettingsPageState extends State<SettingsPage> {
               'Short Break',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
-            SliderTheme(
-              data: SliderTheme.of(context).copyWith(
-                activeTrackColor: Colors.green[700],
-                inactiveTrackColor: Colors.green[100],
-                trackShape: const RectangularSliderTrackShape(),
-                trackHeight: 4.0,
-                thumbColor: Colors.greenAccent,
-                thumbShape: const CustomSliderThumbCircle(thumbRadius: 20),
-                overlayColor: Colors.green.withAlpha(32),
+            SliderSettingsTimers(
+              activeTrackColor: Colors.green[700]!,
+              inactiveTrackColor: Colors.green[100]!,
+              thumbColor: Colors.greenAccent,
+              overlayColor: Colors.green.withAlpha(32),
+              thumbRadius: 20,
+              slider: Slider(
+                value: _currentSliderValueShortBreak,
+                min: 0,
+                max: 60,
+                onChanged: (double value) {
+                  setState(() {
+                    _currentSliderValueShortBreak = value;
+                  });
+                },
               ),
-              child: Slider(
-                  value: _currentSliderValueShortBreak,
-                  min: 0,
-                  max: 60,
-                  divisions: 60,
-                  onChanged: (double value) {
-                    setState(() {
-                      _currentSliderValueShortBreak = value;
-                    });
-                  }),
             ),
             const SizedBox(
               height: 40,
@@ -150,29 +142,28 @@ class _SettingsPageState extends State<SettingsPage> {
               'Long Break',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
-            SliderTheme(
-              data: SliderTheme.of(context).copyWith(
-                activeTrackColor: Colors.orange[700],
-                inactiveTrackColor: Colors.orange[100],
-                trackShape: const RectangularSliderTrackShape(),
-                trackHeight: 4.0,
-                thumbColor: Colors.orangeAccent,
-                thumbShape: const CustomSliderThumbCircle(thumbRadius: 20),
-                overlayColor: Colors.orange.withAlpha(32),
+            SliderSettingsTimers(
+              activeTrackColor: Colors.orange[700]!,
+              inactiveTrackColor: Colors.orange[100]!,
+              thumbColor: Colors.orangeAccent,
+              overlayColor: Colors.orange.withAlpha(32),
+              thumbRadius: 20,
+              slider: Slider(
+                value: _currentSliderValueLongBreak,
+                min: 0,
+                max: 60,
+                onChanged: (double value) {
+                  setState(() {
+                    _currentSliderValueLongBreak = value;
+                  });
+                },
               ),
-              child: Slider(
-                  value: _currentSliderValueLongBreak,
-                  min: 0,
-                  max: 60,
-                  divisions: 60,
-                  onChanged: (double value) {
-                    setState(() {
-                      _currentSliderValueLongBreak = value;
-                    });
-                  }),
+            ),
+            const SizedBox(
+              height: 40,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 250),
+              padding: const EdgeInsets.only(top: 100),
               child: TextButton(
                   style: ButtonStyle(
                       padding:

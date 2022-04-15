@@ -7,6 +7,7 @@ import 'package:pomodoro_app/utils/notifications.dart';
 import 'package:pomodoro_app/widgets/custom_button.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:pomodoro_app/screens/settings_page.dart';
 
 import '../widgets/progress_icons.dart';
 
@@ -52,9 +53,28 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Pomodoro'),
-          centerTitle: true,
-        ),
+            leading: Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                  icon: const Icon(
+                    Icons.settings_outlined,
+                    color: Color.fromARGB(255, 11, 184, 83),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SettingsPage()));
+                  },
+                  tooltip:
+                      MaterialLocalizations.of(context).openAppDrawerTooltip,
+                );
+              },
+            ),
+            title: const Text('Pomodoro'),
+            centerTitle: true,
+            backgroundColor: Colors.transparent,
+            elevation: 0),
         backgroundColor: const Color.fromARGB(255, 154, 216, 156),
         body: SafeArea(
           child: Center(

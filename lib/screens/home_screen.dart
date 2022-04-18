@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:pomodoro_app/controllers/timer_controller.dart';
 import 'package:pomodoro_app/utils/constants.dart';
 import 'package:pomodoro_app/utils/notifications.dart';
 import 'package:pomodoro_app/widgets/custom_button.dart';
@@ -28,14 +30,15 @@ const _btnTextPause = 'PAUSE';
 const _btnTextReset = 'RESET';
 
 class _HomeState extends State<Home> {
+  static final timerCtl = Get.put(TimerController());
+
   static AudioCache player = AudioCache();
-  int remainingTime = pomodoroTotalTime;
+
   String mainBtnText = _btnTextStart;
   PomodoroStatus pomodoroStatus = PomodoroStatus.pausedPomodoro;
   Timer? _timer;
   static int pomodoroNum = 0;
   static int setNum = 0;
-  int removeDelayOfNotification = pomodoroTotalTime - 1;
 
   @override
   void initState() {
@@ -100,10 +103,13 @@ class _HomeState extends State<Home> {
                         lineWidth: 15.0,
                         percent: _getPomodoroPercentage(),
                         circularStrokeCap: CircularStrokeCap.round,
-                        center: Text(
-                          _secondsToFormatedString(remainingTime),
-                          style: const TextStyle(
-                              fontSize: 40, color: Colors.white),
+                        center: Obx(
+                          () => Text(
+                            _secondsToFormatedString(
+                                timerCtl.remainingTimer.value),
+                            style: const TextStyle(
+                                fontSize: 40, color: Colors.white),
+                          ),
                         ),
                         progressColor: statusColor[pomodoroStatus],
                         backgroundColor: Colors.red[100] as Color,
@@ -182,37 +188,37 @@ class _HomeState extends State<Home> {
     int totalTime;
     switch (pomodoroStatus) {
       case PomodoroStatus.runingPomodoro:
-        totalTime = pomodoroTotalTime;
+        totalTime = timerCtl.currentSliderValueWork.value * 60;
         break;
       case PomodoroStatus.pausedPomodoro:
-        totalTime = pomodoroTotalTime;
+        totalTime = timerCtl.currentSliderValueWork.value * 60;
         break;
       case PomodoroStatus.runningShortBreak:
-        totalTime = shortBreakTime;
+        totalTime = timerCtl.currentSliderValueShortBreak.value * 60;
         break;
       case PomodoroStatus.pausedShortBreak:
-        totalTime = shortBreakTime;
+        totalTime = timerCtl.currentSliderValueShortBreak.value * 60;
         break;
       case PomodoroStatus.runningLongBreak:
-        totalTime = longBreakTime;
+        totalTime = timerCtl.currentSliderValueLongBreak.value * 60;
         break;
       case PomodoroStatus.pausedLongBreak:
-        totalTime = longBreakTime;
+        totalTime = timerCtl.currentSliderValueLongBreak.value * 60;
         break;
       case PomodoroStatus.setFinished:
-        totalTime = pomodoroTotalTime;
+        totalTime = timerCtl.currentSliderValueWork.value * 60;
         break;
     }
-    double percentage = (totalTime - remainingTime) / totalTime;
+    double percentage = (totalTime - timerCtl.remainingTimer.value) / totalTime;
     return percentage;
   }
 
   _startPomodoroWithoutDelay() {
     Timer.run(() {
-      if (remainingTime > 0) {
+      if (timerCtl.remainingTimer.value > 0) {
         setState(() {
-          removeDelayOfNotification--;
-          remainingTime--;
+          timerCtl.removeDelayOfNotification.value--;
+          timerCtl.remainingTimer.value--;
           mainBtnText = _btnTextPause;
         });
       }
@@ -224,13 +230,14 @@ class _HomeState extends State<Home> {
     _startPomodoroWithoutDelay();
     _cancelTime();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (remainingTime > 0) {
+      if (timerCtl.remainingTimer.value > 0) {
         localNotifications(
             title: 'Pomodoro: foque na tarefa',
-            body: _secondsToFormatedString(removeDelayOfNotification));
+            body: _secondsToFormatedString(
+                timerCtl.removeDelayOfNotification.value));
         setState(() {
-          removeDelayOfNotification--;
-          remainingTime--;
+          timerCtl.removeDelayOfNotification.value--;
+          timerCtl.remainingTimer.value--;
           mainBtnText = _btnTextPause;
         });
       } else {
@@ -242,15 +249,20 @@ class _HomeState extends State<Home> {
         if (pomodoroNum % pomodoriPerset == 0) {
           pomodoroStatus = PomodoroStatus.pausedLongBreak;
           setState(() {
-            removeDelayOfNotification = longBreakTime - 1;
-            remainingTime = longBreakTime;
+            timerCtl.setValueTimerNotification(
+                timerCtl.currentSliderValueLongBreak.value);
+
+            timerCtl
+                .setRemainingTime(timerCtl.currentSliderValueLongBreak.value);
             mainBtnText = _btnTextStartLongBreak;
           });
         } else {
           pomodoroStatus = PomodoroStatus.pausedShortBreak;
           setState(() {
-            removeDelayOfNotification = shortBreakTime - 1;
-            remainingTime = shortBreakTime;
+            timerCtl.setValueTimerNotification(
+                timerCtl.currentSliderValueShortBreak.value);
+            timerCtl
+                .setRemainingTime(timerCtl.currentSliderValueShortBreak.value);
             mainBtnText = _btnTextStartShortBreak;
           });
         }
@@ -266,20 +278,22 @@ class _HomeState extends State<Home> {
     _startPomodoroWithoutDelay();
     _cancelTime();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (remainingTime > 0) {
+      if (timerCtl.remainingTimer.value > 0) {
         localNotifications(
             title: 'Pomodoro: Descanse por 5 minutos',
-            body: _secondsToFormatedString(removeDelayOfNotification));
+            body: _secondsToFormatedString(
+                timerCtl.removeDelayOfNotification.value));
         setState(() {
-          removeDelayOfNotification--;
-          remainingTime--;
+          timerCtl.removeDelayOfNotification.value--;
+          timerCtl.remainingTimer.value--;
         });
       } else {
         localNotifications(
             title: 'Pomodoro: FINALIZADO!', body: 'Retorne ao trabalho!');
         _playSound();
-        removeDelayOfNotification = pomodoroTotalTime - 1;
-        remainingTime = pomodoroTotalTime;
+        timerCtl
+            .setValueTimerNotification(timerCtl.currentSliderValueWork.value);
+        timerCtl.setRemainingTime(timerCtl.currentSliderValueWork.value);
         _cancelTime();
         pomodoroStatus = PomodoroStatus.pausedPomodoro;
         setState(() {
@@ -297,21 +311,23 @@ class _HomeState extends State<Home> {
     _startPomodoroWithoutDelay();
     _cancelTime();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (remainingTime > 0) {
+      if (timerCtl.remainingTimer.value > 0) {
         localNotifications(
             title: 'Pomodoro: Descanse por 15 minutos',
-            body: _secondsToFormatedString(removeDelayOfNotification));
+            body: _secondsToFormatedString(
+                timerCtl.removeDelayOfNotification.value));
         setState(() {
-          removeDelayOfNotification--;
-          remainingTime--;
+          timerCtl.removeDelayOfNotification.value--;
+          timerCtl.remainingTimer.value--;
         });
       } else {
         localNotifications(
             title: 'Pomodoro: CICLO FINALIZADO!',
             body: 'Inicie um novo ciclo!');
         _playSound();
-        removeDelayOfNotification = pomodoroTotalTime - 1;
-        remainingTime = pomodoroTotalTime;
+        timerCtl
+            .setValueTimerNotification(timerCtl.currentSliderValueWork.value);
+        timerCtl.setRemainingTime(timerCtl.currentSliderValueWork.value);
         _cancelTime();
         pomodoroStatus = PomodoroStatus.setFinished;
         setState(() {
@@ -340,8 +356,8 @@ class _HomeState extends State<Home> {
     pomodoroStatus = PomodoroStatus.pausedPomodoro;
     setState(() {
       mainBtnText = _btnTextStart;
-      removeDelayOfNotification = pomodoroTotalTime - 1;
-      remainingTime = pomodoroTotalTime;
+      timerCtl.setValueTimerNotification(timerCtl.currentSliderValueWork.value);
+      timerCtl.setRemainingTime(timerCtl.currentSliderValueWork.value);
     });
   }
 

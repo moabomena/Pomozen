@@ -3,7 +3,7 @@ import 'package:pomodoro_app/model/pomodoro_status.dart';
 
 const pomodoriPerset = 4;
 
-const Map<PomodoroStatus, String> statusDescription = {
+const Map<PomodoroStatus, dynamic> statusDescription = {
   PomodoroStatus.runingPomodoro: 'Pomodoro is running, time to be focused',
   PomodoroStatus.pausedPomodoro: 'Ready  for a focused pomodoro?',
   PomodoroStatus.runningShortBreak: 'Short break running, time to relax',

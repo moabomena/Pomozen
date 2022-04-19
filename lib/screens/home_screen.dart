@@ -180,28 +180,29 @@ class _HomeState extends State<Home> {
     int totalTime;
     switch (timerCtl.pomodoroStatus) {
       case PomodoroStatus.runingPomodoro:
-        totalTime = timerCtl.currentSliderValueWork.value * 60;
+        totalTime = timerCtl.totalTimer.value * 60;
         break;
       case PomodoroStatus.pausedPomodoro:
-        totalTime = timerCtl.currentSliderValueWork.value * 60;
+        totalTime = timerCtl.totalTimer.value * 60;
         break;
       case PomodoroStatus.runningShortBreak:
-        totalTime = timerCtl.currentSliderValueShortBreak.value * 60;
+        totalTime = timerCtl.shortBreakTimer.value * 60;
         break;
       case PomodoroStatus.pausedShortBreak:
-        totalTime = timerCtl.currentSliderValueShortBreak.value * 60;
+        totalTime = timerCtl.shortBreakTimer.value * 60;
         break;
       case PomodoroStatus.runningLongBreak:
-        totalTime = timerCtl.currentSliderValueLongBreak.value * 60;
+        totalTime = timerCtl.longBreakTimer.value * 60;
         break;
       case PomodoroStatus.pausedLongBreak:
-        totalTime = timerCtl.currentSliderValueLongBreak.value * 60;
+        totalTime = timerCtl.longBreakTimer.value * 60;
         break;
       case PomodoroStatus.setFinished:
-        totalTime = timerCtl.currentSliderValueWork.value * 60;
+        totalTime = timerCtl.totalTimer.value * 60;
         break;
     }
     double percentage = (totalTime - timerCtl.remainingTimer.value) / totalTime;
+    print(percentage);
     return percentage;
   }
 
@@ -239,14 +240,13 @@ class _HomeState extends State<Home> {
           timerCtl.setValueTimerNotification(
               timerCtl.currentSliderValueLongBreak.value);
 
-          timerCtl.setRemainingTime(timerCtl.currentSliderValueLongBreak.value);
+          timerCtl.setRemainingTime(timerCtl.longBreakTimer.value);
           timerCtl.setMainBtnText(_btnTextStartLongBreak);
         } else {
           timerCtl.setPomodoroStatus(PomodoroStatus.pausedShortBreak);
           timerCtl.setValueTimerNotification(
               timerCtl.currentSliderValueShortBreak.value);
-          timerCtl
-              .setRemainingTime(timerCtl.currentSliderValueShortBreak.value);
+          timerCtl.setRemainingTime(timerCtl.shortBreakTimer.value);
           timerCtl.setMainBtnText(_btnTextStartShortBreak);
         }
       }
@@ -272,7 +272,7 @@ class _HomeState extends State<Home> {
         _playSound();
         timerCtl
             .setValueTimerNotification(timerCtl.currentSliderValueWork.value);
-        timerCtl.setRemainingTime(timerCtl.currentSliderValueWork.value);
+        timerCtl.setRemainingTime(timerCtl.totalTimer.value);
         _cancelTime();
         timerCtl.setPomodoroStatus(PomodoroStatus.pausedPomodoro);
         timerCtl.setMainBtnText(_btnTextStart);
@@ -300,7 +300,7 @@ class _HomeState extends State<Home> {
         _playSound();
         timerCtl
             .setValueTimerNotification(timerCtl.currentSliderValueWork.value);
-        timerCtl.setRemainingTime(timerCtl.currentSliderValueWork.value);
+        timerCtl.setRemainingTime(timerCtl.totalTimer.value);
         _cancelTime();
         timerCtl.setPomodoroStatus(PomodoroStatus.setFinished);
         timerCtl.setMainBtnText(_btnTextStartNewSet);
@@ -326,7 +326,7 @@ class _HomeState extends State<Home> {
 
     timerCtl.setMainBtnText(_btnTextStart);
     timerCtl.setValueTimerNotification(timerCtl.currentSliderValueWork.value);
-    timerCtl.setRemainingTime(timerCtl.currentSliderValueWork.value);
+    timerCtl.setRemainingTime(timerCtl.totalTimer.value);
   }
 
   _pauseShortBreakCountdown() {

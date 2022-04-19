@@ -9,8 +9,10 @@ class TimerController extends GetxController {
   var currentSliderValueLongBreak = 15.obs;
 
   var remainingTimer = (25 * 60).obs;
-  var shortBreakTimer = (5 * 60).obs;
-  var longBreakTimer = (15 * 60).obs;
+
+  var totalTimer = 25.obs;
+  var shortBreakTimer = 5.obs;
+  var longBreakTimer = 15.obs;
 
   var removeDelayOfNotification = (25 * 60).obs;
 
@@ -29,6 +31,19 @@ class TimerController extends GetxController {
     super.dispose();
   }
 
+  void setTotalTimer(var value) {
+    totalTimer.value = value;
+  }
+
+  void setShortbreak(var value) {
+    shortBreakTimer.value = value;
+  }
+
+  void setLongBreak(var value) {
+    longBreakTimer.value = value;
+  }
+
+  // TODO REFATORAR AS FUNCOES DOS SLIDES
   void setTimerWork(var value) {
     currentSliderValueWork.value = value;
   }

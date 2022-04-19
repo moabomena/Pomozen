@@ -38,8 +38,18 @@ class _SettingsPageState extends State<SettingsPage> {
           timerController.setPomodoroStatus(PomodoroStatus.pausedPomodoro);
           timerController.setValueTimerNotification(
               timerController.currentSliderValueWork.value);
+
+          timerController.setRemainingTime(timerController.totalTimer.value =
+              timerController.currentSliderValueWork.value);
+
           timerController
-              .setRemainingTime(timerController.currentSliderValueWork.value);
+              .setTotalTimer(timerController.currentSliderValueWork.value);
+
+          timerController.setShortbreak(
+              timerController.currentSliderValueShortBreak.value);
+          timerController
+              .setLongBreak(timerController.currentSliderValueLongBreak.value);
+
           timerController.setMainBtnText(_btnTextStart);
         },
       ),

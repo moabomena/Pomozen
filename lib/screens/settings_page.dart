@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pomodoro_app/controllers/timer_controller.dart';
+import 'package:pomodoro_app/model/pomodoro_status.dart';
 import 'package:pomodoro_app/widgets/custom_slider.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -11,6 +12,8 @@ class SettingsPage extends StatefulWidget {
   @override
   State<SettingsPage> createState() => _SettingsPageState();
 }
+
+const _btnTextStart = 'START POMODORO';
 
 class _SettingsPageState extends State<SettingsPage> {
   final timerController = Get.find<TimerController>();
@@ -29,6 +32,15 @@ class _SettingsPageState extends State<SettingsPage> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         onPressed: () {
           Navigator.of(context).pop();
+          timerController.resetPomodoroNum();
+          timerController.resetSetNum();
+          timerController.timer.cancel();
+          timerController.setPomodoroStatus(PomodoroStatus.pausedPomodoro);
+          timerController.setValueTimerNotification(
+              timerController.currentSliderValueWork.value);
+          timerController
+              .setRemainingTime(timerController.currentSliderValueWork.value);
+          timerController.setMainBtnText(_btnTextStart);
         },
       ),
       appBar: AppBar(

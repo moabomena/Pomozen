@@ -54,6 +54,15 @@ class _SettingsPageState extends State<SettingsPage> {
         },
       ),
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                _resetSlider(ResetSlider.resetWork);
+                _resetSlider(ResetSlider.resetShortBreak);
+                _resetSlider(ResetSlider.resetLongBreak);
+              },
+              icon: const Icon(Icons.refresh_rounded))
+        ],
         title: const Text('Setting'),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -205,4 +214,26 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
     );
   }
+
+  _resetSlider(var resetValueSlider) {
+    switch (resetValueSlider) {
+      case ResetSlider.resetWork:
+        timerController.setTimerWork(timerController.totalTimer.value);
+        break;
+      case ResetSlider.resetShortBreak:
+        timerController
+            .setTimerShortBreak(timerController.shortBreakTimer.value);
+        break;
+      case ResetSlider.resetLongBreak:
+        timerController.setTimerLongBreak(timerController.longBreakTimer.value);
+        break;
+      default:
+    }
+  }
+}
+
+enum ResetSlider {
+  resetWork,
+  resetShortBreak,
+  resetLongBreak,
 }

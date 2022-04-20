@@ -74,13 +74,17 @@ class _HomeState extends State<Home> {
                 const SizedBox(
                   height: 10,
                 ),
-                Text(
-                  'Pomodoro number: ' + timerCtl.pomodoroNum.value.toString(),
-                  style: const TextStyle(fontSize: 32, color: Colors.white),
+                Obx(
+                  () => Text(
+                    'Pomodoro number: ' + timerCtl.pomodoroNum.value.toString(),
+                    style: const TextStyle(fontSize: 32, color: Colors.white),
+                  ),
                 ),
-                Text(
-                  'set: ' + timerCtl.setNum.value.toString(),
-                  style: const TextStyle(fontSize: 22, color: Colors.white),
+                Obx(
+                  () => Text(
+                    'set: ' + timerCtl.setNum.value.toString(),
+                    style: const TextStyle(fontSize: 22, color: Colors.white),
+                  ),
                 ),
                 Expanded(
                   child: Obx(

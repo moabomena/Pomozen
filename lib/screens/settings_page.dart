@@ -45,7 +45,7 @@ class _SettingsPageState extends State<SettingsPage> {
           timerController
               .setTotalTimer(timerController.currentSliderValueWork.value);
 
-          timerController.setShortbreak(
+          timerController.setShortBreak(
               timerController.currentSliderValueShortBreak.value);
           timerController
               .setLongBreak(timerController.currentSliderValueLongBreak.value);
@@ -86,6 +86,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     value: isSwitched,
                     splashRadius: 15,
                     onChanged: (value) {
+                      // TODO DEPOIS QUE APLICAR O GETX REMOVE O SETstATE E TRANSFORMAR A CLASSE EM STATELESS
                       setState(() {
                         isSwitched = value;
                         value = true;
@@ -128,6 +129,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       fontWeight: FontWeight.w500),
                 ),
                 onChanged: (String? value) {
+                  // TODO DEPOIS QUE APLICAR O GETX REMOVE O SETstATE E TRANSFORMAR A CLASSE EM STATELESS
                   setState(() {
                     _chosenValueLanguage = value;
                   });
@@ -153,7 +155,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         min: 0.0,
                         max: 60.0,
                         onChanged: (double value) {
-                          timerController.setTimerWork(value.round());
+                          timerController.setTimerWorkSlider(value.round());
                         })),
               ),
               const SizedBox(
@@ -176,7 +178,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     min: 0.0,
                     max: 60.0,
                     onChanged: (double value) {
-                      timerController.setTimerShortBreak(value.round());
+                      timerController.setTimerShortBreakSlider(value.round());
                     },
                   ),
                 ),
@@ -201,7 +203,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       min: 0.0,
                       max: 60.0,
                       onChanged: (double value) {
-                        timerController.setTimerLongBreak(value.round());
+                        timerController.setTimerLongBreakSlider(value.round());
                       },
                     )),
               ),
@@ -218,14 +220,15 @@ class _SettingsPageState extends State<SettingsPage> {
   _resetSlider(var resetValueSlider) {
     switch (resetValueSlider) {
       case ResetSlider.resetWork:
-        timerController.setTimerWork(timerController.totalTimer.value);
+        timerController.setTimerWorkSlider(timerController.totalTimer.value);
         break;
       case ResetSlider.resetShortBreak:
         timerController
-            .setTimerShortBreak(timerController.shortBreakTimer.value);
+            .setTimerShortBreakSlider(timerController.shortBreakTimer.value);
         break;
       case ResetSlider.resetLongBreak:
-        timerController.setTimerLongBreak(timerController.longBreakTimer.value);
+        timerController
+            .setTimerLongBreakSlider(timerController.longBreakTimer.value);
         break;
       default:
     }

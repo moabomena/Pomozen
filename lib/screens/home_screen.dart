@@ -8,37 +8,23 @@ import 'package:pomodoro_app/utils/constants.dart';
 import 'package:pomodoro_app/utils/notifications.dart';
 import 'package:pomodoro_app/widgets/custom_button.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:pomodoro_app/screens/settings_page.dart';
 
 import '../widgets/progress_icons.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
-  @override
-  State<Home> createState() => _HomeState();
-}
+  static const _btnTextStart = 'START POMODORO';
+  static const _btnTextResumePomodoro = 'RESUME POMODORO';
+  static const _btnTextResumeBreak = 'RESUME BREAK';
+  static const _btnTextStartShortBreak = 'TAKE SHORT BREAK';
+  static const _btnTextStartLongBreak = 'TAKE LONG BREAK';
+  static const _btnTextStartNewSet = 'START NEW SET';
+  static const _btnTextPause = 'PAUSE';
+  static const _btnTextReset = 'RESET';
 
-const _btnTextStart = 'START POMODORO';
-const _btnTextResumePomodoro = 'RESUME POMODORO';
-const _btnTextResumeBreak = 'RESUME BREAK';
-const _btnTextStartShortBreak = 'TAKE SHORT BREAK';
-const _btnTextStartLongBreak = 'TAKE LONG BREAK';
-const _btnTextStartNewSet = 'START NEW SET';
-const _btnTextPause = 'PAUSE';
-const _btnTextReset = 'RESET';
-
-class _HomeState extends State<Home> {
   static final timerCtl = Get.put(TimerController());
-
-  static AudioCache player = AudioCache();
-
-  @override
-  void initState() {
-    player.load('bell.mp3');
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -236,7 +222,7 @@ class _HomeState extends State<Home> {
       } else {
         localNotifications(
             title: 'Pomodoro: FINALIZADO!', body: 'Iniciar pausa de 5 minutos');
-        _playSound();
+        timerCtl.playSound();
         timerCtl.incrementPomodoroNum();
         _cancelTime();
         if (timerCtl.pomodoroNum.value % pomodoriPerset == 0) {
@@ -273,7 +259,7 @@ class _HomeState extends State<Home> {
       } else {
         localNotifications(
             title: 'Pomodoro: FINALIZADO!', body: 'Retorne ao trabalho!');
-        _playSound();
+        timerCtl.playSound();
         timerCtl
             .setValueTimerNotification(timerCtl.currentSliderValueWork.value);
         timerCtl.setRemainingTime(timerCtl.totalTimer.value);
@@ -301,7 +287,7 @@ class _HomeState extends State<Home> {
         localNotifications(
             title: 'Pomodoro: CICLO FINALIZADO!',
             body: 'Inicie um novo ciclo!');
-        _playSound();
+        timerCtl.playSound();
         timerCtl
             .setValueTimerNotification(timerCtl.currentSliderValueWork.value);
         timerCtl.setRemainingTime(timerCtl.totalTimer.value);
@@ -352,9 +338,5 @@ class _HomeState extends State<Home> {
     if (timerCtl.timer != null) {
       timerCtl.timer.cancel();
     }
-  }
-
-  _playSound() {
-    player.play('bell.mp3');
   }
 }

@@ -1,9 +1,12 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
 
 class TimerController extends GetxController {
+  static AudioCache player = AudioCache();
+
   var currentSliderValueWork = 25.obs;
   var currentSliderValueShortBreak = 5.obs;
   var currentSliderValueLongBreak = 15.obs;
@@ -26,16 +29,22 @@ class TimerController extends GetxController {
   PomodoroStatus pomodoroStatus = PomodoroStatus.pausedPomodoro;
 
   @override
-  void dispose() {
+  void onInit() {
+    player.load('bell.mp3');
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
     timer.cancel();
-    super.dispose();
+    super.onClose();
   }
 
   void setTotalTimer(var value) {
     totalTimer.value = value;
   }
 
-  void setShortbreak(var value) {
+  void setShortBreak(var value) {
     shortBreakTimer.value = value;
   }
 
@@ -43,16 +52,15 @@ class TimerController extends GetxController {
     longBreakTimer.value = value;
   }
 
-  // TODO REFATORAR AS FUNCOES DOS SLIDES
-  void setTimerWork(var value) {
+  void setTimerWorkSlider(var value) {
     currentSliderValueWork.value = value;
   }
 
-  void setTimerShortBreak(var value) {
+  void setTimerShortBreakSlider(var value) {
     currentSliderValueShortBreak.value = value;
   }
 
-  void setTimerLongBreak(var value) {
+  void setTimerLongBreakSlider(var value) {
     currentSliderValueLongBreak.value = value;
   }
 
@@ -86,5 +94,9 @@ class TimerController extends GetxController {
 
   void setPomodoroStatus(var value) {
     pomodoroStatus = value;
+  }
+
+  void playSound() {
+    player.play('bell.mp3');
   }
 }

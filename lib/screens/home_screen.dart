@@ -15,12 +15,12 @@ import '../widgets/progress_icons.dart';
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
-  static const _btnTextStart = 'START POMODORO';
-  static const _btnTextResumePomodoro = 'RESUME POMODORO';
-  static const _btnTextResumeBreak = 'RESUME BREAK';
-  static const _btnTextStartShortBreak = 'TAKE SHORT BREAK';
-  static const _btnTextStartLongBreak = 'TAKE LONG BREAK';
-  static const _btnTextStartNewSet = 'START NEW SET';
+  static const _btnTextStart = 'START \nPOMODORO';
+  static const _btnTextResumePomodoro = 'RESUME \nPOMODORO';
+  static const _btnTextResumeBreak = 'RESUME\n BREAK';
+  static const _btnTextStartShortBreak = 'TAKE \nSHORT BREAK';
+  static const _btnTextStartLongBreak = 'TAKE\n LONG BREAK';
+  static const _btnTextStartNewSet = 'START\n NEW SET';
   static const _btnTextPause = 'PAUSE';
   static const _btnTextReset = 'RESET';
 
@@ -58,19 +58,75 @@ class Home extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 10,
+                  height: 30,
                 ),
-                Obx(
-                  () => Text(
-                    'Pomodoro number: ' + timerCtl.pomodoroNum.value.toString(),
-                    style: const TextStyle(fontSize: 32, color: Colors.white),
-                  ),
-                ),
-                Obx(
-                  () => Text(
-                    'set: ' + timerCtl.setNum.value.toString(),
-                    style: const TextStyle(fontSize: 22, color: Colors.white),
-                  ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(8)),
+                          child: Obx(
+                            () => Center(
+                              child: Text(
+                                timerCtl.pomodoroNum.value.toString(),
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5.0,
+                        ),
+                        const Text(
+                          'Pomodoro\n number',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 14, color: Colors.black54),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(8)),
+                          child: Obx(
+                            () => Center(
+                              child: Text(
+                                timerCtl.setNum.value.toString(),
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5.0,
+                        ),
+                        const Text(
+                          'Set',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 14, color: Colors.black54),
+                        )
+                      ],
+                    ),
+                  ],
                 ),
                 Expanded(
                   child: Obx(
@@ -79,42 +135,78 @@ class Home extends StatelessWidget {
                       children: [
                         CircularPercentIndicator(
                           radius: 125.0,
-                          lineWidth: 15.0,
+                          lineWidth: 12.0,
+                          animation: true,
+                          animationDuration: 1000,
+                          animateFromLastPercent: true,
+                          curve: Curves.linear,
                           percent: _getPomodoroPercentage(),
                           circularStrokeCap: CircularStrokeCap.round,
                           center: Obx(
                             () => Text(
                               _secondsToFormatedString(
                                   timerCtl.remainingTimer.value),
-                              style: const TextStyle(
-                                  fontSize: 40, color: Colors.white),
+                              style: TextStyle(
+                                fontSize: 40,
+                                color: statusColor[timerCtl.pomodoroStatus],
+                              ),
                             ),
                           ),
                           progressColor: statusColor[timerCtl.pomodoroStatus],
-                          backgroundColor: Colors.red[100] as Color,
+                          backgroundColor: Colors.grey[200] as Color,
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 20,
                         ),
                         ProgressIcons(
                             total: pomodoriPerset,
                             done: timerCtl.pomodoroNum.value -
                                 (timerCtl.setNum.value * pomodoriPerset)),
                         const SizedBox(
-                          height: 10,
+                          height: 60,
                         ),
                         Text(
                           statusDescription[timerCtl.pomodoroStatus],
                           style: const TextStyle(color: Colors.white),
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 40,
                         ),
-                        CustomButton(
-                            onTap: _mainButtonPressed,
-                            text: timerCtl.mainBtnText.value),
-                        CustomButton(
-                            onTap: _resetButtonPressed, text: _btnTextReset),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 250,
+                          child: Stack(
+                            children: <Widget>[
+                              AnimatedPositioned(
+                                duration: const Duration(milliseconds: 300),
+                                left:
+                                    timerCtl.showButtonReset.value ? 220 : 130,
+                                child: CustomButton(
+                                  backgroundColorButton: Colors.grey[200],
+                                  elevationButton: 0,
+                                  textColor: Colors.black54,
+                                  textButton: _btnTextReset,
+                                  onTap: () {
+                                    _resetButtonPressed();
+                                    timerCtl.setShowButtonReset(false);
+                                  },
+                                ),
+                              ),
+                              AnimatedPositioned(
+                                duration: const Duration(milliseconds: 300),
+                                right:
+                                    timerCtl.showButtonReset.value ? 220 : 130,
+                                child: CustomButton(
+                                  textButton: timerCtl.mainBtnText.value,
+                                  onTap: () {
+                                    _mainButtonPressed();
+                                    timerCtl.setShowButtonReset(true);
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   ),

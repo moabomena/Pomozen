@@ -51,6 +51,7 @@ class _SettingsPageState extends State<SettingsPage> {
               .setLongBreak(timerController.currentSliderValueLongBreak.value);
 
           timerController.setMainBtnText(_btnTextStart);
+          timerController.setShowButtonReset(false);
         },
       ),
       appBar: AppBar(
@@ -152,7 +153,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     slider: Slider(
                         value: timerController.currentSliderValueWork.value
                             .toDouble(),
-                        min: 0.0,
+                        min: 1.0,
                         max: 60.0,
                         onChanged: (double value) {
                           timerController.setTimerWorkSlider(value.round());
@@ -175,7 +176,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   slider: Slider(
                     value: timerController.currentSliderValueShortBreak.value
                         .toDouble(),
-                    min: 0.0,
+                    min: 1.0,
                     max: 60.0,
                     onChanged: (double value) {
                       timerController.setTimerShortBreakSlider(value.round());
@@ -200,7 +201,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     slider: Slider(
                       value: timerController.currentSliderValueLongBreak.value
                           .toDouble(),
-                      min: 0.0,
+                      min: 1.0,
                       max: 60.0,
                       onChanged: (double value) {
                         timerController.setTimerLongBreakSlider(value.round());

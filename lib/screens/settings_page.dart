@@ -100,41 +100,49 @@ class _SettingsPageState extends State<SettingsPage> {
                   )
                 ],
               ),
-              DropdownButton<String>(
-                focusColor: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                dropdownColor: Colors.blueGrey[50],
-                value: _chosenValueLanguage,
-                elevation: 5,
-                style: const TextStyle(color: Colors.white),
-                iconEnabledColor: Colors.black,
-                items: <String>[
-                  'English',
-                  'Spanish',
-                  'Portuguese',
-                ].map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(
-                      value,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.black),
-                    ),
-                  );
-                }).toList(),
-                hint: const Text(
-                  "Please choose a language",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(8)),
+                child: DropdownButton<String>(
+                  underline: const SizedBox(),
+                  dropdownColor: Colors.grey[100],
+                  alignment: AlignmentDirectional.center,
+                  borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  value: _chosenValueLanguage,
+                  elevation: 0,
+                  style: const TextStyle(color: Colors.white),
+                  iconEnabledColor: Colors.black,
+                  items: <String>[
+                    'English',
+                    'Spanish',
+                    'Portuguese',
+                  ].map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.black),
+                      ),
+                    );
+                  }).toList(),
+                  hint: const Text(
+                    "Please choose a language",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  onChanged: (String? value) {
+                    // TODO DEPOIS QUE APLICAR O GETX REMOVE O SETstATE E TRANSFORMAR A CLASSE EM STATELESS
+                    setState(() {
+                      _chosenValueLanguage = value;
+                    });
+                  },
                 ),
-                onChanged: (String? value) {
-                  // TODO DEPOIS QUE APLICAR O GETX REMOVE O SETstATE E TRANSFORMAR A CLASSE EM STATELESS
-                  setState(() {
-                    _chosenValueLanguage = value;
-                  });
-                },
               ),
               const SizedBox(
                 height: 40,

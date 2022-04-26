@@ -7,7 +7,7 @@ class CustomSliderThumbCircle extends SliderComponentShape {
 
   const CustomSliderThumbCircle({
     required this.thumbRadius,
-    this.min = 0,
+    this.min = 1,
     this.max = 60,
   });
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pomodoro_app/controllers/timer_controller.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
+import 'package:pomodoro_app/widgets/bottom_sheet_songs.dart';
 import 'package:pomodoro_app/widgets/custom_slider.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -62,6 +63,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 _resetSlider(ResetSlider.resetWork);
                 _resetSlider(ResetSlider.resetShortBreak);
                 _resetSlider(ResetSlider.resetLongBreak);
+                _resetTextButtonSong();
               },
               icon: const Icon(Icons.refresh_rounded))
         ],
@@ -220,6 +222,18 @@ class _SettingsPageState extends State<SettingsPage> {
               const SizedBox(
                 height: 40,
               ),
+              TextButton(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.grey[200]),
+                    foregroundColor: MaterialStateProperty.all(Colors.black),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ))),
+                child: Obx(() => Text(timerController.textButtonSong.value)),
+                onPressed: () => selectSongsBottomSheet(context),
+              ),
             ],
           ),
         ),
@@ -249,4 +263,49 @@ enum ResetSlider {
   resetWork,
   resetShortBreak,
   resetLongBreak,
+}
+
+_resetTextButtonSong() {
+  switch (timerController.fileNameMusic.value) {
+    case 'attention-bell-ding.mp3':
+      timerController.textButtonSong.value = 'Attention bell ding';
+      break;
+    case 'bell-sound-with-delay.mp3':
+      timerController.textButtonSong.value = 'Bell sound with delay';
+      break;
+    case 'bells-of-mystery.mp3':
+      timerController.textButtonSong.value = 'Bells of mystery';
+      break;
+    case 'bike-bell-ring.mp3':
+      timerController.textButtonSong.value = 'Bike bell ring';
+      break;
+    case 'cartoon-door-melodic-bell.mp3':
+      timerController.textButtonSong.value = 'Cartoon door melodic bell';
+      break;
+    case 'clock-countdown-bleeps.mp3':
+      timerController.textButtonSong.value = 'Clock countdown bleeps';
+      break;
+    case 'fairy-bells.mp3':
+      timerController.textButtonSong.value = 'Fairy bells';
+      break;
+    case 'home-standard-ding-dong.mp3':
+      timerController.textButtonSong.value = 'Home standard ding dong';
+      break;
+    case 'modern-classic-door-bell-sound.mp3':
+      timerController.textButtonSong.value = 'Modern classic door bell';
+      break;
+    case 'notification-bell.mp3':
+      timerController.textButtonSong.value = 'Notification bell';
+      break;
+    case 'service-bell-double-ding.mp3':
+      timerController.textButtonSong.value = 'Service bell double ding';
+      break;
+    case 'small-door-bell.mp3':
+      timerController.textButtonSong.value = 'Small door bell';
+      break;
+    case 'bell.mp3':
+      timerController.textButtonSong.value = 'Bell';
+      break;
+    default:
+  }
 }

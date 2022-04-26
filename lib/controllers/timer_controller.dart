@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
+import 'package:pomodoro_app/widgets/bottom_sheet_songs.dart';
 
 class TimerController extends GetxController {
   static AudioCache player = AudioCache();
@@ -27,7 +28,10 @@ class TimerController extends GetxController {
   var mainBtnText = 'START POMODORO'.obs;
 
   PomodoroStatus pomodoroStatus = PomodoroStatus.pausedPomodoro;
+  Songs songs = Songs.songThirteen;
 
+  var fileNameMusic = 'bell.mp3'.obs;
+  var textButtonSong = 'please choose a song'.obs;
   @override
   void onInit() {
     player.load('bell.mp3');
@@ -94,6 +98,10 @@ class TimerController extends GetxController {
 
   void setPomodoroStatus(var value) {
     pomodoroStatus = value;
+  }
+
+  void setSongs(var value) {
+    songs = value;
   }
 
   void playSound() {

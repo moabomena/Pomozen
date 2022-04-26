@@ -22,72 +22,86 @@ void selectSongsBottomSheet(context) {
                 timerController.selectMapItem(Songs.songOne);
                 timerController.setSongs(Songs.songOne);
                 player.play(selectItemSong[Songs.songOne]);
+                timerController.setTextButtonSong('Attention bell ding');
               }),
               _listTileSelectSong('Bell sound with delay', keySong: 2,
                   ontap: () {
                 timerController.selectMapItem(Songs.songTwo);
                 timerController.setSongs(Songs.songTwo);
                 player.play(selectItemSong[Songs.songTwo]);
+                timerController.setTextButtonSong('Bell sound with delay');
               }),
               _listTileSelectSong('Bells of mystery', keySong: 3, ontap: () {
                 timerController.selectMapItem(Songs.songThree);
                 timerController.setSongs(Songs.songThree);
                 player.play(selectItemSong[Songs.songThree]);
+                timerController.setTextButtonSong('Bells of mystery');
               }),
               _listTileSelectSong('Bike bell ring', keySong: 4, ontap: () {
                 timerController.selectMapItem(Songs.songFour);
                 timerController.setSongs(Songs.songFour);
                 player.play(selectItemSong[Songs.songFour]);
+                timerController.setTextButtonSong('Bike bell ring');
               }),
               _listTileSelectSong('Cartoon door melodic bell', keySong: 5,
                   ontap: () {
                 timerController.selectMapItem(Songs.songFive);
                 timerController.setSongs(Songs.songFive);
                 player.play(selectItemSong[Songs.songFive]);
+                timerController.setTextButtonSong('Cartoon door melodic bell');
               }),
               _listTileSelectSong('Clock Countdown bleeps', keySong: 6,
                   ontap: () {
                 timerController.selectMapItem(Songs.songSix);
                 timerController.setSongs(Songs.songSix);
                 player.play(selectItemSong[Songs.songSix]);
+                timerController.setTextButtonSong('Clock Countdown bleeps');
               }),
               _listTileSelectSong('Fairy bells', keySong: 7, ontap: () {
                 timerController.selectMapItem(Songs.songSeven);
                 timerController.setSongs(Songs.songSeven);
                 player.play(selectItemSong[Songs.songSeven]);
+                timerController.setTextButtonSong('Fairy bells');
               }),
               _listTileSelectSong('Home standard ding dong', keySong: 8,
                   ontap: () {
                 timerController.selectMapItem(Songs.songEight);
                 timerController.setSongs(Songs.songEight);
                 player.play(selectItemSong[Songs.songEight]);
+                timerController.setTextButtonSong('Home standard ding dong');
               }),
               _listTileSelectSong('Modern classic door bell sound', keySong: 9,
                   ontap: () {
                 timerController.selectMapItem(Songs.songNine);
                 timerController.setSongs(Songs.songNine);
                 player.play(selectItemSong[Songs.songNine]);
+                timerController
+                    .setTextButtonSong('Modern classic door bell sound');
               }),
               _listTileSelectSong('Notificaiton bell', keySong: 10, ontap: () {
                 timerController.selectMapItem(Songs.songTen);
                 timerController.setSongs(Songs.songTen);
                 player.play(selectItemSong[Songs.songTen]);
+                timerController.setTextButtonSong('Notificaiton bell');
               }),
               _listTileSelectSong('Service bell double ding', keySong: 11,
                   ontap: () {
                 timerController.selectMapItem(Songs.songEleven);
                 timerController.setSongs(Songs.songEleven);
                 player.play(selectItemSong[Songs.songEleven]);
+                timerController.setTextButtonSong('Service bell double ding');
               }),
               _listTileSelectSong('Small door bell', keySong: 12, ontap: () {
                 timerController.selectMapItem(Songs.songTwelve);
                 timerController.setSongs(Songs.songTwelve);
                 player.play(selectItemSong[Songs.songTwelve]);
+                timerController.setTextButtonSong('Small door bell');
               }),
               _listTileSelectSong('Bell', keySong: 13, ontap: () {
                 timerController.selectMapItem(Songs.songThirteen);
                 timerController.setSongs(Songs.songThirteen);
                 player.play(selectItemSong[Songs.songThirteen]);
+                timerController.setTextButtonSong('Bell');
               }),
             ],
           ),

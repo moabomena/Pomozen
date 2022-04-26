@@ -8,35 +8,45 @@ class ProgressIcons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const iconSize = 30.0;
-
-    const doneIcon = Icon(
-      Icons.beenhere,
-      color: Colors.orange,
-      size: iconSize,
+    final doneIcon = Container(
+      margin: const EdgeInsets.only(right: 10.0),
+      width: 15 * .9,
+      height: 15 * .9,
+      decoration: BoxDecoration(
+        color: Colors.greenAccent[400],
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.greenAccent[400]!,
+            blurRadius: 15,
+            spreadRadius: 2,
+            offset: const Offset(0, 0),
+          )
+        ],
+      ),
     );
 
-    final notDoneIcon = Icon(
-      Icons.beenhere_outlined,
-      color: Colors.orange[100],
-      size: iconSize,
+    final notDoneIcon = Container(
+      margin: const EdgeInsets.only(right: 10.0),
+      width: 15 * .9,
+      height: 15 * .9,
+      decoration:
+          BoxDecoration(color: Colors.grey[300], shape: BoxShape.circle),
     );
 
-    List<Icon> icons = [];
+    List<Container> indicator = [];
 
     for (int i = 0; i < total!; i++) {
       if (i < done!) {
-        icons.add(doneIcon);
+        indicator.add(doneIcon);
       } else {
-        icons.add(notDoneIcon);
+        indicator.add(notDoneIcon);
       }
     }
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: icons,
-      ),
+      child:
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: indicator),
     );
   }
 }

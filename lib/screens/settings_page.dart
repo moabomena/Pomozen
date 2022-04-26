@@ -52,6 +52,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
           timerController.setMainBtnText(_btnTextStart);
           timerController.setShowButtonReset(false);
+          switchSelectItemSong();
         },
       ),
       appBar: AppBar(

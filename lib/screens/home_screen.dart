@@ -179,8 +179,9 @@ class Home extends StatelessWidget {
                             children: <Widget>[
                               AnimatedPositioned(
                                 duration: const Duration(milliseconds: 300),
-                                left:
-                                    timerCtl.showButtonReset.value ? 220 : 130,
+                                left: timerCtl.showButtonReset.value
+                                    ? 220
+                                    : 130.8,
                                 child: CustomButton(
                                   backgroundColorButton: Colors.grey[200],
                                   elevationButton: 0,
@@ -194,8 +195,9 @@ class Home extends StatelessWidget {
                               ),
                               AnimatedPositioned(
                                 duration: const Duration(milliseconds: 300),
-                                right:
-                                    timerCtl.showButtonReset.value ? 220 : 130,
+                                right: timerCtl.showButtonReset.value
+                                    ? 220
+                                    : 130.8,
                                 child: CustomButton(
                                   textButton: timerCtl.mainBtnText.value,
                                   onTap: () {

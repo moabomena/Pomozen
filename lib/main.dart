@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/home_screen.dart';
 import 'package:get/get.dart';
+import 'package:pomodoro_app/theme/themes_constants.dart';
 
 Future<void> main() async {
   runApp(const MyApp());
@@ -14,7 +15,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.green),
+      darkTheme: darkTheme,
+      theme: lightTheme,
+      themeMode: ThemeMode.system,
       home: const Home(),
     );
   }

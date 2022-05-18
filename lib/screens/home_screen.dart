@@ -136,6 +136,8 @@ class Home extends StatelessWidget {
                         CircularPercentIndicator(
                           radius: 125.0,
                           lineWidth: 12.0,
+                          maskFilter:
+                              const MaskFilter.blur(BlurStyle.solid, 10.0),
                           animation: true,
                           animationDuration: 1000,
                           animateFromLastPercent: true,

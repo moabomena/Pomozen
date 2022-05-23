@@ -8,7 +8,7 @@ import 'package:rxdart/subjects.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:flutter_native_timezone/flutter_native_timezone.dart'; */
 
-import 'received_notification.dart';
+import '../model/received_notification.dart';
 
 String? selectedNotificationPayload;
 

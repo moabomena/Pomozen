@@ -1,6 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
-import 'package:pomodoro_app/widgets/bottom_sheet_songs.dart';
+
+import '../model/select_songs.dart';
 
 class SongController extends GetxController {
   static AudioCache player = AudioCache();

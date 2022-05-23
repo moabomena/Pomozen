@@ -7,6 +7,8 @@ import 'package:pomodoro_app/model/pomodoro_status.dart';
 import 'package:pomodoro_app/widgets/bottom_sheet_songs.dart';
 import 'package:pomodoro_app/widgets/custom_slider.dart';
 
+import '../model/settings_slide.dart';
+
 class SettingsPage extends StatefulWidget {
   const SettingsPage({
     Key? key,
@@ -272,12 +274,6 @@ class _SettingsPageState extends State<SettingsPage> {
       default:
     }
   }
-}
-
-enum ResetSlider {
-  resetWork,
-  resetShortBreak,
-  resetLongBreak,
 }
 
 _resetTextButtonSong() {

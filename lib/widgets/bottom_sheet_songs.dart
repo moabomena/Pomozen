@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pomodoro_app/controllers/song_controller.dart';
 import 'package:pomodoro_app/controllers/theme_controller.dart';
+import 'package:pomodoro_app/utils/constants.dart';
+
+import '../model/select_songs.dart';
 
 final themeController = Get.find<ThemeController>();
 final songController = Get.find<SongController>();
 final AudioCache player = AudioCache();
+
 void selectSongsBottomSheet(context) {
   showModalBottomSheet(
       isScrollControlled: true,
@@ -151,22 +155,6 @@ _listTileSelectSong(
   );
 }
 
-enum Songs {
-  songOne,
-  songTwo,
-  songThree,
-  songFour,
-  songFive,
-  songSix,
-  songSeven,
-  songEight,
-  songNine,
-  songTen,
-  songEleven,
-  songTwelve,
-  songThirteen
-}
-
 switchSelectItemSong() {
   switch (songController.songs) {
     case Songs.songOne:
@@ -211,19 +199,3 @@ switchSelectItemSong() {
     default:
   }
 }
-
-const Map<Songs, dynamic> selectItemSong = {
-  Songs.songOne: 'attention-bell-ding.mp3',
-  Songs.songTwo: 'bell-sound-with-delay.mp3',
-  Songs.songThree: 'bells-of-mystery.mp3',
-  Songs.songFour: 'bike-bell-ring.mp3',
-  Songs.songFive: 'cartoon-door-melodic-bell.mp3',
-  Songs.songSix: 'clock-countdown-bleeps.mp3',
-  Songs.songSeven: 'fairy-bells.mp3',
-  Songs.songEight: 'home-standard-ding-dong.mp3',
-  Songs.songNine: 'modern-classic-door-bell-sound.mp3',
-  Songs.songTen: 'notification-bell.mp3',
-  Songs.songEleven: 'service-bell-double-ding.mp3',
-  Songs.songTwelve: 'small-door-bell.mp3',
-  Songs.songThirteen: 'bell.mp3',
-};

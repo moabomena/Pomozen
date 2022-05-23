@@ -18,15 +18,6 @@ import '../widgets/progress_icons.dart';
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
-  static const _btnTextStart = 'START \nPOMODORO';
-  static const _btnTextResumePomodoro = 'RESUME \nPOMODORO';
-  static const _btnTextResumeBreak = 'RESUME\n BREAK';
-  static const _btnTextStartShortBreak = 'TAKE \nSHORT BREAK';
-  static const _btnTextStartLongBreak = 'TAKE\n LONG BREAK';
-  static const _btnTextStartNewSet = 'START\n NEW SET';
-  static const _btnTextPause = 'PAUSE';
-  static const _btnTextReset = 'RESET';
-
   static final timerCtl = Get.put(TimerController());
   static final themeController = Get.put(ThemeController());
   static final songController = Get.put(SongController());
@@ -195,7 +186,7 @@ class Home extends StatelessWidget {
                                   textColor: Get.isDarkMode
                                       ? Colors.white54
                                       : Colors.black54,
-                                  textButton: _btnTextReset,
+                                  textButton: btnTextReset,
                                   onTap: () {
                                     _resetButtonPressed();
                                     timerCtl.setShowButtonReset(false);
@@ -303,7 +294,7 @@ class Home extends StatelessWidget {
       if (timerCtl.remainingTimer.value > 0) {
         timerCtl.removeDelayOfNotification.value--;
         timerCtl.remainingTimer.value--;
-        timerCtl.setMainBtnText(_btnTextPause);
+        timerCtl.setMainBtnText(btnTextPause);
       }
     });
   }
@@ -320,7 +311,7 @@ class Home extends StatelessWidget {
                 timerCtl.removeDelayOfNotification.value));
         timerCtl.removeDelayOfNotification.value--;
         timerCtl.remainingTimer.value--;
-        timerCtl.setMainBtnText(_btnTextPause);
+        timerCtl.setMainBtnText(btnTextPause);
       } else {
         localNotifications(
             title: 'Pomodoro: FINALIZADO!', body: 'Iniciar pausa de 5 minutos');
@@ -333,13 +324,13 @@ class Home extends StatelessWidget {
               timerCtl.currentSliderValueLongBreak.value);
 
           timerCtl.setRemainingTime(timerCtl.longBreakTimer.value);
-          timerCtl.setMainBtnText(_btnTextStartLongBreak);
+          timerCtl.setMainBtnText(btnTextStartLongBreak);
         } else {
           timerCtl.setPomodoroStatus(PomodoroStatus.pausedShortBreak);
           timerCtl.setValueTimerNotification(
               timerCtl.currentSliderValueShortBreak.value);
           timerCtl.setRemainingTime(timerCtl.shortBreakTimer.value);
-          timerCtl.setMainBtnText(_btnTextStartShortBreak);
+          timerCtl.setMainBtnText(btnTextStartShortBreak);
         }
       }
     });
@@ -347,7 +338,7 @@ class Home extends StatelessWidget {
 
   _startShortBreak() {
     timerCtl.setPomodoroStatus(PomodoroStatus.runningShortBreak);
-    timerCtl.setMainBtnText(_btnTextPause);
+    timerCtl.setMainBtnText(btnTextPause);
     _startPomodoroWithoutDelay();
     _cancelTime();
     timerCtl.timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -367,14 +358,14 @@ class Home extends StatelessWidget {
         timerCtl.setRemainingTime(timerCtl.totalTimer.value);
         _cancelTime();
         timerCtl.setPomodoroStatus(PomodoroStatus.pausedPomodoro);
-        timerCtl.setMainBtnText(_btnTextStart);
+        timerCtl.setMainBtnText(btnTextStart);
       }
     });
   }
 
   _startLongBreak() {
     timerCtl.setPomodoroStatus(PomodoroStatus.runningLongBreak);
-    timerCtl.setMainBtnText(_btnTextPause);
+    timerCtl.setMainBtnText(btnTextPause);
     _startPomodoroWithoutDelay();
     _cancelTime();
     timerCtl.timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -395,7 +386,7 @@ class Home extends StatelessWidget {
         timerCtl.setRemainingTime(timerCtl.totalTimer.value);
         _cancelTime();
         timerCtl.setPomodoroStatus(PomodoroStatus.setFinished);
-        timerCtl.setMainBtnText(_btnTextStartNewSet);
+        timerCtl.setMainBtnText(btnTextStartNewSet);
       }
     });
   }
@@ -403,7 +394,7 @@ class Home extends StatelessWidget {
   _pausePomodoroCountdown() {
     timerCtl.setPomodoroStatus(PomodoroStatus.pausedPomodoro);
     _cancelTime();
-    timerCtl.setMainBtnText(_btnTextResumePomodoro);
+    timerCtl.setMainBtnText(btnTextResumePomodoro);
   }
 
   _resetButtonPressed() {
@@ -416,7 +407,7 @@ class Home extends StatelessWidget {
   _stopCountdown() {
     timerCtl.setPomodoroStatus(PomodoroStatus.pausedPomodoro);
 
-    timerCtl.setMainBtnText(_btnTextStart);
+    timerCtl.setMainBtnText(btnTextStart);
     timerCtl.setValueTimerNotification(timerCtl.currentSliderValueWork.value);
     timerCtl.setRemainingTime(timerCtl.totalTimer.value);
   }
@@ -433,7 +424,7 @@ class Home extends StatelessWidget {
 
   _pauseBreakCountdown() {
     _cancelTime();
-    timerCtl.setMainBtnText(_btnTextResumeBreak);
+    timerCtl.setMainBtnText(btnTextResumeBreak);
   }
 
   _cancelTime() {

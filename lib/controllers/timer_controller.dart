@@ -24,8 +24,6 @@ class TimerController extends GetxController {
     13: false,
   }.obs;
 
-  var isSwitchedDark = false.obs;
-
   var showButtonReset = false.obs;
 
   var currentSliderValueWork = 25.obs;
@@ -130,10 +128,6 @@ class TimerController extends GetxController {
 
   void setPlaySound(var value) {
     fileNameMusic.value = value;
-  }
-
-  void setSwitchedDark(var value) {
-    isSwitchedDark.value = value;
   }
 
   void setShowButtonReset(var value) {

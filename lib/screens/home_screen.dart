@@ -192,10 +192,9 @@ class Home extends StatelessWidget {
                                   backgroundColorButton:
                                       Theme.of(context).primaryColor,
                                   elevationButton: 0,
-                                  textColor:
-                                      themeController.isSwitchedDark.value
-                                          ? Colors.white54
-                                          : Colors.black54,
+                                  textColor: Get.isDarkMode
+                                      ? Colors.white54
+                                      : Colors.black54,
                                   textButton: _btnTextReset,
                                   onTap: () {
                                     _resetButtonPressed();

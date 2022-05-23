@@ -17,8 +17,8 @@ class SettingsPage extends StatefulWidget {
 }
 
 final timerController = Get.find<TimerController>();
-final themeController = Get.find<ThemeController>();
-final songController = Get.find<SongController>();
+final songController = Get.put(SongController());
+final themeController = Get.put(ThemeController());
 const _btnTextStart = 'START POMODORO';
 
 class _SettingsPageState extends State<SettingsPage> {

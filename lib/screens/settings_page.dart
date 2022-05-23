@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pomodoro_app/controllers/theme_controller.dart';
 import 'package:pomodoro_app/controllers/timer_controller.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
 import 'package:pomodoro_app/widgets/bottom_sheet_songs.dart';
@@ -18,6 +19,7 @@ const _btnTextStart = 'START POMODORO';
 
 class _SettingsPageState extends State<SettingsPage> {
   final timerController = Get.find<TimerController>();
+  final themeController = Get.find<ThemeController>();
 
   bool isSwitched = false;
   String? _chosenValueLanguage;
@@ -91,14 +93,14 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                   ),
                   Obx(() => Switch(
-                        value: timerController.isSwitchedDark.value,
+                        value: themeController.isSwitchedDark.value,
                         splashRadius: 15,
                         activeTrackColor: Colors.grey[700],
                         activeColor: Colors.deepOrange,
                         onChanged: (value) {
-                          timerController.setSwitchedDark(value);
+                          themeController.setSwitchedDark(value);
                           Get.changeThemeMode(
-                              timerController.isSwitchedDark.value
+                              themeController.isSwitchedDark.value
                                   ? ThemeMode.dark
                                   : ThemeMode.light);
                         },

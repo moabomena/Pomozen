@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:pomodoro_app/controllers/theme_controller.dart';
 import 'package:pomodoro_app/controllers/timer_controller.dart';
 import 'package:pomodoro_app/utils/constants.dart';
 import 'package:pomodoro_app/utils/notifications.dart';
@@ -26,6 +27,7 @@ class Home extends StatelessWidget {
   static const _btnTextReset = 'RESET';
 
   static final timerCtl = Get.put(TimerController());
+  static final themeController = Get.put(ThemeController());
 
   @override
   Widget build(BuildContext context) {
@@ -188,9 +190,10 @@ class Home extends StatelessWidget {
                                   backgroundColorButton:
                                       Theme.of(context).primaryColor,
                                   elevationButton: 0,
-                                  textColor: timerCtl.isSwitchedDark.value
-                                      ? Colors.white54
-                                      : Colors.black54,
+                                  textColor:
+                                      themeController.isSwitchedDark.value
+                                          ? Colors.white54
+                                          : Colors.black54,
                                   textButton: _btnTextReset,
                                   onTap: () {
                                     _resetButtonPressed();

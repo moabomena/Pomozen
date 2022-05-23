@@ -1,10 +1,12 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pomodoro_app/controllers/theme_controller.dart';
 
 import '../controllers/timer_controller.dart';
 
 final timerController = Get.find<TimerController>();
+final themeController = Get.find<ThemeController>();
 final AudioCache player = AudioCache();
 void selectSongsBottomSheet(context) {
   showModalBottomSheet(
@@ -128,7 +130,7 @@ _listTileSelectSong(
         style: TextStyle(
             color: timerController.mapSelectSong[keySong] == true
                 ? Colors.greenAccent[700]
-                : timerController.isSwitchedDark.value
+                : themeController.isSwitchedDark.value
                     ? Colors.white
                     : Colors.black,
             fontFamily: 'OpenSans'),

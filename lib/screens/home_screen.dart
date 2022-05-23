@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:pomodoro_app/controllers/song_controller.dart';
 import 'package:pomodoro_app/controllers/theme_controller.dart';
 import 'package:pomodoro_app/controllers/timer_controller.dart';
 import 'package:pomodoro_app/utils/constants.dart';
@@ -28,6 +29,7 @@ class Home extends StatelessWidget {
 
   static final timerCtl = Get.put(TimerController());
   static final themeController = Get.put(ThemeController());
+  static final songController = Get.put(SongController());
 
   @override
   Widget build(BuildContext context) {
@@ -323,7 +325,7 @@ class Home extends StatelessWidget {
       } else {
         localNotifications(
             title: 'Pomodoro: FINALIZADO!', body: 'Iniciar pausa de 5 minutos');
-        timerCtl.playSound();
+        songController.playSound();
         timerCtl.incrementPomodoroNum();
         _cancelTime();
         if (timerCtl.pomodoroNum.value % pomodoriPerset == 0) {
@@ -360,7 +362,7 @@ class Home extends StatelessWidget {
       } else {
         localNotifications(
             title: 'Pomodoro: FINALIZADO!', body: 'Retorne ao trabalho!');
-        timerCtl.playSound();
+        songController.playSound();
         timerCtl
             .setValueTimerNotification(timerCtl.currentSliderValueWork.value);
         timerCtl.setRemainingTime(timerCtl.totalTimer.value);
@@ -388,7 +390,7 @@ class Home extends StatelessWidget {
         localNotifications(
             title: 'Pomodoro: CICLO FINALIZADO!',
             body: 'Inicie um novo ciclo!');
-        timerCtl.playSound();
+        songController.playSound();
         timerCtl
             .setValueTimerNotification(timerCtl.currentSliderValueWork.value);
         timerCtl.setRemainingTime(timerCtl.totalTimer.value);

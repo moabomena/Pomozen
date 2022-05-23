@@ -1,12 +1,12 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pomodoro_app/controllers/song_controller.dart';
 import 'package:pomodoro_app/controllers/theme_controller.dart';
 
-import '../controllers/timer_controller.dart';
 
-final timerController = Get.find<TimerController>();
 final themeController = Get.find<ThemeController>();
+final songController = Get.find<SongController>();
 final AudioCache player = AudioCache();
 void selectSongsBottomSheet(context) {
   showModalBottomSheet(
@@ -23,89 +23,89 @@ void selectSongsBottomSheet(context) {
               'Attention bell ding',
               keySong: 1,
               ontap: () {
-                timerController.selectMapItem(Songs.songOne);
-                timerController.setSongs(Songs.songOne);
+                songController.selectMapItem(Songs.songOne);
+                songController.setSongs(Songs.songOne);
                 player.play(selectItemSong[Songs.songOne]);
-                timerController.setTextButtonSong('Attention bell ding');
+                songController.setTextButtonSong('Attention bell ding');
               },
             ),
             _listTileSelectSong('Bell sound with delay', keySong: 2, ontap: () {
-              timerController.selectMapItem(Songs.songTwo);
-              timerController.setSongs(Songs.songTwo);
+              songController.selectMapItem(Songs.songTwo);
+              songController.setSongs(Songs.songTwo);
               player.play(selectItemSong[Songs.songTwo]);
-              timerController.setTextButtonSong('Bell sound with delay');
+              songController.setTextButtonSong('Bell sound with delay');
             }),
             _listTileSelectSong('Bells of mystery', keySong: 3, ontap: () {
-              timerController.selectMapItem(Songs.songThree);
-              timerController.setSongs(Songs.songThree);
+              songController.selectMapItem(Songs.songThree);
+              songController.setSongs(Songs.songThree);
               player.play(selectItemSong[Songs.songThree]);
-              timerController.setTextButtonSong('Bells of mystery');
+              songController.setTextButtonSong('Bells of mystery');
             }),
             _listTileSelectSong('Bike bell ring', keySong: 4, ontap: () {
-              timerController.selectMapItem(Songs.songFour);
-              timerController.setSongs(Songs.songFour);
+              songController.selectMapItem(Songs.songFour);
+              songController.setSongs(Songs.songFour);
               player.play(selectItemSong[Songs.songFour]);
-              timerController.setTextButtonSong('Bike bell ring');
+              songController.setTextButtonSong('Bike bell ring');
             }),
             _listTileSelectSong('Cartoon door melodic bell', keySong: 5,
                 ontap: () {
-              timerController.selectMapItem(Songs.songFive);
-              timerController.setSongs(Songs.songFive);
+              songController.selectMapItem(Songs.songFive);
+              songController.setSongs(Songs.songFive);
               player.play(selectItemSong[Songs.songFive]);
-              timerController.setTextButtonSong('Cartoon door melodic bell');
+              songController.setTextButtonSong('Cartoon door melodic bell');
             }),
             _listTileSelectSong('Clock Countdown bleeps', keySong: 6,
                 ontap: () {
-              timerController.selectMapItem(Songs.songSix);
-              timerController.setSongs(Songs.songSix);
+              songController.selectMapItem(Songs.songSix);
+              songController.setSongs(Songs.songSix);
               player.play(selectItemSong[Songs.songSix]);
-              timerController.setTextButtonSong('Clock Countdown bleeps');
+              songController.setTextButtonSong('Clock Countdown bleeps');
             }),
             _listTileSelectSong('Fairy bells', keySong: 7, ontap: () {
-              timerController.selectMapItem(Songs.songSeven);
-              timerController.setSongs(Songs.songSeven);
+              songController.selectMapItem(Songs.songSeven);
+              songController.setSongs(Songs.songSeven);
               player.play(selectItemSong[Songs.songSeven]);
-              timerController.setTextButtonSong('Fairy bells');
+              songController.setTextButtonSong('Fairy bells');
             }),
             _listTileSelectSong('Home standard ding dong', keySong: 8,
                 ontap: () {
-              timerController.selectMapItem(Songs.songEight);
-              timerController.setSongs(Songs.songEight);
+              songController.selectMapItem(Songs.songEight);
+              songController.setSongs(Songs.songEight);
               player.play(selectItemSong[Songs.songEight]);
-              timerController.setTextButtonSong('Home standard ding dong');
+              songController.setTextButtonSong('Home standard ding dong');
             }),
             _listTileSelectSong('Modern classic door bell sound', keySong: 9,
                 ontap: () {
-              timerController.selectMapItem(Songs.songNine);
-              timerController.setSongs(Songs.songNine);
+              songController.selectMapItem(Songs.songNine);
+              songController.setSongs(Songs.songNine);
               player.play(selectItemSong[Songs.songNine]);
-              timerController
+              songController
                   .setTextButtonSong('Modern classic door bell sound');
             }),
             _listTileSelectSong('Notificaiton bell', keySong: 10, ontap: () {
-              timerController.selectMapItem(Songs.songTen);
-              timerController.setSongs(Songs.songTen);
+              songController.selectMapItem(Songs.songTen);
+              songController.setSongs(Songs.songTen);
               player.play(selectItemSong[Songs.songTen]);
-              timerController.setTextButtonSong('Notificaiton bell');
+              songController.setTextButtonSong('Notificaiton bell');
             }),
             _listTileSelectSong('Service bell double ding', keySong: 11,
                 ontap: () {
-              timerController.selectMapItem(Songs.songEleven);
-              timerController.setSongs(Songs.songEleven);
+              songController.selectMapItem(Songs.songEleven);
+              songController.setSongs(Songs.songEleven);
               player.play(selectItemSong[Songs.songEleven]);
-              timerController.setTextButtonSong('Service bell double ding');
+              songController.setTextButtonSong('Service bell double ding');
             }),
             _listTileSelectSong('Small door bell', keySong: 12, ontap: () {
-              timerController.selectMapItem(Songs.songTwelve);
-              timerController.setSongs(Songs.songTwelve);
+              songController.selectMapItem(Songs.songTwelve);
+              songController.setSongs(Songs.songTwelve);
               player.play(selectItemSong[Songs.songTwelve]);
-              timerController.setTextButtonSong('Small door bell');
+              songController.setTextButtonSong('Small door bell');
             }),
             _listTileSelectSong('Bell', keySong: 13, ontap: () {
-              timerController.selectMapItem(Songs.songThirteen);
-              timerController.setSongs(Songs.songThirteen);
+              songController.selectMapItem(Songs.songThirteen);
+              songController.setSongs(Songs.songThirteen);
               player.play(selectItemSong[Songs.songThirteen]);
-              timerController.setTextButtonSong('Bell');
+              songController.setTextButtonSong('Bell');
             }),
           ],
         );
@@ -119,7 +119,7 @@ _listTileSelectSong(
 }) {
   return Obx(
     () => ListTile(
-      leading: timerController.mapSelectSong[keySong] == true
+      leading: songController.mapSelectSong[keySong] == true
           ? Icon(
               Icons.check,
               color: Colors.greenAccent[700],
@@ -128,14 +128,14 @@ _listTileSelectSong(
       title: Text(
         title,
         style: TextStyle(
-            color: timerController.mapSelectSong[keySong] == true
+            color: songController.mapSelectSong[keySong] == true
                 ? Colors.greenAccent[700]
                 : themeController.isSwitchedDark.value
                     ? Colors.white
                     : Colors.black,
             fontFamily: 'OpenSans'),
       ),
-      trailing: timerController.mapSelectSong[keySong] == true
+      trailing: songController.mapSelectSong[keySong] == true
           ? const Icon(Icons.pause_outlined)
           : const Icon(Icons.play_arrow_rounded),
       onTap: ontap,
@@ -160,45 +160,45 @@ enum Songs {
 }
 
 switchSelectItemSong() {
-  switch (timerController.songs) {
+  switch (songController.songs) {
     case Songs.songOne:
-      timerController.setPlaySound('attention-bell-ding.mp3');
+      songController.setPlaySound('attention-bell-ding.mp3');
       break;
     case Songs.songTwo:
-      timerController.setPlaySound('bell-sound-with-delay.mp3');
+      songController.setPlaySound('bell-sound-with-delay.mp3');
       break;
     case Songs.songThree:
-      timerController.setPlaySound('bells-of-mystery.mp3');
+      songController.setPlaySound('bells-of-mystery.mp3');
       break;
     case Songs.songFour:
-      timerController.setPlaySound('bike-bell-ring.mp3');
+      songController.setPlaySound('bike-bell-ring.mp3');
       break;
     case Songs.songFive:
-      timerController.setPlaySound('cartoon-door-melodic-bell.mp3');
+      songController.setPlaySound('cartoon-door-melodic-bell.mp3');
       break;
     case Songs.songSix:
-      timerController.setPlaySound('clock-countdown-bleeps.mp3');
+      songController.setPlaySound('clock-countdown-bleeps.mp3');
       break;
     case Songs.songSeven:
-      timerController.setPlaySound('fairy-bells.mp3');
+      songController.setPlaySound('fairy-bells.mp3');
       break;
     case Songs.songEight:
-      timerController.setPlaySound('home-standard-ding-dong.mp3');
+      songController.setPlaySound('home-standard-ding-dong.mp3');
       break;
     case Songs.songNine:
-      timerController.setPlaySound('modern-classic-door-bell-sound.mp3');
+      songController.setPlaySound('modern-classic-door-bell-sound.mp3');
       break;
     case Songs.songTen:
-      timerController.setPlaySound('notification-bell.mp3');
+      songController.setPlaySound('notification-bell.mp3');
       break;
     case Songs.songEleven:
-      timerController.setPlaySound('service-bell-double-ding.mp3');
+      songController.setPlaySound('service-bell-double-ding.mp3');
       break;
     case Songs.songTwelve:
-      timerController.setPlaySound('small-door-bell.mp3');
+      songController.setPlaySound('small-door-bell.mp3');
       break;
     case Songs.songThirteen:
-      timerController.setPlaySound('bell.mp3');
+      songController.setPlaySound('bell.mp3');
       break;
     default:
   }

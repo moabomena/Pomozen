@@ -26,35 +26,39 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
-        label: const Text('Salvar'),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        onPressed: () {
-          Navigator.of(context).pop();
-          timerController.resetPomodoroNum();
-          timerController.resetSetNum();
-          timerController.timer.cancel();
-          timerController.setPomodoroStatus(PomodoroStatus.pausedPomodoro);
-          timerController.setValueTimerNotification(
-              timerController.currentSliderValueWork.value);
+      floatingActionButton: SizedBox(
+        height: 60,
+        width: 120,
+        child: FloatingActionButton.extended(
+          label: const Text(
+            'Salvar',
+            style: TextStyle(fontSize: 18),
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+            timerController.resetPomodoroNum();
+            timerController.resetSetNum();
+            timerController.timer.cancel();
+            timerController.setPomodoroStatus(PomodoroStatus.pausedPomodoro);
+            timerController.setValueTimerNotification(
+                timerController.currentSliderValueWork.value);
 
-          timerController.setRemainingTime(timerController.totalTimer.value =
-              timerController.currentSliderValueWork.value);
+            timerController.setRemainingTime(timerController.totalTimer.value =
+                timerController.currentSliderValueWork.value);
 
-          timerController
-              .setTotalTimer(timerController.currentSliderValueWork.value);
+            timerController
+                .setTotalTimer(timerController.currentSliderValueWork.value);
 
-          timerController.setShortBreak(
-              timerController.currentSliderValueShortBreak.value);
-          timerController
-              .setLongBreak(timerController.currentSliderValueLongBreak.value);
+            timerController.setShortBreak(
+                timerController.currentSliderValueShortBreak.value);
+            timerController.setLongBreak(
+                timerController.currentSliderValueLongBreak.value);
 
-          timerController.setMainBtnText(_btnTextStart);
-          timerController.setShowButtonReset(false);
-          switchSelectItemSong();
-        },
+            timerController.setMainBtnText(_btnTextStart);
+            timerController.setShowButtonReset(false);
+            switchSelectItemSong();
+          },
+        ),
       ),
       appBar: AppBar(
         actions: [
@@ -68,12 +72,9 @@ class _SettingsPageState extends State<SettingsPage> {
               icon: const Icon(Icons.refresh_rounded))
         ],
         title: const Text('Setting'),
-        backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        foregroundColor: const Color.fromARGB(255, 121, 119, 17),
       ),
-      backgroundColor: Colors.yellow,
       body: Container(
         padding: const EdgeInsets.all(12),
         child: SingleChildScrollView(
@@ -84,60 +85,64 @@ class _SettingsPageState extends State<SettingsPage> {
                 children: [
                   const Text(
                     'Modo dark',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  Switch(
-                    value: isSwitched,
-                    splashRadius: 15,
-                    onChanged: (value) {
-                      // TODO DEPOIS QUE APLICAR O GETX REMOVE O SETstATE E TRANSFORMAR A CLASSE EM STATELESS
-                      setState(() {
-                        isSwitched = value;
-                        value = true;
-                        // TODO CRIAR O CODIGO PARA O MODO DARK usando o getx
-                        print(isSwitched);
-                      });
-                    },
-                    activeTrackColor: Colors.lightGreenAccent,
-                    activeColor: Colors.green,
-                  )
+                  Obx(() => Switch(
+                        value: timerController.isSwitchedDark.value,
+                        splashRadius: 15,
+                        activeTrackColor: Colors.grey[700],
+                        activeColor: Colors.deepOrange,
+                        onChanged: (value) {
+                          timerController.setSwitchedDark(value);
+                          Get.changeThemeMode(
+                              timerController.isSwitchedDark.value
+                                  ? ThemeMode.dark
+                                  : ThemeMode.light);
+                        },
+                      ))
                 ],
+              ),
+              const Divider(
+                height: 30,
               ),
               Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                 decoration: BoxDecoration(
-                    color: Colors.grey[200],
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(8)),
                 child: DropdownButton<String>(
                   underline: const SizedBox(),
-                  dropdownColor: Colors.grey[100],
+                  dropdownColor: Theme.of(context).primaryColor,
                   alignment: AlignmentDirectional.center,
                   borderRadius: const BorderRadius.all(Radius.circular(8)),
                   value: _chosenValueLanguage,
                   elevation: 0,
-                  style: const TextStyle(color: Colors.white),
-                  iconEnabledColor: Colors.black,
                   items: <String>[
                     'English',
                     'Spanish',
                     'Portuguese',
                   ].map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
+                      alignment: AlignmentDirectional.center,
                       value: value,
                       child: Text(
                         value,
                         style: const TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.black),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'OpenSans'),
                       ),
                     );
                   }).toList(),
                   hint: const Text(
                     "Please choose a language",
                     style: TextStyle(
-                        color: Colors.black,
                         fontSize: 14,
-                        fontWeight: FontWeight.w500),
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'OpenSans'),
                   ),
                   onChanged: (String? value) {
                     // TODO DEPOIS QUE APLICAR O GETX REMOVE O SETstATE E TRANSFORMAR A CLASSE EM STATELESS
@@ -147,12 +152,18 @@ class _SettingsPageState extends State<SettingsPage> {
                   },
                 ),
               ),
+              const Divider(
+                height: 30,
+              ),
               const SizedBox(
                 height: 40,
               ),
               const Text(
                 'Work',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Obx(
                 () => SliderSettingsTimers(
@@ -175,7 +186,10 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               const Text(
                 'Short Break',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Obx(
                 () => SliderSettingsTimers(
@@ -222,16 +236,14 @@ class _SettingsPageState extends State<SettingsPage> {
               const SizedBox(
                 height: 40,
               ),
+              const Divider(
+                height: 30,
+              ),
               TextButton(
-                style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(Colors.grey[200]),
-                    foregroundColor: MaterialStateProperty.all(Colors.black),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ))),
-                child: Obx(() => Text(timerController.textButtonSong.value)),
+                child: Obx(() => Text(
+                      timerController.textButtonSong.value,
+                      style: const TextStyle(fontFamily: 'OpenSans'),
+                    )),
                 onPressed: () => selectSongsBottomSheet(context),
               ),
             ],

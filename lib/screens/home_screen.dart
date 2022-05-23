@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:pomodoro_app/controllers/timer_controller.dart';
@@ -30,12 +31,14 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+            systemOverlayStyle: Get.isDarkMode
+                ? SystemUiOverlayStyle.light
+                : SystemUiOverlayStyle.dark,
             leading: Builder(
               builder: (BuildContext context) {
                 return IconButton(
                   icon: const Icon(
                     Icons.settings_outlined,
-                    color: Color.fromARGB(255, 11, 184, 83),
                   ),
                   onPressed: () {
                     Navigator.push(
@@ -50,9 +53,7 @@ class Home extends StatelessWidget {
             ),
             title: const Text('Pomodoro'),
             centerTitle: true,
-            backgroundColor: Colors.transparent,
             elevation: 0),
-        backgroundColor: const Color.fromARGB(255, 154, 216, 156),
         body: SafeArea(
           child: Center(
             child: Column(
@@ -67,11 +68,11 @@ class Home extends StatelessWidget {
                     Column(
                       children: [
                         Container(
-                          padding: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(5),
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                              color: Colors.grey[200],
+                              color: Theme.of(context).primaryColor,
                               shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.circular(8)),
                           child: Obx(
@@ -79,8 +80,7 @@ class Home extends StatelessWidget {
                               child: Text(
                                 timerCtl.pomodoroNum.value.toString(),
                                 style: const TextStyle(
-                                  fontSize: 20,
-                                ),
+                                    fontSize: 20, fontFamily: 'OpenSans'),
                               ),
                             ),
                           ),
@@ -88,21 +88,21 @@ class Home extends StatelessWidget {
                         const SizedBox(
                           height: 5.0,
                         ),
-                        const Text(
+                        Text(
                           'Pomodoro\n number',
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 14, color: Colors.black54),
+                          style: Theme.of(context).textTheme.bodyText1,
                         ),
                       ],
                     ),
                     Column(
                       children: [
                         Container(
-                          padding: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(5),
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                              color: Colors.grey[200],
+                              color: Theme.of(context).primaryColor,
                               shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.circular(8)),
                           child: Obx(
@@ -110,8 +110,7 @@ class Home extends StatelessWidget {
                               child: Text(
                                 timerCtl.setNum.value.toString(),
                                 style: const TextStyle(
-                                  fontSize: 20,
-                                ),
+                                    fontSize: 20, fontFamily: 'OpenSans'),
                               ),
                             ),
                           ),
@@ -119,13 +118,13 @@ class Home extends StatelessWidget {
                         const SizedBox(
                           height: 5.0,
                         ),
-                        const Text(
+                        Text(
                           'Set',
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 14, color: Colors.black54),
+                          style: Theme.of(context).textTheme.bodyText1,
                         )
                       ],
-                    ),
+                    )
                   ],
                 ),
                 Expanded(
@@ -135,9 +134,9 @@ class Home extends StatelessWidget {
                       children: [
                         CircularPercentIndicator(
                           radius: 125.0,
-                          lineWidth: 12.0,
+                          lineWidth: 8.0,
                           maskFilter:
-                              const MaskFilter.blur(BlurStyle.solid, 10.0),
+                              const MaskFilter.blur(BlurStyle.solid, 8.0),
                           animation: true,
                           animationDuration: 1000,
                           animateFromLastPercent: true,
@@ -149,13 +148,15 @@ class Home extends StatelessWidget {
                               _secondsToFormatedString(
                                   timerCtl.remainingTimer.value),
                               style: TextStyle(
-                                fontSize: 40,
+                                fontSize: 50,
+                                fontFamily: 'OpenSans',
+                                fontWeight: FontWeight.w600,
                                 color: statusColor[timerCtl.pomodoroStatus],
                               ),
                             ),
                           ),
                           progressColor: statusColor[timerCtl.pomodoroStatus],
-                          backgroundColor: Colors.grey[200] as Color,
+                          backgroundColor: Theme.of(context).primaryColor,
                         ),
                         const SizedBox(
                           height: 20,
@@ -169,7 +170,6 @@ class Home extends StatelessWidget {
                         ),
                         Text(
                           statusDescription[timerCtl.pomodoroStatus],
-                          style: const TextStyle(color: Colors.white),
                         ),
                         const SizedBox(
                           height: 40,
@@ -185,9 +185,12 @@ class Home extends StatelessWidget {
                                     ? 220
                                     : 130.8,
                                 child: CustomButton(
-                                  backgroundColorButton: Colors.grey[200],
+                                  backgroundColorButton:
+                                      Theme.of(context).primaryColor,
                                   elevationButton: 0,
-                                  textColor: Colors.black54,
+                                  textColor: timerCtl.isSwitchedDark.value
+                                      ? Colors.white54
+                                      : Colors.black54,
                                   textButton: _btnTextReset,
                                   onTap: () {
                                     _resetButtonPressed();
@@ -288,7 +291,6 @@ class Home extends StatelessWidget {
         break;
     }
     double percentage = (totalTime - timerCtl.remainingTimer.value) / totalTime;
-    print(percentage);
     return percentage;
   }
 
@@ -431,8 +433,6 @@ class Home extends StatelessWidget {
   }
 
   _cancelTime() {
-    if (timerCtl.timer != null) {
-      timerCtl.timer.cancel();
-    }
+    timerCtl.timer.cancel();
   }
 }

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pomodoro_app/controllers/timer_controller.dart';
 
 class CustomSliderThumbCircle extends SliderComponentShape {
   final double thumbRadius;
   final int min;
   final int max;
+  BuildContext context;
 
-  const CustomSliderThumbCircle({
+  final themeController = Get.find<TimerController>();
+  CustomSliderThumbCircle({
+    required this.context,
     required this.thumbRadius,
     this.min = 1,
     this.max = 60,
@@ -34,7 +39,7 @@ class CustomSliderThumbCircle extends SliderComponentShape {
     final Canvas canvas = context.canvas;
 
     final backgroundPaint = Paint()
-      ..color = Colors.white //Thumb Background Color
+      ..color = Theme.of(this.context).backgroundColor
       ..style = PaintingStyle.fill;
 
     final borderPaint = Paint()
@@ -97,7 +102,8 @@ class SliderSettingsTimers extends StatelessWidget {
           trackShape: const RectangularSliderTrackShape(),
           trackHeight: 4.0,
           thumbColor: thumbColor,
-          thumbShape: CustomSliderThumbCircle(thumbRadius: thumbRadius),
+          thumbShape: CustomSliderThumbCircle(
+              context: context, thumbRadius: thumbRadius),
           overlayColor: overlayColor),
       child: slider,
     );

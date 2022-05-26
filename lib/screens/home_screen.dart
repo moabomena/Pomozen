@@ -238,7 +238,7 @@ class Home extends StatelessWidget {
       case PomodoroStatus.pausedPomodoro:
         _startPomodoroCountdown();
         break;
-      case PomodoroStatus.runingPomodoro:
+      case PomodoroStatus.runningPomodoro:
         _pausePomodoroCountdown();
         break;
       case PomodoroStatus.runningShortBreak:
@@ -263,7 +263,7 @@ class Home extends StatelessWidget {
   _getPomodoroPercentage() {
     int totalTime;
     switch (timerCtl.pomodoroStatus) {
-      case PomodoroStatus.runingPomodoro:
+      case PomodoroStatus.runningPomodoro:
         totalTime = timerCtl.totalTimer.value * 60;
         break;
       case PomodoroStatus.pausedPomodoro:
@@ -300,7 +300,7 @@ class Home extends StatelessWidget {
   }
 
   _startPomodoroCountdown() {
-    timerCtl.setPomodoroStatus(PomodoroStatus.runingPomodoro);
+    timerCtl.setPomodoroStatus(PomodoroStatus.runningPomodoro);
     _startPomodoroWithoutDelay();
     _cancelTime();
     timerCtl.timer = Timer.periodic(const Duration(seconds: 1), (timer) {

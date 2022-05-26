@@ -6,7 +6,7 @@ import '../model/select_songs.dart';
 const pomodoriPerset = 4;
 
 const Map<PomodoroStatus, dynamic> statusDescription = {
-  PomodoroStatus.runingPomodoro: 'Pomodoro is running, time to be focused',
+  PomodoroStatus.runningPomodoro: 'Pomodoro is running, time to be focused',
   PomodoroStatus.pausedPomodoro: 'Ready  for a focused pomodoro?',
   PomodoroStatus.runningShortBreak: 'Short break running, time to relax',
   PomodoroStatus.pausedShortBreak: 'Let\'s have  a short break?',
@@ -17,7 +17,7 @@ const Map<PomodoroStatus, dynamic> statusDescription = {
 };
 
 const Map<PomodoroStatus, MaterialColor> statusColor = {
-  PomodoroStatus.runingPomodoro: Colors.green,
+  PomodoroStatus.runningPomodoro: Colors.green,
   PomodoroStatus.pausedPomodoro: Colors.orange,
   PomodoroStatus.runningShortBreak: Colors.red,
   PomodoroStatus.pausedShortBreak: Colors.orange,

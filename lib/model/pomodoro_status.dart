@@ -1,5 +1,5 @@
 enum PomodoroStatus {
-  runingPomodoro,
+  runningPomodoro,
   pausedPomodoro,
   runningShortBreak,
   pausedShortBreak,

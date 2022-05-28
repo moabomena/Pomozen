@@ -87,6 +87,7 @@ class Home extends StatelessWidget {
                           'Pomodoro\n number',
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.bodyText1,
+                          key: const Key('pomodoro number'),
                         ),
                       ],
                     ),
@@ -117,6 +118,7 @@ class Home extends StatelessWidget {
                           'Set',
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.bodyText1,
+                          key: const Key('set'),
                         )
                       ],
                     )
@@ -199,6 +201,7 @@ class Home extends StatelessWidget {
                                     ? 220
                                     : 130.8,
                                 child: CustomButton(
+                                  key: const Key('start pomodoro'),
                                   textButton: timerCtl.mainBtnText.value,
                                   onTap: () {
                                     _mainButtonPressed();

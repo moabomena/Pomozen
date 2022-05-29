@@ -12,6 +12,7 @@ import 'package:pomodoro_app/widgets/custom_button.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
 import 'package:pomodoro_app/screens/settings_page.dart';
 
+import '../controllers/theme_controller.dart';
 import '../widgets/progress_icons.dart';
 
 class Home extends StatelessWidget {
@@ -184,7 +185,7 @@ class Home extends StatelessWidget {
                                   backgroundColorButton:
                                       Theme.of(context).primaryColor,
                                   elevationButton: 0,
-                                  textColor: Get.isDarkMode
+                                  textColor: modeDark.value
                                       ? Colors.white54
                                       : Colors.black54,
                                   textButton: btnTextReset,

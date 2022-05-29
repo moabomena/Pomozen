@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:pomodoro_app/controllers/song_controller.dart';
 import 'package:pomodoro_app/utils/constants.dart';
 
+import '../controllers/theme_controller.dart';
 import '../model/select_songs.dart';
 
 final songController = Get.find<SongController>();
@@ -140,7 +141,7 @@ _listTileSelectSong(
         style: TextStyle(
             color: songController.mapSelectSong[keySong] == true
                 ? Colors.greenAccent[700]
-                : Get.isDarkMode
+                : modeDark.value
                     ? Colors.white
                     : Colors.black,
             fontFamily: 'OpenSans'),

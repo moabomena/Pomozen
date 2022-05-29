@@ -10,9 +10,7 @@ import 'package:pomodoro_app/widgets/custom_slider.dart';
 import '../model/settings_slide.dart';
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({
-    Key? key,
-  }) : super(key: key);
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
@@ -20,7 +18,6 @@ class SettingsPage extends StatefulWidget {
 
 final timerController = Get.find<TimerController>();
 final songController = Get.put(SongController());
-final themeController = Get.put(ThemeController());
 const _btnTextStart = 'START POMODORO';
 
 class _SettingsPageState extends State<SettingsPage> {
@@ -95,19 +92,20 @@ class _SettingsPageState extends State<SettingsPage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Obx(() => Switch(
-                        value: themeController.isSwitchedDark.value,
+                  ValueListenableBuilder(
+                    valueListenable: modeDark,
+                    builder: (BuildContext context, value, Widget? child) {
+                      return Switch(
+                        value: modeDark.value,
                         splashRadius: 15,
                         activeTrackColor: Colors.grey[700],
                         activeColor: Colors.deepOrange,
                         onChanged: (value) {
-                          themeController.setSwitchedDark(value);
-                          Get.changeThemeMode(
-                              themeController.isSwitchedDark.value
-                                  ? ThemeMode.dark
-                                  : ThemeMode.light);
+                          modeDark.value = value;
                         },
-                      ))
+                      );
+                    },
+                  )
                 ],
               ),
               const Divider(

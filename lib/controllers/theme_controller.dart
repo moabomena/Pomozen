@@ -1,17 +1,3 @@
-import 'package:get/get.dart';
+import 'package:flutter/foundation.dart';
 
-class ThemeController extends GetxController {
-  var isSwitchedDark = false.obs;
-
-  @override
-  void onInit() {
-    if (Get.isDarkMode) {
-      setSwitchedDark(true);
-    }
-    super.onInit();
-  }
-
-  void setSwitchedDark(var value) {
-    isSwitchedDark.value = value;
-  }
-}
+final ValueNotifier<bool> modeDark = ValueNotifier(false);

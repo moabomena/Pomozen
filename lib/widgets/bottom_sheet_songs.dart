@@ -2,12 +2,10 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pomodoro_app/controllers/song_controller.dart';
-import 'package:pomodoro_app/controllers/theme_controller.dart';
 import 'package:pomodoro_app/utils/constants.dart';
 
 import '../model/select_songs.dart';
 
-final themeController = Get.find<ThemeController>();
 final songController = Get.find<SongController>();
 final AudioCache player = AudioCache();
 

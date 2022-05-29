@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:pomodoro_app/controllers/song_controller.dart';
-import 'package:pomodoro_app/controllers/theme_controller.dart';
+// import 'package:pomodoro_app/controllers/theme_controller.dart';
 import 'package:pomodoro_app/controllers/timer_controller.dart';
 import 'package:pomodoro_app/utils/constants.dart';
 import 'package:pomodoro_app/utils/notifications.dart';
@@ -19,16 +18,16 @@ class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
   static final timerCtl = Get.put(TimerController());
-  static final themeController = Get.put(ThemeController());
+  // static final themeController = Get.put(ThemeController());
   static final songController = Get.put(SongController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            systemOverlayStyle: Get.isDarkMode
-                ? SystemUiOverlayStyle.light
-                : SystemUiOverlayStyle.dark,
+            // systemOverlayStyle: Get.isDarkMode
+            //     ? SystemUiOverlayStyle.light
+            //     : SystemUiOverlayStyle.dark,
             leading: Builder(
               builder: (BuildContext context) {
                 return IconButton(

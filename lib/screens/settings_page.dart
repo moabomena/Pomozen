@@ -17,7 +17,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 final timerController = Get.find<TimerController>();
-final songController = Get.put(SongController());
 const _btnTextStart = 'START POMODORO';
 
 class _SettingsPageState extends State<SettingsPage> {
@@ -148,7 +147,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         fontFamily: 'OpenSans'),
                   ),
                   onChanged: (String? value) {
-                    // TODO DEPOIS QUE APLICAR O GETX REMOVE O SETstATE E TRANSFORMAR A CLASSE EM STATELESS
+                    // TODO DEPOIS QUE APLICAR O valueNotifier REMOVE O SETstATE E TRANSFORMAR A CLASSE EM STATELESS
                     setState(() {
                       _chosenValueLanguage = value;
                     });
@@ -243,10 +242,13 @@ class _SettingsPageState extends State<SettingsPage> {
                 height: 30,
               ),
               TextButton(
-                child: Obx(() => Text(
-                      songController.textButtonSong.value,
-                      style: const TextStyle(fontFamily: 'OpenSans'),
-                    )),
+                child: ValueListenableBuilder(
+                    valueListenable: textButtonSong,
+                    builder:
+                        (BuildContext context, String value, Widget? child) {
+                      return Text(textButtonSong.value,
+                          style: const TextStyle(fontFamily: 'OpenSans'));
+                    }),
                 onPressed: () => selectSongsBottomSheet(context),
               ),
             ],
@@ -275,45 +277,45 @@ class _SettingsPageState extends State<SettingsPage> {
 }
 
 _resetTextButtonSong() {
-  switch (songController.fileNameMusic.value) {
+  switch (fileNameMusic.value) {
     case 'attention-bell-ding.mp3':
-      songController.textButtonSong.value = 'Attention bell ding';
+      textButtonSong.value = 'Attention bell ding';
       break;
     case 'bell-sound-with-delay.mp3':
-      songController.textButtonSong.value = 'Bell sound with delay';
+      textButtonSong.value = 'Bell sound with delay';
       break;
     case 'bells-of-mystery.mp3':
-      songController.textButtonSong.value = 'Bells of mystery';
+      textButtonSong.value = 'Bells of mystery';
       break;
     case 'bike-bell-ring.mp3':
-      songController.textButtonSong.value = 'Bike bell ring';
+      textButtonSong.value = 'Bike bell ring';
       break;
     case 'cartoon-door-melodic-bell.mp3':
-      songController.textButtonSong.value = 'Cartoon door melodic bell';
+      textButtonSong.value = 'Cartoon door melodic bell';
       break;
     case 'clock-countdown-bleeps.mp3':
-      songController.textButtonSong.value = 'Clock countdown bleeps';
+      textButtonSong.value = 'Clock countdown bleeps';
       break;
     case 'fairy-bells.mp3':
-      songController.textButtonSong.value = 'Fairy bells';
+      textButtonSong.value = 'Fairy bells';
       break;
     case 'home-standard-ding-dong.mp3':
-      songController.textButtonSong.value = 'Home standard ding dong';
+      textButtonSong.value = 'Home standard ding dong';
       break;
     case 'modern-classic-door-bell-sound.mp3':
-      songController.textButtonSong.value = 'Modern classic door bell';
+      textButtonSong.value = 'Modern classic door bell';
       break;
     case 'notification-bell.mp3':
-      songController.textButtonSong.value = 'Notification bell';
+      textButtonSong.value = 'Notification bell';
       break;
     case 'service-bell-double-ding.mp3':
-      songController.textButtonSong.value = 'Service bell double ding';
+      textButtonSong.value = 'Service bell double ding';
       break;
     case 'small-door-bell.mp3':
-      songController.textButtonSong.value = 'Small door bell';
+      textButtonSong.value = 'Small door bell';
       break;
     case 'bell.mp3':
-      songController.textButtonSong.value = 'Bell';
+      textButtonSong.value = 'Bell';
       break;
     default:
   }

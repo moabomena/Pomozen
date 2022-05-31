@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:pomodoro_app/controllers/song_controller.dart';
-// import 'package:pomodoro_app/controllers/theme_controller.dart';
 import 'package:pomodoro_app/controllers/timer_controller.dart';
 import 'package:pomodoro_app/utils/constants.dart';
 import 'package:pomodoro_app/utils/notifications.dart';
@@ -19,8 +18,7 @@ class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
   static final timerCtl = Get.put(TimerController());
-  // static final themeController = Get.put(ThemeController());
-  static final songController = Get.put(SongController());
+  static final songController2 = SongController2();
 
   @override
   Widget build(BuildContext context) {
@@ -318,7 +316,7 @@ class Home extends StatelessWidget {
       } else {
         localNotifications(
             title: 'Pomodoro: FINALIZADO!', body: 'Iniciar pausa de 5 minutos');
-        songController.playSound();
+        songController2.playSound();
         timerCtl.incrementPomodoroNum();
         _cancelTime();
         if (timerCtl.pomodoroNum.value % pomodoriPerset == 0) {
@@ -355,7 +353,7 @@ class Home extends StatelessWidget {
       } else {
         localNotifications(
             title: 'Pomodoro: FINALIZADO!', body: 'Retorne ao trabalho!');
-        songController.playSound();
+        songController2.playSound();
         timerCtl
             .setValueTimerNotification(timerCtl.currentSliderValueWork.value);
         timerCtl.setRemainingTime(timerCtl.totalTimer.value);
@@ -383,7 +381,7 @@ class Home extends StatelessWidget {
         localNotifications(
             title: 'Pomodoro: CICLO FINALIZADO!',
             body: 'Inicie um novo ciclo!');
-        songController.playSound();
+        songController2.playSound();
         timerCtl
             .setValueTimerNotification(timerCtl.currentSliderValueWork.value);
         timerCtl.setRemainingTime(timerCtl.totalTimer.value);

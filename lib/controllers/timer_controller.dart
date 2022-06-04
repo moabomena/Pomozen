@@ -1,94 +1,56 @@
 import 'dart:async';
 
-import 'package:get/get.dart';
+import 'package:flutter/foundation.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
 
-class TimerController extends GetxController {
-  Timer timer = Timer.periodic(const Duration(seconds: 1), (timer) {});
-  PomodoroStatus pomodoroStatus = PomodoroStatus.pausedPomodoro;
+final ValueNotifier<PomodoroStatus> pomodoroStatus =
+    ValueNotifier(PomodoroStatus.pausedPomodoro);
 
-  var showButtonReset = false.obs;
+final ValueNotifier<Timer> timer =
+    ValueNotifier(Timer.periodic(const Duration(seconds: 1), (timer) {}));
 
-  var currentSliderValueWork = 25.obs;
-  var currentSliderValueShortBreak = 5.obs;
-  var currentSliderValueLongBreak = 15.obs;
+final ValueNotifier<bool> showButtonReset = ValueNotifier(false);
 
-  var remainingTimer = (25 * 60).obs;
+final ValueNotifier<int> currentSliderValueWork = ValueNotifier(25);
+final ValueNotifier<int> currentSliderValueShortBreak = ValueNotifier(5);
+final ValueNotifier<int> currentSliderValueLongBreak = ValueNotifier(15);
 
-  var totalTimer = 25.obs;
-  var shortBreakTimer = 5.obs;
-  var longBreakTimer = 15.obs;
+final ValueNotifier<int> remainingTimer = ValueNotifier(25 * 60);
 
-  var pomodoroNum = 0.obs;
-  var setNum = 0.obs;
+final ValueNotifier<int> totalTimer = ValueNotifier(25);
+final ValueNotifier<int> shortBreakTimer = ValueNotifier(5);
+final ValueNotifier<int> longBreakTimer = ValueNotifier(15);
 
-  var mainBtnText = 'START POMODORO'.obs;
+final ValueNotifier<int> pomodoroNum = ValueNotifier(0);
+final ValueNotifier<int> setNum = ValueNotifier(0);
 
-  var removeDelayOfNotification = (25 * 60).obs;
+ValueNotifier<String> mainBtnText = ValueNotifier('START POMODORO');
 
-  @override
-  void onClose() {
-    timer.cancel();
-    super.onClose();
-  }
+final ValueNotifier<int> removeDelayOfNotification = ValueNotifier(25 * 60);
 
-  void setTotalTimer(var value) {
-    totalTimer.value = value;
-  }
+void setTotalTimer(var value) => totalTimer.value = value;
+void setShortBreak(var value) => shortBreakTimer.value = value;
+void setLongBreak(var value) => longBreakTimer.value = value;
 
-  void setShortBreak(var value) {
-    shortBreakTimer.value = value;
-  }
-
-  void setLongBreak(var value) {
-    longBreakTimer.value = value;
-  }
-
-  void setTimerWorkSlider(var value) {
-    currentSliderValueWork.value = value;
-  }
-
-  void setTimerShortBreakSlider(var value) {
+void setTimerWorkSlider(var value) => currentSliderValueWork.value = value;
+void setTimerShortBreakSlider(var value) =>
     currentSliderValueShortBreak.value = value;
-  }
-
-  void setTimerLongBreakSlider(var value) {
+void setTimerLongBreakSlider(var value) =>
     currentSliderValueLongBreak.value = value;
-  }
 
-  void setRemainingTime(var value) {
-    remainingTimer.value = value * 60;
-  }
+void setRemainingTime(var value) => remainingTimer.value = value * 60;
 
-  void setValueTimerNotification(var value) {
+void setValueTimerNotification(var value) =>
     removeDelayOfNotification.value = (value * 60) - 1;
-  }
 
-  void incrementSetNum() {
-    setNum.value++;
-  }
+void incrementSetNum() => setNum.value++;
+void resetSetNum() => setNum.value = 0;
 
-  void resetSetNum() {
-    setNum.value = 0;
-  }
+void incrementPomodoroNum() => pomodoroNum.value++;
+void resetPomodoroNum() => pomodoroNum.value = 0;
 
-  void incrementPomodoroNum() {
-    pomodoroNum.value++;
-  }
+void setMainBtnText(var value) => mainBtnText.value = value;
 
-  void resetPomodoroNum() {
-    pomodoroNum.value = 0;
-  }
+void setPomodoroStatus(var value) => pomodoroStatus.value = value;
 
-  void setMainBtnText(var value) {
-    mainBtnText.value = value;
-  }
-
-  void setPomodoroStatus(var value) {
-    pomodoroStatus = value;
-  }
-
-  void setShowButtonReset(var value) {
-    showButtonReset.value = value;
-  }
-}
+void setShowButtonReset(var value) => showButtonReset.value = value;

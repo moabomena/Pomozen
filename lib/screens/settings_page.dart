@@ -1,9 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:pomodoro_app/controllers/song_controller.dart';
 import 'package:pomodoro_app/controllers/theme_controller.dart';
 import 'package:pomodoro_app/controllers/timer_controller.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
+import 'package:pomodoro_app/screens/home_screen.dart';
 import 'package:pomodoro_app/widgets/bottom_sheet_songs.dart';
 import 'package:pomodoro_app/widgets/custom_slider.dart';
 
@@ -16,12 +18,12 @@ class SettingsPage extends StatefulWidget {
   State<SettingsPage> createState() => _SettingsPageState();
 }
 
-final timerController = Get.find<TimerController>();
 const _btnTextStart = 'START POMODORO';
 
 class _SettingsPageState extends State<SettingsPage> {
   bool isSwitched = false;
   String? _chosenValueLanguage;
+  // Timer timer = Timer.periodic(const Duration(seconds: 1), (timer) {});
 
   @override
   Widget build(BuildContext context) {
@@ -37,26 +39,21 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           onPressed: () {
             Navigator.of(context).pop();
-            timerController.resetPomodoroNum();
-            timerController.resetSetNum();
-            timerController.timer.cancel();
-            timerController.setPomodoroStatus(PomodoroStatus.pausedPomodoro);
-            timerController.setValueTimerNotification(
-                timerController.currentSliderValueWork.value);
+            resetPomodoroNum();
+            resetSetNum();
+            setPomodoroStatus(PomodoroStatus.pausedPomodoro);
+            setValueTimerNotification(currentSliderValueWork.value);
+            timer.value.cancel();
 
-            timerController.setRemainingTime(timerController.totalTimer.value =
-                timerController.currentSliderValueWork.value);
+            setRemainingTime(totalTimer.value = currentSliderValueWork.value);
 
-            timerController
-                .setTotalTimer(timerController.currentSliderValueWork.value);
+            setTotalTimer(currentSliderValueWork.value);
 
-            timerController.setShortBreak(
-                timerController.currentSliderValueShortBreak.value);
-            timerController.setLongBreak(
-                timerController.currentSliderValueLongBreak.value);
+            setShortBreak(currentSliderValueShortBreak.value);
+            setLongBreak(currentSliderValueLongBreak.value);
 
-            timerController.setMainBtnText(_btnTextStart);
-            timerController.setShowButtonReset(false);
+            setMainBtnText(_btnTextStart);
+            setShowButtonReset(false);
             switchSelectItemSong();
           },
         ),
@@ -167,21 +164,23 @@ class _SettingsPageState extends State<SettingsPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Obx(
-                () => SliderSettingsTimers(
-                    activeTrackColor: Colors.red[700]!,
-                    inactiveTrackColor: Colors.red[100]!,
-                    thumbColor: Colors.redAccent,
-                    overlayColor: Colors.red.withAlpha(32),
-                    thumbRadius: 20,
-                    slider: Slider(
-                        value: timerController.currentSliderValueWork.value
-                            .toDouble(),
-                        min: 1.0,
-                        max: 60.0,
-                        onChanged: (double value) {
-                          timerController.setTimerWorkSlider(value.round());
-                        })),
+              ValueListenableBuilder(
+                valueListenable: currentSliderValueWork,
+                builder: (BuildContext context, value, Widget? child) {
+                  return SliderSettingsTimers(
+                      activeTrackColor: Colors.red[700]!,
+                      inactiveTrackColor: Colors.red[100]!,
+                      thumbColor: Colors.redAccent,
+                      overlayColor: Colors.red.withAlpha(32),
+                      thumbRadius: 20,
+                      slider: Slider(
+                          value: currentSliderValueWork.value.toDouble(),
+                          min: 1.0,
+                          max: 60.0,
+                          onChanged: (double value) {
+                            setTimerWorkSlider(value.round());
+                          }));
+                },
               ),
               const SizedBox(
                 height: 40,
@@ -193,23 +192,25 @@ class _SettingsPageState extends State<SettingsPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Obx(
-                () => SliderSettingsTimers(
-                  activeTrackColor: Colors.green[700]!,
-                  inactiveTrackColor: Colors.green[100]!,
-                  thumbColor: Colors.greenAccent,
-                  overlayColor: Colors.green.withAlpha(32),
-                  thumbRadius: 20,
-                  slider: Slider(
-                    value: timerController.currentSliderValueShortBreak.value
-                        .toDouble(),
-                    min: 1.0,
-                    max: 60.0,
-                    onChanged: (double value) {
-                      timerController.setTimerShortBreakSlider(value.round());
-                    },
-                  ),
-                ),
+              ValueListenableBuilder(
+                valueListenable: currentSliderValueShortBreak,
+                builder: (BuildContext context, value, Widget? child) {
+                  return SliderSettingsTimers(
+                    activeTrackColor: Colors.green[700]!,
+                    inactiveTrackColor: Colors.green[100]!,
+                    thumbColor: Colors.greenAccent,
+                    overlayColor: Colors.green.withAlpha(32),
+                    thumbRadius: 20,
+                    slider: Slider(
+                      value: currentSliderValueShortBreak.value.toDouble(),
+                      min: 1.0,
+                      max: 60.0,
+                      onChanged: (double value) {
+                        setTimerShortBreakSlider(value.round());
+                      },
+                    ),
+                  );
+                },
               ),
               const SizedBox(
                 height: 40,
@@ -218,22 +219,24 @@ class _SettingsPageState extends State<SettingsPage> {
                 'Long Break',
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
-              Obx(
-                () => SliderSettingsTimers(
-                    activeTrackColor: Colors.orange[700]!,
-                    inactiveTrackColor: Colors.orange[100]!,
-                    thumbColor: Colors.orangeAccent,
-                    overlayColor: Colors.orange.withAlpha(32),
-                    thumbRadius: 20,
-                    slider: Slider(
-                      value: timerController.currentSliderValueLongBreak.value
-                          .toDouble(),
-                      min: 1.0,
-                      max: 60.0,
-                      onChanged: (double value) {
-                        timerController.setTimerLongBreakSlider(value.round());
-                      },
-                    )),
+              ValueListenableBuilder(
+                valueListenable: currentSliderValueLongBreak,
+                builder: (BuildContext context, value, Widget? child) {
+                  return SliderSettingsTimers(
+                      activeTrackColor: Colors.orange[700]!,
+                      inactiveTrackColor: Colors.orange[100]!,
+                      thumbColor: Colors.orangeAccent,
+                      overlayColor: Colors.orange.withAlpha(32),
+                      thumbRadius: 20,
+                      slider: Slider(
+                        value: currentSliderValueLongBreak.value.toDouble(),
+                        min: 1.0,
+                        max: 60.0,
+                        onChanged: (double value) {
+                          setTimerLongBreakSlider(value.round());
+                        },
+                      ));
+                },
               ),
               const SizedBox(
                 height: 40,
@@ -261,15 +264,13 @@ class _SettingsPageState extends State<SettingsPage> {
   _resetSlider(var resetValueSlider) {
     switch (resetValueSlider) {
       case ResetSlider.resetWork:
-        timerController.setTimerWorkSlider(timerController.totalTimer.value);
+        setTimerWorkSlider(totalTimer.value);
         break;
       case ResetSlider.resetShortBreak:
-        timerController
-            .setTimerShortBreakSlider(timerController.shortBreakTimer.value);
+        setTimerShortBreakSlider(shortBreakTimer.value);
         break;
       case ResetSlider.resetLongBreak:
-        timerController
-            .setTimerLongBreakSlider(timerController.longBreakTimer.value);
+        setTimerLongBreakSlider(longBreakTimer.value);
         break;
       default:
     }

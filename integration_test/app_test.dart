@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get/get.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:pomodoro_app/controllers/timer_controller.dart';
 
@@ -29,9 +28,9 @@ void main() {
 
   testWidgets('tap on button for starting pomodoro', (tester) async {
     app.main();
-    final timerController = Get.put(TimerController());
-    timerController.setTotalTimer(1);
-    timerController.setRemainingTime(1);
+    // final timerController = Get.put(TimerController());
+    setTotalTimer(1);
+    setRemainingTime(1);
     await tester.pumpAndSettle();
 
     var button = find

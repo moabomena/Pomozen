@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:pomodoro_app/controllers/timer_controller.dart';
 
 class ProgressIcons extends StatelessWidget {
   final int? total;
   final int? done;
-  ProgressIcons({@required this.total, @required this.done, Key? key})
+  const ProgressIcons({@required this.total, @required this.done, Key? key})
       : super(key: key);
 
-  final timerController = Get.find<TimerController>();
   @override
   Widget build(BuildContext context) {
     final doneIcon = Container(

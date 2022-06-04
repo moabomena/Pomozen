@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:pomodoro_app/controllers/timer_controller.dart';
 
 class CustomSliderThumbCircle extends SliderComponentShape {
   final double thumbRadius;
@@ -8,7 +6,6 @@ class CustomSliderThumbCircle extends SliderComponentShape {
   final int max;
   BuildContext context;
 
-  final themeController = Get.find<TimerController>();
   CustomSliderThumbCircle({
     required this.context,
     required this.thumbRadius,

@@ -1,29 +1,20 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/controllers/song_controller.dart';
 import 'package:pomodoro_app/controllers/theme_controller.dart';
 import 'package:pomodoro_app/controllers/timer_controller.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
-import 'package:pomodoro_app/screens/home_screen.dart';
 import 'package:pomodoro_app/widgets/bottom_sheet_songs.dart';
 import 'package:pomodoro_app/widgets/custom_slider.dart';
 
 import '../model/settings_slide.dart';
 
-class SettingsPage extends StatefulWidget {
+class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
-  @override
-  State<SettingsPage> createState() => _SettingsPageState();
-}
+  static const _btnTextStart = 'START POMODORO';
 
-const _btnTextStart = 'START POMODORO';
-
-class _SettingsPageState extends State<SettingsPage> {
-  bool isSwitched = false;
-  String? _chosenValueLanguage;
-  // Timer timer = Timer.periodic(const Duration(seconds: 1), (timer) {});
+  static bool isSwitched = false;
+  static String? _chosenValueLanguage;
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +85,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       return Switch(
                         value: modeDark.value,
                         splashRadius: 15,
-                        activeTrackColor: Colors.grey[700],
+                        activeTrackColor: Colors.deepOrange[200],
                         activeColor: Colors.deepOrange,
                         onChanged: (value) {
                           modeDark.value = value;
@@ -145,9 +136,9 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   onChanged: (String? value) {
                     // TODO DEPOIS QUE APLICAR O valueNotifier REMOVE O SETstATE E TRANSFORMAR A CLASSE EM STATELESS
-                    setState(() {
-                      _chosenValueLanguage = value;
-                    });
+                    // setState(() {
+                    //   _chosenValueLanguage = value;
+                    // });
                   },
                 ),
               ),

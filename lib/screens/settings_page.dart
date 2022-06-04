@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/controllers/intl_controller.dart';
 import 'package:pomodoro_app/controllers/song_controller.dart';
 import 'package:pomodoro_app/controllers/theme_controller.dart';
 import 'package:pomodoro_app/controllers/timer_controller.dart';
@@ -12,9 +13,6 @@ class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
   static const _btnTextStart = 'START POMODORO';
-
-  static bool isSwitched = false;
-  static String? _chosenValueLanguage;
 
   @override
   Widget build(BuildContext context) {
@@ -104,41 +102,48 @@ class SettingsPage extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(8)),
-                child: DropdownButton<String>(
-                  underline: const SizedBox(),
-                  dropdownColor: Theme.of(context).primaryColor,
-                  alignment: AlignmentDirectional.center,
-                  borderRadius: const BorderRadius.all(Radius.circular(8)),
-                  value: _chosenValueLanguage,
-                  elevation: 0,
-                  items: <String>[
-                    'English',
-                    'Spanish',
-                    'Portuguese',
-                  ].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
+                child: ValueListenableBuilder(
+                  valueListenable: chosenValueLanguage,
+                  builder: (BuildContext context, value, Widget? child) {
+                    return DropdownButton<String>(
+                      underline: const SizedBox(),
+                      dropdownColor: Theme.of(context).primaryColor,
                       alignment: AlignmentDirectional.center,
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
+                      borderRadius: const BorderRadius.all(Radius.circular(8)),
+                      value: chosenValueLanguage.value,
+                      elevation: 0,
+                      items: <String>[
+                        'English',
+                        'Spanish',
+                        'Portuguese',
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          alignment: AlignmentDirectional.center,
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'OpenSans'),
+                          ),
+                        );
+                      }).toList(),
+                      hint: const Text(
+                        'Please choose a language',
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
                             fontFamily: 'OpenSans'),
                       ),
+                      onChanged: (String? value) {
+                        // TODO DEPOIS QUE APLICAR O valueNotifier REMOVE O SETstATE E TRANSFORMAR A CLASSE EM STATELESS
+                        // setState(() {
+                        //   _chosenValueLanguage = value;
+                        // });
+
+                        setChosenValueLanguage(value);
+                      },
                     );
-                  }).toList(),
-                  hint: const Text(
-                    "Please choose a language",
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'OpenSans'),
-                  ),
-                  onChanged: (String? value) {
-                    // TODO DEPOIS QUE APLICAR O valueNotifier REMOVE O SETstATE E TRANSFORMAR A CLASSE EM STATELESS
-                    // setState(() {
-                    //   _chosenValueLanguage = value;
-                    // });
                   },
                 ),
               ),

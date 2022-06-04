@@ -147,13 +147,11 @@ void selectMapItem(var song) {
 }
 
 Songs songs = Songs.songThirteen;
-void setSongs(var value) => songs = value;
+void setSongs(var newvalue) => songs = newvalue;
 
-void setTextButtonSong(var value) {
-  textButtonSong.value = value;
-}
+void setTextButtonSong(var newvalue) => textButtonSong.value = newvalue;
 
-void setPlaySound(var value) => fileNameMusic.value = value;
+void setPlaySound(var newvalue) => fileNameMusic.value = newvalue;
 
 class SongController2 {
   static AudioCache player = AudioCache();

@@ -28,20 +28,21 @@ ValueNotifier<String> mainBtnText = ValueNotifier('START POMODORO');
 
 final ValueNotifier<int> removeDelayOfNotification = ValueNotifier(25 * 60);
 
-void setTotalTimer(var value) => totalTimer.value = value;
-void setShortBreak(var value) => shortBreakTimer.value = value;
-void setLongBreak(var value) => longBreakTimer.value = value;
+void setTotalTimer(var newValue) => totalTimer.value = newValue;
+void setShortBreak(var newValue) => shortBreakTimer.value = newValue;
+void setLongBreak(var newValue) => longBreakTimer.value = newValue;
 
-void setTimerWorkSlider(var value) => currentSliderValueWork.value = value;
-void setTimerShortBreakSlider(var value) =>
-    currentSliderValueShortBreak.value = value;
-void setTimerLongBreakSlider(var value) =>
-    currentSliderValueLongBreak.value = value;
+void setTimerWorkSlider(var newValue) =>
+    currentSliderValueWork.value = newValue;
+void setTimerShortBreakSlider(var newValue) =>
+    currentSliderValueShortBreak.value = newValue;
+void setTimerLongBreakSlider(var newValue) =>
+    currentSliderValueLongBreak.value = newValue;
 
-void setRemainingTime(var value) => remainingTimer.value = value * 60;
+void setRemainingTime(var newValue) => remainingTimer.value = newValue * 60;
 
-void setValueTimerNotification(var value) =>
-    removeDelayOfNotification.value = (value * 60) - 1;
+void setValueTimerNotification(var newValue) =>
+    removeDelayOfNotification.value = (newValue * 60) - 1;
 
 void incrementSetNum() => setNum.value++;
 void resetSetNum() => setNum.value = 0;
@@ -49,8 +50,8 @@ void resetSetNum() => setNum.value = 0;
 void incrementPomodoroNum() => pomodoroNum.value++;
 void resetPomodoroNum() => pomodoroNum.value = 0;
 
-void setMainBtnText(var value) => mainBtnText.value = value;
+void setMainBtnText(var newValue) => mainBtnText.value = newValue;
 
-void setPomodoroStatus(var value) => pomodoroStatus.value = value;
+void setPomodoroStatus(var newValue) => pomodoroStatus.value = newValue;
 
-void setShowButtonReset(var value) => showButtonReset.value = value;
+void setShowButtonReset(var newValue) => showButtonReset.value = newValue;

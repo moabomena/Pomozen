@@ -164,11 +164,6 @@ class SettingsPage extends StatelessWidget {
                               fontFamily: 'OpenSans'),
                         ),
                         onChanged: (String? value) {
-                          // TODO DEPOIS QUE APLICAR O valueNotifier REMOVE O SETstATE E TRANSFORMAR A CLASSE EM STATELESS
-                          // setState(() {
-                          //   _chosenValueLanguage = value;
-                          // });
-
                           setChosenValueLanguage(value);
                         },
                       );

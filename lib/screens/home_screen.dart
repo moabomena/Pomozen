@@ -9,8 +9,10 @@ import 'package:pomodoro_app/utils/notifications.dart';
 import 'package:pomodoro_app/widgets/custom_button.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
 import 'package:pomodoro_app/screens/settings_page.dart';
+import 'package:pomodoro_app/widgets/drawer/custom_drawer.dart';
 
 import '../controllers/theme_controller.dart';
+import '../controllers/ux_controller.dart';
 import '../widgets/progress_icons.dart';
 
 class Home extends StatelessWidget {
@@ -21,30 +23,32 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: const CustomDrawer(),
         appBar: AppBar(
-            // systemOverlayStyle: Get.isDarkMode
+            // systemOverlayStyle: ThemeMode.dark
             //     ? SystemUiOverlayStyle.light
             //     : SystemUiOverlayStyle.dark,
-            leading: Builder(
-              builder: (BuildContext context) {
-                return IconButton(
-                  icon: const Icon(
-                    Icons.settings_outlined,
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SettingsPage()));
-                  },
-                  tooltip:
-                      MaterialLocalizations.of(context).openAppDrawerTooltip,
-                );
-              },
-            ),
-            title: const Text('Pomodoro'),
-            centerTitle: true,
-            elevation: 0),
+            // leading:,
+            actions: [
+              Builder(
+                builder: (BuildContext context) {
+                  return IconButton(
+                    icon: const Icon(
+                      Icons.settings_outlined,
+                    ),
+                    onPressed: () {
+                      setHasDrawer(false);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SettingsPage()));
+                    },
+                    tooltip:
+                        MaterialLocalizations.of(context).openAppDrawerTooltip,
+                  );
+                },
+              ),
+            ], title: const Text('Pomodoro'), centerTitle: true, elevation: 0),
         body: SafeArea(
           child: Center(
             child: Column(
@@ -139,6 +143,9 @@ class Home extends StatelessWidget {
                                         Widget? child) {
                                       return CircularPercentIndicator(
                                         radius: 125.0,
+                                        // radius:
+                                        //     MediaQuery.of(context).size.width *
+                                        //         0.3,
                                         lineWidth: 8.0,
                                         maskFilter: const MaskFilter.blur(
                                             BlurStyle.solid, 8.0),

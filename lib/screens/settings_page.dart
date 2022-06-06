@@ -4,9 +4,12 @@ import 'package:pomodoro_app/controllers/song_controller.dart';
 import 'package:pomodoro_app/controllers/theme_controller.dart';
 import 'package:pomodoro_app/controllers/timer_controller.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
+import 'package:pomodoro_app/screens/home_screen.dart';
 import 'package:pomodoro_app/widgets/bottom_sheet_songs.dart';
 import 'package:pomodoro_app/widgets/custom_slider.dart';
+import 'package:pomodoro_app/widgets/drawer/custom_drawer.dart';
 
+import '../controllers/ux_controller.dart';
 import '../model/settings_slide.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -14,243 +17,269 @@ class SettingsPage extends StatelessWidget {
 
   static const _btnTextStart = 'START POMODORO';
 
+  Future<bool> _willPopCallback(context) async {
+    if (indexPage.value == 1) {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const Home()),
+          (route) => false);
+    }
+
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: SizedBox(
-        height: 60,
-        width: 120,
-        child: FloatingActionButton.extended(
-          label: const Text(
-            'Salvar',
-            style: TextStyle(fontSize: 18),
+    return WillPopScope(
+      onWillPop: () => _willPopCallback(context),
+      child: Scaffold(
+        drawer: const CustomDrawer(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: SizedBox(
+          height: 60,
+          width: 120,
+          child: FloatingActionButton.extended(
+            label: const Text(
+              'Salvar',
+              style: TextStyle(fontSize: 18),
+            ),
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Home()),
+                  (route) => false);
+              setIndexPage(0);
+
+              resetPomodoroNum();
+              resetSetNum();
+              setPomodoroStatus(PomodoroStatus.pausedPomodoro);
+              setValueTimerNotification(currentSliderValueWork.value);
+              timer.value.cancel();
+
+              setRemainingTime(totalTimer.value = currentSliderValueWork.value);
+
+              setTotalTimer(currentSliderValueWork.value);
+
+              setShortBreak(currentSliderValueShortBreak.value);
+              setLongBreak(currentSliderValueLongBreak.value);
+
+              setMainBtnText(_btnTextStart);
+              setShowButtonReset(false);
+              switchSelectItemSong();
+            },
           ),
-          onPressed: () {
-            Navigator.of(context).pop();
-            resetPomodoroNum();
-            resetSetNum();
-            setPomodoroStatus(PomodoroStatus.pausedPomodoro);
-            setValueTimerNotification(currentSliderValueWork.value);
-            timer.value.cancel();
-
-            setRemainingTime(totalTimer.value = currentSliderValueWork.value);
-
-            setTotalTimer(currentSliderValueWork.value);
-
-            setShortBreak(currentSliderValueShortBreak.value);
-            setLongBreak(currentSliderValueLongBreak.value);
-
-            setMainBtnText(_btnTextStart);
-            setShowButtonReset(false);
-            switchSelectItemSong();
-          },
         ),
-      ),
-      appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: () {
-                _resetSlider(ResetSlider.resetWork);
-                _resetSlider(ResetSlider.resetShortBreak);
-                _resetSlider(ResetSlider.resetLongBreak);
-                _resetTextButtonSong();
-              },
-              icon: const Icon(Icons.refresh_rounded))
-        ],
-        title: const Text('Setting'),
-        elevation: 0,
-        centerTitle: true,
-      ),
-      body: Container(
-        padding: const EdgeInsets.all(12),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Modo dark',
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
+        appBar: AppBar(
+          leading: !hasDrawer.value
+              ? IconButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  icon: const Icon(Icons.arrow_back))
+              : null,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  _resetSlider(ResetSlider.resetWork);
+                  _resetSlider(ResetSlider.resetShortBreak);
+                  _resetSlider(ResetSlider.resetLongBreak);
+                  _resetTextButtonSong();
+                },
+                icon: const Icon(Icons.refresh_rounded))
+          ],
+          title: const Text('Setting'),
+          elevation: 0,
+          centerTitle: true,
+        ),
+        body: Container(
+          padding: const EdgeInsets.all(12),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Modo dark',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  ValueListenableBuilder(
-                    valueListenable: modeDark,
+                    ValueListenableBuilder(
+                      valueListenable: modeDark,
+                      builder: (BuildContext context, value, Widget? child) {
+                        return Switch(
+                          value: modeDark.value,
+                          splashRadius: 15,
+                          activeTrackColor: Colors.deepOrange[200],
+                          activeColor: Colors.deepOrange,
+                          onChanged: (value) {
+                            modeDark.value = value;
+                          },
+                        );
+                      },
+                    )
+                  ],
+                ),
+                const Divider(
+                  height: 30,
+                ),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: ValueListenableBuilder(
+                    valueListenable: chosenValueLanguage,
                     builder: (BuildContext context, value, Widget? child) {
-                      return Switch(
-                        value: modeDark.value,
-                        splashRadius: 15,
-                        activeTrackColor: Colors.deepOrange[200],
-                        activeColor: Colors.deepOrange,
-                        onChanged: (value) {
-                          modeDark.value = value;
+                      return DropdownButton<String>(
+                        underline: const SizedBox(),
+                        dropdownColor: Theme.of(context).primaryColor,
+                        alignment: AlignmentDirectional.center,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8)),
+                        value: chosenValueLanguage.value,
+                        elevation: 0,
+                        items: <String>[
+                          'English',
+                          'Spanish',
+                          'Portuguese',
+                        ].map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            alignment: AlignmentDirectional.center,
+                            value: value,
+                            child: Text(
+                              value,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'OpenSans'),
+                            ),
+                          );
+                        }).toList(),
+                        hint: const Text(
+                          'Please choose a language',
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: 'OpenSans'),
+                        ),
+                        onChanged: (String? value) {
+                          // TODO DEPOIS QUE APLICAR O valueNotifier REMOVE O SETstATE E TRANSFORMAR A CLASSE EM STATELESS
+                          // setState(() {
+                          //   _chosenValueLanguage = value;
+                          // });
+
+                          setChosenValueLanguage(value);
                         },
                       );
                     },
-                  )
-                ],
-              ),
-              const Divider(
-                height: 30,
-              ),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(8)),
-                child: ValueListenableBuilder(
-                  valueListenable: chosenValueLanguage,
+                  ),
+                ),
+                const Divider(
+                  height: 30,
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                const Text(
+                  'Work',
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                ValueListenableBuilder(
+                  valueListenable: currentSliderValueWork,
                   builder: (BuildContext context, value, Widget? child) {
-                    return DropdownButton<String>(
-                      underline: const SizedBox(),
-                      dropdownColor: Theme.of(context).primaryColor,
-                      alignment: AlignmentDirectional.center,
-                      borderRadius: const BorderRadius.all(Radius.circular(8)),
-                      value: chosenValueLanguage.value,
-                      elevation: 0,
-                      items: <String>[
-                        'English',
-                        'Spanish',
-                        'Portuguese',
-                      ].map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          alignment: AlignmentDirectional.center,
-                          value: value,
-                          child: Text(
-                            value,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'OpenSans'),
-                          ),
-                        );
-                      }).toList(),
-                      hint: const Text(
-                        'Please choose a language',
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'OpenSans'),
-                      ),
-                      onChanged: (String? value) {
-                        // TODO DEPOIS QUE APLICAR O valueNotifier REMOVE O SETstATE E TRANSFORMAR A CLASSE EM STATELESS
-                        // setState(() {
-                        //   _chosenValueLanguage = value;
-                        // });
-
-                        setChosenValueLanguage(value);
-                      },
-                    );
+                    return SliderSettingsTimers(
+                        activeTrackColor: Colors.red[700]!,
+                        inactiveTrackColor: Colors.red[100]!,
+                        thumbColor: Colors.redAccent,
+                        overlayColor: Colors.red.withAlpha(32),
+                        thumbRadius: 20,
+                        slider: Slider(
+                            value: currentSliderValueWork.value.toDouble(),
+                            min: 1.0,
+                            max: 60.0,
+                            onChanged: (double value) {
+                              setTimerWorkSlider(value.round());
+                            }));
                   },
                 ),
-              ),
-              const Divider(
-                height: 30,
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              const Text(
-                'Work',
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
+                const SizedBox(
+                  height: 40,
                 ),
-              ),
-              ValueListenableBuilder(
-                valueListenable: currentSliderValueWork,
-                builder: (BuildContext context, value, Widget? child) {
-                  return SliderSettingsTimers(
-                      activeTrackColor: Colors.red[700]!,
-                      inactiveTrackColor: Colors.red[100]!,
-                      thumbColor: Colors.redAccent,
-                      overlayColor: Colors.red.withAlpha(32),
+                const Text(
+                  'Short Break',
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                ValueListenableBuilder(
+                  valueListenable: currentSliderValueShortBreak,
+                  builder: (BuildContext context, value, Widget? child) {
+                    return SliderSettingsTimers(
+                      activeTrackColor: Colors.green[700]!,
+                      inactiveTrackColor: Colors.green[100]!,
+                      thumbColor: Colors.greenAccent,
+                      overlayColor: Colors.green.withAlpha(32),
                       thumbRadius: 20,
                       slider: Slider(
-                          value: currentSliderValueWork.value.toDouble(),
-                          min: 1.0,
-                          max: 60.0,
-                          onChanged: (double value) {
-                            setTimerWorkSlider(value.round());
-                          }));
-                },
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              const Text(
-                'Short Break',
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              ValueListenableBuilder(
-                valueListenable: currentSliderValueShortBreak,
-                builder: (BuildContext context, value, Widget? child) {
-                  return SliderSettingsTimers(
-                    activeTrackColor: Colors.green[700]!,
-                    inactiveTrackColor: Colors.green[100]!,
-                    thumbColor: Colors.greenAccent,
-                    overlayColor: Colors.green.withAlpha(32),
-                    thumbRadius: 20,
-                    slider: Slider(
-                      value: currentSliderValueShortBreak.value.toDouble(),
-                      min: 1.0,
-                      max: 60.0,
-                      onChanged: (double value) {
-                        setTimerShortBreakSlider(value.round());
-                      },
-                    ),
-                  );
-                },
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              const Text(
-                'Long Break',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
-              ValueListenableBuilder(
-                valueListenable: currentSliderValueLongBreak,
-                builder: (BuildContext context, value, Widget? child) {
-                  return SliderSettingsTimers(
-                      activeTrackColor: Colors.orange[700]!,
-                      inactiveTrackColor: Colors.orange[100]!,
-                      thumbColor: Colors.orangeAccent,
-                      overlayColor: Colors.orange.withAlpha(32),
-                      thumbRadius: 20,
-                      slider: Slider(
-                        value: currentSliderValueLongBreak.value.toDouble(),
+                        value: currentSliderValueShortBreak.value.toDouble(),
                         min: 1.0,
                         max: 60.0,
                         onChanged: (double value) {
-                          setTimerLongBreakSlider(value.round());
+                          setTimerShortBreakSlider(value.round());
                         },
-                      ));
-                },
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              const Divider(
-                height: 30,
-              ),
-              TextButton(
-                child: ValueListenableBuilder(
-                    valueListenable: textButtonSong,
-                    builder:
-                        (BuildContext context, String value, Widget? child) {
-                      return Text(textButtonSong.value,
-                          style: const TextStyle(fontFamily: 'OpenSans'));
-                    }),
-                onPressed: () => selectSongsBottomSheet(context),
-              ),
-            ],
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                const Text(
+                  'Long Break',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                ),
+                ValueListenableBuilder(
+                  valueListenable: currentSliderValueLongBreak,
+                  builder: (BuildContext context, value, Widget? child) {
+                    return SliderSettingsTimers(
+                        activeTrackColor: Colors.orange[700]!,
+                        inactiveTrackColor: Colors.orange[100]!,
+                        thumbColor: Colors.orangeAccent,
+                        overlayColor: Colors.orange.withAlpha(32),
+                        thumbRadius: 20,
+                        slider: Slider(
+                          value: currentSliderValueLongBreak.value.toDouble(),
+                          min: 1.0,
+                          max: 60.0,
+                          onChanged: (double value) {
+                            setTimerLongBreakSlider(value.round());
+                          },
+                        ));
+                  },
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                const Divider(
+                  height: 30,
+                ),
+                TextButton(
+                  child: ValueListenableBuilder(
+                      valueListenable: textButtonSong,
+                      builder:
+                          (BuildContext context, String value, Widget? child) {
+                        return Text(textButtonSong.value,
+                            style: const TextStyle(fontFamily: 'OpenSans'));
+                      }),
+                  onPressed: () => selectSongsBottomSheet(context),
+                ),
+              ],
+            ),
           ),
         ),
       ),

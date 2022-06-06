@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
+  drawerTheme: const DrawerThemeData(backgroundColor: Colors.white),
   scaffoldBackgroundColor: Colors.white,
   indicatorColor: Colors.grey[300],
   primaryColor: Colors.grey[200],
@@ -52,6 +53,7 @@ ThemeData lightTheme = ThemeData(
 
 ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
+  drawerTheme: const DrawerThemeData(backgroundColor: Colors.black),
   scaffoldBackgroundColor: Colors.black,
   primaryColor: Colors.grey[800],
   backgroundColor: Colors.black,

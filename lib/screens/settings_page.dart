@@ -5,17 +5,17 @@ import 'package:pomodoro_app/controllers/theme_controller.dart';
 import 'package:pomodoro_app/controllers/timer_controller.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
 import 'package:pomodoro_app/screens/home_screen.dart';
+import 'package:pomodoro_app/theme/themes_constants.dart';
 import 'package:pomodoro_app/widgets/bottom_sheet_songs.dart';
 import 'package:pomodoro_app/widgets/custom_slider.dart';
 import 'package:pomodoro_app/widgets/drawer/custom_drawer.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../controllers/ux_controller.dart';
 import '../model/settings_slide.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
-
-  static const _btnTextStart = 'START POMODORO';
 
   Future<bool> _willPopCallback(context) async {
     if (indexPage.value == 1) {
@@ -36,39 +36,40 @@ class SettingsPage extends StatelessWidget {
         drawer: const CustomDrawer(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: SizedBox(
-          height: 60,
-          width: 120,
-          child: FloatingActionButton.extended(
-            label: const Text(
-              'Salvar',
-              style: TextStyle(fontSize: 18),
-            ),
-            onPressed: () {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Home()),
-                  (route) => false);
-              setIndexPage(0);
+            height: 60,
+            width: 120,
+            child: FloatingActionButton.extended(
+              label: const Text(
+                'Salvar',
+                style: TextStyle(fontSize: 18),
+              ),
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Home()),
+                    (route) => false);
+                setIndexPage(0);
 
-              resetPomodoroNum();
-              resetSetNum();
-              setPomodoroStatus(PomodoroStatus.pausedPomodoro);
-              setValueTimerNotification(currentSliderValueWork.value);
-              timer.value.cancel();
+                resetPomodoroNum();
+                resetSetNum();
+                setPomodoroStatus(PomodoroStatus.pausedPomodoro);
+                setValueTimerNotification(currentSliderValueWork.value);
+                timer.value.cancel();
 
-              setRemainingTime(totalTimer.value = currentSliderValueWork.value);
+                setRemainingTime(
+                    totalTimer.value = currentSliderValueWork.value);
 
-              setTotalTimer(currentSliderValueWork.value);
+                setTotalTimer(currentSliderValueWork.value);
 
-              setShortBreak(currentSliderValueShortBreak.value);
-              setLongBreak(currentSliderValueLongBreak.value);
+                setShortBreak(currentSliderValueShortBreak.value);
+                setLongBreak(currentSliderValueLongBreak.value);
 
-              setMainBtnText(_btnTextStart);
-              setShowButtonReset(false);
-              switchSelectItemSong();
-            },
-          ),
-        ),
+                setMainBtnText(AppLocalizations.of(context)!.startPomodoro);
+                setShowButtonReset(false);
+                switchSelectItemSong();
+                choseIntl();
+              },
+            )),
         appBar: AppBar(
           leading: !hasDrawer.value
               ? IconButton(
@@ -85,7 +86,7 @@ class SettingsPage extends StatelessWidget {
                 },
                 icon: const Icon(Icons.refresh_rounded))
           ],
-          title: const Text('Setting'),
+          title: Text(AppLocalizations.of(context)!.settings),
           elevation: 0,
           centerTitle: true,
         ),
@@ -97,9 +98,9 @@ class SettingsPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      'Modo dark',
-                      style: TextStyle(
+                    Text(
+                      AppLocalizations.of(context)!.modedark,
+                      style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),
@@ -157,9 +158,9 @@ class SettingsPage extends StatelessWidget {
                             ),
                           );
                         }).toList(),
-                        hint: const Text(
-                          'Please choose a language',
-                          style: TextStyle(
+                        hint: Text(
+                          AppLocalizations.of(context)!.pleaseChooseASong,
+                          style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
                               fontFamily: 'OpenSans'),
@@ -177,9 +178,9 @@ class SettingsPage extends StatelessWidget {
                 const SizedBox(
                   height: 40,
                 ),
-                const Text(
-                  'Work',
-                  style: TextStyle(
+                Text(
+                  AppLocalizations.of(context)!.work,
+                  style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
                   ),
@@ -205,9 +206,9 @@ class SettingsPage extends StatelessWidget {
                 const SizedBox(
                   height: 40,
                 ),
-                const Text(
-                  'Short Break',
-                  style: TextStyle(
+                Text(
+                  AppLocalizations.of(context)!.shortBreak,
+                  style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
                   ),
@@ -235,9 +236,10 @@ class SettingsPage extends StatelessWidget {
                 const SizedBox(
                   height: 40,
                 ),
-                const Text(
-                  'Long Break',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                Text(
+                  AppLocalizations.of(context)!.longBreak,
+                  style: const TextStyle(
+                      fontSize: 15, fontWeight: FontWeight.bold),
                 ),
                 ValueListenableBuilder(
                   valueListenable: currentSliderValueLongBreak,

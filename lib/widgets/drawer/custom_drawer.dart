@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/widgets/drawer/custom_listile.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../controllers/ux_controller.dart';
 import '../../screens/home_screen.dart';
@@ -22,13 +23,13 @@ class CustomDrawer extends StatelessWidget {
         children: [
           const DrawerHeader(
               // decoration: BoxDecoration(color: Colors.blue),
-              child: Text('Drawer text')),
+              child: Text('')),
           const SizedBox(
             height: 40,
           ),
           CustomListTile(
               icon: indexPage.value == 0 ? Icons.home : Icons.home_outlined,
-              title: 'Home',
+              title: AppLocalizations.of(context)!.home,
               indexSelect: 0,
               ontap: () {
                 Navigator.pushAndRemoveUntil(
@@ -41,7 +42,7 @@ class CustomDrawer extends StatelessWidget {
               icon: indexPage.value == 1
                   ? Icons.settings
                   : Icons.settings_outlined,
-              title: 'Settings',
+              title: AppLocalizations.of(context)!.settings,
               indexSelect: 1,
               ontap: () {
                 setHasDrawer(true);
@@ -60,7 +61,7 @@ class CustomDrawer extends StatelessWidget {
               icon: indexPage.value == 2
                   ? Icons.mail_rounded
                   : Icons.mail_outline_rounded,
-              title: 'Contact us',
+              title: AppLocalizations.of(context)!.contactUs,
               ontap: () {
                 setIndexPage(2);
                 Navigator.of(context).pop();
@@ -70,7 +71,7 @@ class CustomDrawer extends StatelessWidget {
               icon: indexPage.value == 3
                   ? Icons.info_rounded
                   : Icons.info_outline_rounded,
-              title: 'about',
+              title: AppLocalizations.of(context)!.about,
               ontap: () {
                 setIndexPage(3);
                 Navigator.of(context).pop();
@@ -80,7 +81,7 @@ class CustomDrawer extends StatelessWidget {
             icon: indexPage.value == 4
                 ? Icons.help_rounded
                 : Icons.help_outline_sharp,
-            title: 'Help & support',
+            title: AppLocalizations.of(context)!.helpsuport,
             ontap: () {
               setIndexPage(4);
               Navigator.of(context).pop();
@@ -94,7 +95,7 @@ class CustomDrawer extends StatelessWidget {
             icon: indexPage.value == 5
                 ? Icons.receipt_long
                 : Icons.receipt_long_outlined,
-            title: 'Terms of service',
+            title: AppLocalizations.of(context)!.termsOfService,
             ontap: () {
               setIndexPage(5);
               Navigator.of(context).pop();
@@ -105,7 +106,7 @@ class CustomDrawer extends StatelessWidget {
             icon: indexPage.value == 6
                 ? Icons.privacy_tip_rounded
                 : Icons.privacy_tip_outlined,
-            title: 'Privacy policy',
+            title: AppLocalizations.of(context)!.privacePolicy,
             ontap: () {
               setIndexPage(6);
               Navigator.of(context).pop();

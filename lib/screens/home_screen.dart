@@ -10,7 +10,7 @@ import 'package:pomodoro_app/widgets/custom_button.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
 import 'package:pomodoro_app/screens/settings_page.dart';
 import 'package:pomodoro_app/widgets/drawer/custom_drawer.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../controllers/theme_controller.dart';
 import '../controllers/ux_controller.dart';
 import '../widgets/progress_icons.dart';
@@ -24,31 +24,25 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: const CustomDrawer(),
-        appBar: AppBar(
-            // systemOverlayStyle: ThemeMode.dark
-            //     ? SystemUiOverlayStyle.light
-            //     : SystemUiOverlayStyle.dark,
-            // leading:,
-            actions: [
-              Builder(
-                builder: (BuildContext context) {
-                  return IconButton(
-                    icon: const Icon(
-                      Icons.settings_outlined,
-                    ),
-                    onPressed: () {
-                      setHasDrawer(false);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SettingsPage()));
-                    },
-                    tooltip:
-                        MaterialLocalizations.of(context).openAppDrawerTooltip,
-                  );
+        appBar: AppBar(actions: [
+          Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(
+                  Icons.settings_outlined,
+                ),
+                onPressed: () {
+                  setHasDrawer(false);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SettingsPage()));
                 },
-              ),
-            ], title: const Text('Pomodoro'), centerTitle: true, elevation: 0),
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              );
+            },
+          ),
+        ], title: const Text('Pomodoro'), centerTitle: true, elevation: 0),
         body: SafeArea(
           child: Center(
             child: Column(
@@ -88,7 +82,7 @@ class Home extends StatelessWidget {
                           height: 5.0,
                         ),
                         Text(
-                          'Pomodoro\n number',
+                          AppLocalizations.of(context)!.pomodoroNumber,
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.bodyText1,
                           key: const Key('pomodoro number'),
@@ -121,7 +115,7 @@ class Home extends StatelessWidget {
                           height: 5.0,
                         ),
                         Text(
-                          'Set',
+                          AppLocalizations.of(context)!.set,
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.bodyText1,
                           key: const Key('set'),
@@ -131,120 +125,121 @@ class Home extends StatelessWidget {
                   ],
                 ),
                 Expanded(
-                    child: ValueListenableBuilder(
-                        valueListenable: remainingTimer,
-                        builder: (BuildContext context, value, _) {
-                          return Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ValueListenableBuilder(
-                                    valueListenable: pomodoroStatus,
-                                    builder: (BuildContext context, value,
-                                        Widget? child) {
-                                      return CircularPercentIndicator(
-                                        radius: 125.0,
-                                        // radius:
-                                        //     MediaQuery.of(context).size.width *
-                                        //         0.3,
-                                        lineWidth: 8.0,
-                                        maskFilter: const MaskFilter.blur(
-                                            BlurStyle.solid, 8.0),
-                                        animation: true,
-                                        animationDuration: 1000,
-                                        animateFromLastPercent: true,
-                                        curve: Curves.linear,
-                                        percent: _getPomodoroPercentage(),
-                                        circularStrokeCap:
-                                            CircularStrokeCap.round,
-                                        center: Text(
-                                            _secondsToFormatedString(
-                                                remainingTimer.value),
-                                            style: TextStyle(
-                                              fontSize: 50,
-                                              fontFamily: 'OpenSans',
-                                              fontWeight: FontWeight.w600,
-                                              color: statusColor[
-                                                  pomodoroStatus.value],
-                                            )),
-                                        progressColor:
-                                            statusColor[pomodoroStatus.value],
-                                        backgroundColor:
-                                            Theme.of(context).primaryColor,
-                                      );
-                                    }),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                ProgressIcons(
-                                    total: pomodoriPerset,
-                                    done: pomodoroNum.value -
-                                        (setNum.value * pomodoriPerset)),
-                                const SizedBox(
-                                  height: 60,
-                                ),
-                                ValueListenableBuilder<PomodoroStatus>(
+                  child: ValueListenableBuilder(
+                      valueListenable: remainingTimer,
+                      builder: (BuildContext context, value, __) {
+                        return Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ValueListenableBuilder(
                                   valueListenable: pomodoroStatus,
                                   builder: (BuildContext context, value,
                                       Widget? child) {
-                                    return Text(
-                                      statusDescription[value],
+                                    return CircularPercentIndicator(
+                                      radius: 125.0,
+                                      // radius:
+                                      //     MediaQuery.of(context).size.width *
+                                      //         0.3,
+                                      lineWidth: 8.0,
+                                      maskFilter: const MaskFilter.blur(
+                                          BlurStyle.solid, 8.0),
+                                      animation: true,
+                                      animationDuration: 1000,
+                                      animateFromLastPercent: true,
+                                      curve: Curves.linear,
+                                      percent: _getPomodoroPercentage(),
+                                      circularStrokeCap:
+                                          CircularStrokeCap.round,
+                                      center: Text(
+                                          _secondsToFormatedString(
+                                              remainingTimer.value),
+                                          style: TextStyle(
+                                            fontSize: 50,
+                                            fontFamily: 'OpenSans',
+                                            fontWeight: FontWeight.w600,
+                                            color: statusColor[
+                                                pomodoroStatus.value],
+                                          )),
+                                      progressColor:
+                                          statusColor[pomodoroStatus.value],
+                                      backgroundColor:
+                                          Theme.of(context).primaryColor,
                                     );
-                                  },
-                                ),
-                                const SizedBox(
-                                  height: 40,
-                                ),
-                                SizedBox(
-                                    width: double.infinity,
-                                    height: 250,
-                                    child: Stack(
-                                      children: <Widget>[
-                                        AnimatedPositioned(
-                                          duration:
-                                              const Duration(milliseconds: 300),
-                                          left: showButtonReset.value
-                                              ? 220
-                                              : 130.8,
-                                          child: CustomButton(
-                                            backgroundColorButton:
-                                                Theme.of(context).primaryColor,
-                                            elevationButton: 0,
-                                            textColor: modeDark.value
-                                                ? Colors.white54
-                                                : Colors.black54,
-                                            textButton: btnTextReset,
-                                            onTap: () {
-                                              _resetButtonPressed();
-                                              setShowButtonReset(false);
-                                            },
-                                          ),
-                                        ),
-                                        ValueListenableBuilder(
-                                          valueListenable: mainBtnText,
-                                          builder: (BuildContext context, value,
-                                              Widget? child) {
-                                            return AnimatedPositioned(
-                                              duration: const Duration(
-                                                  milliseconds: 300),
-                                              right: showButtonReset.value
-                                                  ? 220
-                                                  : 130.8,
-                                              child: CustomButton(
-                                                key:
-                                                    const Key('start pomodoro'),
-                                                textButton: mainBtnText.value,
-                                                onTap: () {
-                                                  _mainButtonPressed();
-                                                  setShowButtonReset(true);
-                                                },
-                                              ),
-                                            );
+                                  }),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              ProgressIcons(
+                                  total: pomodoriPerset,
+                                  done: pomodoroNum.value -
+                                      (setNum.value * pomodoriPerset)),
+                              const SizedBox(
+                                height: 60,
+                              ),
+                              ValueListenableBuilder<PomodoroStatus>(
+                                valueListenable: pomodoroStatus,
+                                builder: (BuildContext context, value,
+                                    Widget? child) {
+                                  return Text(
+                                    statusDescription[value],
+                                  );
+                                },
+                              ),
+                              const SizedBox(
+                                height: 40,
+                              ),
+                              SizedBox(
+                                  width: double.infinity,
+                                  height: 250,
+                                  child: Stack(
+                                    children: [
+                                      AnimatedPositioned(
+                                        duration:
+                                            const Duration(milliseconds: 300),
+                                        left:
+                                            showButtonReset.value ? 220 : 130.8,
+                                        child: CustomButton(
+                                          backgroundColorButton:
+                                              Theme.of(context).primaryColor,
+                                          elevationButton: 0,
+                                          textColor: modeDark.value
+                                              ? Colors.white54
+                                              : Colors.black54,
+                                          textButton:
+                                              AppLocalizations.of(context)!
+                                                  .reset,
+                                          onTap: () {
+                                            _resetButtonPressed(context);
+                                            setShowButtonReset(false);
                                           },
-                                        )
-                                      ],
-                                    ))
-                              ]);
-                        })),
+                                        ),
+                                      ),
+                                      ValueListenableBuilder(
+                                        valueListenable: mainBtnText,
+                                        builder: (BuildContext context, value,
+                                            Widget? child) {
+                                          return AnimatedPositioned(
+                                            duration: const Duration(
+                                                milliseconds: 300),
+                                            right: showButtonReset.value
+                                                ? 220
+                                                : 130.8,
+                                            child: CustomButton(
+                                              key: const Key('start pomodoro'),
+                                              textButton: mainBtnText.value,
+                                              onTap: () {
+                                                _mainButtonPressed(context);
+                                                setShowButtonReset(true);
+                                              },
+                                            ),
+                                          );
+                                        },
+                                      )
+                                    ],
+                                  ))
+                            ]);
+                      }),
+                )
               ],
             ),
           ),
@@ -265,29 +260,29 @@ class Home extends StatelessWidget {
     return '$roundedMinutes:$remainingSecondsFormated';
   }
 
-  _mainButtonPressed() {
+  _mainButtonPressed(BuildContext context) {
     switch (pomodoroStatus.value) {
       case PomodoroStatus.pausedPomodoro:
-        _startPomodoroCountdown();
+        _startPomodoroCountdown(context);
         break;
       case PomodoroStatus.runningPomodoro:
-        _pausePomodoroCountdown();
+        _pausePomodoroCountdown(context);
         break;
       case PomodoroStatus.runningShortBreak:
-        _pauseShortBreakCountdown();
+        _pauseShortBreakCountdown(context);
         break;
       case PomodoroStatus.pausedShortBreak:
-        _startShortBreak();
+        _startShortBreak(context);
         break;
       case PomodoroStatus.runningLongBreak:
-        _pauseLongBreakCountdown();
+        _pauseLongBreakCountdown(context);
         break;
       case PomodoroStatus.pausedLongBreak:
-        _startLongBreak();
+        _startLongBreak(context);
         break;
       case PomodoroStatus.setFinished:
         incrementSetNum();
-        _startPomodoroCountdown();
+        _startPomodoroCountdown(context);
         break;
     }
   }
@@ -321,19 +316,19 @@ class Home extends StatelessWidget {
     return percentage;
   }
 
-  _startPomodoroWithoutDelay() {
+  _startPomodoroWithoutDelay(BuildContext context) {
     Timer.run(() {
       if (remainingTimer.value > 0) {
         removeDelayOfNotification.value--;
         remainingTimer.value--;
-        setMainBtnText(btnTextPause);
+        setMainBtnText(AppLocalizations.of(context)!.pause);
       }
     });
   }
 
-  _startPomodoroCountdown() {
+  _startPomodoroCountdown(BuildContext context) {
     setPomodoroStatus(PomodoroStatus.runningPomodoro);
-    _startPomodoroWithoutDelay();
+    _startPomodoroWithoutDelay(context);
     _cancelTime();
     timer.value = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (remainingTimer.value > 0) {
@@ -342,7 +337,7 @@ class Home extends StatelessWidget {
             body: _secondsToFormatedString(removeDelayOfNotification.value));
         removeDelayOfNotification.value--;
         remainingTimer.value--;
-        setMainBtnText(btnTextPause);
+        setMainBtnText(AppLocalizations.of(context)!.pause);
       } else {
         localNotifications(
             title: 'Pomodoro: FINALIZADO!', body: 'Iniciar pausa de 5 minutos');
@@ -354,21 +349,21 @@ class Home extends StatelessWidget {
           setValueTimerNotification(currentSliderValueLongBreak.value);
 
           setRemainingTime(longBreakTimer.value);
-          setMainBtnText(btnTextStartLongBreak);
+          setMainBtnText(AppLocalizations.of(context)!.takeLongBreak);
         } else {
           setPomodoroStatus(PomodoroStatus.pausedShortBreak);
           setValueTimerNotification(currentSliderValueShortBreak.value);
           setRemainingTime(shortBreakTimer.value);
-          setMainBtnText(btnTextStartShortBreak);
+          setMainBtnText(AppLocalizations.of(context)!.takeShortBreak);
         }
       }
     });
   }
 
-  _startShortBreak() {
+  _startShortBreak(BuildContext context) {
     setPomodoroStatus(PomodoroStatus.runningShortBreak);
-    setMainBtnText(btnTextPause);
-    _startPomodoroWithoutDelay();
+    setMainBtnText(AppLocalizations.of(context)!.pause);
+    _startPomodoroWithoutDelay(context);
     _cancelTime();
     timer.value = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (remainingTimer.value > 0) {
@@ -385,15 +380,15 @@ class Home extends StatelessWidget {
         setRemainingTime(totalTimer.value);
         _cancelTime();
         setPomodoroStatus(PomodoroStatus.pausedPomodoro);
-        setMainBtnText(btnTextStart);
+        setMainBtnText(AppLocalizations.of(context)!.startPomodoro);
       }
     });
   }
 
-  _startLongBreak() {
+  _startLongBreak(BuildContext context) {
     setPomodoroStatus(PomodoroStatus.runningLongBreak);
-    setMainBtnText(btnTextPause);
-    _startPomodoroWithoutDelay();
+    setMainBtnText(AppLocalizations.of(context)!.pause);
+    _startPomodoroWithoutDelay(context);
     _cancelTime();
     timer.value = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (remainingTimer.value > 0) {
@@ -411,45 +406,45 @@ class Home extends StatelessWidget {
         setRemainingTime(totalTimer.value);
         _cancelTime();
         setPomodoroStatus(PomodoroStatus.setFinished);
-        setMainBtnText(btnTextStartNewSet);
+        setMainBtnText(AppLocalizations.of(context)!.startNewSet);
       }
     });
   }
 
-  _pausePomodoroCountdown() {
+  _pausePomodoroCountdown(BuildContext context) {
     setPomodoroStatus(PomodoroStatus.pausedPomodoro);
     _cancelTime();
-    setMainBtnText(btnTextResumePomodoro);
+    setMainBtnText(AppLocalizations.of(context)!.resumePomodoro);
   }
 
-  _resetButtonPressed() {
+  _resetButtonPressed(BuildContext context) {
     resetPomodoroNum();
     resetSetNum();
     _cancelTime();
-    _stopCountdown();
+    _stopCountdown(context);
   }
 
-  _stopCountdown() {
+  _stopCountdown(BuildContext context) {
     setPomodoroStatus(PomodoroStatus.pausedPomodoro);
 
-    setMainBtnText(btnTextStart);
+    setMainBtnText(AppLocalizations.of(context)!.startPomodoro);
     setValueTimerNotification(currentSliderValueWork.value);
     setRemainingTime(totalTimer.value);
   }
 
-  _pauseShortBreakCountdown() {
+  _pauseShortBreakCountdown(BuildContext context) {
     setPomodoroStatus(PomodoroStatus.pausedShortBreak);
-    _pauseBreakCountdown();
+    _pauseBreakCountdown(context);
   }
 
-  _pauseLongBreakCountdown() {
+  _pauseLongBreakCountdown(BuildContext context) {
     setPomodoroStatus(PomodoroStatus.pausedLongBreak);
-    _pauseBreakCountdown();
+    _pauseBreakCountdown(context);
   }
 
-  _pauseBreakCountdown() {
+  _pauseBreakCountdown(BuildContext context) {
     _cancelTime();
-    setMainBtnText(btnTextResumeBreak);
+    setMainBtnText(AppLocalizations.of(context)!.resumeBreak);
   }
 
   _cancelTime() {

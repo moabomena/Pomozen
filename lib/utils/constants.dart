@@ -41,12 +41,3 @@ const Map<Songs, dynamic> selectItemSong = {
   Songs.songTwelve: 'small-door-bell.mp3',
   Songs.songThirteen: 'bell.mp3',
 };
-
-const btnTextStart = 'START \nPOMODORO';
-const btnTextResumePomodoro = 'RESUME \nPOMODORO';
-const btnTextResumeBreak = 'RESUME\n BREAK';
-const btnTextStartShortBreak = 'TAKE \nSHORT BREAK';
-const btnTextStartLongBreak = 'TAKE\n LONG BREAK';
-const btnTextStartNewSet = 'START\n NEW SET';
-const btnTextPause = 'PAUSE';
-const btnTextReset = 'RESET';

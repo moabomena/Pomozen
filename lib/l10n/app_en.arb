@@ -1,0 +1,33 @@
+{   
+  "pomodoroNumber": "pomodoro\n number",
+  "set": "set",
+  "startPomodoro": "START \nPOMODORO",
+  "resumePomodoro": "RESUME \nPOMODORO",
+  "resumeBreak": "RESUME \nBREAK",
+  "takeShortBreak": "TAKE \nSHORT BREAK",
+  "takeLongBreak": "TAKE \nLONG BREAK",
+  "startNewSet": "START\n NEW SET",
+  "pause": "PAUSE",
+  "reset": "RESET",
+  "home": "Home",
+  "settings": "Settings",
+  "contactUs": "Contact us",
+  "about": "About",
+  "helpsuport": "Help & support", 
+  "termsOfService": "Terms of service",
+  "privacePolicy": "Privacy policy",
+  "modedark": "Theme dark",
+  "settings": "Settings",
+  "english": "English",
+  "spanish": "Spanish",
+  "portuguese": "portuguese",
+  "work": "Work",
+  "shortBreak": "Short Break",
+  "longBreak": "Long Break",
+  "pleaseChooseASong": "please choose a song",
+  "save": "Save",  
+  "helloWorld": "Hello World!",
+    "@helloWorld": {
+      "description": "The conventional newborn programmer greeting"
+    }
+}

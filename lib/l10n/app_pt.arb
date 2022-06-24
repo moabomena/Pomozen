@@ -1,0 +1,33 @@
+{   
+    "pomodoroNumber": "número de\n pomodoros",
+    "set": "série",
+    "startPomodoro": "INICIAR \nPOMODORO",
+    "resumePomodoro": "RETOMAR \nPOMODORO",
+    "resumeBreak": "RETOMAR \nPAUSA",
+    "takeShortBreak": "FAÇA UMA \nPEQUENA PAUSA",
+    "takeLongBreak": "FAÇA UMA \nLONGA PAUSA",
+    "startNewSet": "INICIAR\n NOVO CONJUNTO",
+    "pause": "PAUSA",
+    "reset": "REINICIAR",
+    "home": "Inicio",
+    "settings": "Ajuste",
+    "contactUs": "Contato",
+    "about": "Sobre",
+    "helpsuport": "Ajuda e suporte", 
+    "termsOfService": "Termos de servicos",
+    "privacePolicy": "Politica de privacidade", 
+    "modedark": "Tema escuro",
+    "settings": "Ajustes",
+    "english": "Inglês",
+    "spanish": "Espanhol",
+    "portuguese": "Português",
+    "work": "Trabalho",
+    "shortBreak": "Pausa curta",
+    "longBreak": "Pausa longa",
+    "pleaseChooseASong": "por favor, escolha um toque",
+    "save": "Salvar",
+    "helloWorld": "Hello World!",
+    "@helloWorld": {
+      "description": "The conventional newborn programmer greeting"
+    }
+}

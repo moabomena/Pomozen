@@ -13,26 +13,27 @@ class CustomListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          color: indexPage.value == indexSelect ? Colors.orange[50] : null),
-      child: ListTile(
-        leading: Icon(
-          icon,
-          size: MediaQuery.of(context).size.width * 0.07,
-          color: indexPage.value == indexSelect ? Colors.orange : null,
-        ),
-        minLeadingWidth: 1,
-        title: Text(
-          title!,
-          style: TextStyle(
-              color: indexPage.value == indexSelect ? Colors.orange : null,
-              fontSize: MediaQuery.of(context).size.width * 0.05,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'OpenSans'),
-        ),
-        onTap: ontap,
+    return ListTile(
+      tileColor: indexPage.value == indexSelect
+          ? Theme.of(context).listTileTheme.tileColor
+          : Colors.transparent,
+      leading: Icon(icon,
+          size: MediaQuery.of(context).size.width * 0.06,
+          color: indexPage.value == indexSelect
+              ? Colors.orange
+              : Theme.of(context).textTheme.bodyText1!.color),
+      minLeadingWidth: 1,
+      title: Text(
+        title!,
+        style: TextStyle(
+            color: indexPage.value == indexSelect
+                ? Colors.orange
+                : Theme.of(context).textTheme.bodyText1!.color,
+            fontSize: MediaQuery.of(context).size.width * 0.045,
+            fontWeight: FontWeight.w500,
+            fontFamily: 'OpenSans'),
       ),
+      onTap: ontap,
     );
   }
 }

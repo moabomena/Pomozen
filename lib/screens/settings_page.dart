@@ -114,6 +114,7 @@ class SettingsPage extends StatelessWidget {
                           activeColor: Colors.deepOrange,
                           onChanged: (value) {
                             modeDark.value = value;
+                            navigationBarColor();
                           },
                         );
                       },

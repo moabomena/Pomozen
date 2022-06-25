@@ -11,9 +11,10 @@ final AudioCache player = AudioCache();
 void selectSongsBottomSheet(context) {
   showModalBottomSheet(
     isScrollControlled: true,
+    clipBehavior: Clip.antiAlias,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
-          topRight: Radius.circular(16), topLeft: Radius.circular(16)),
+          topRight: Radius.circular(24), topLeft: Radius.circular(24)),
     ),
     builder: (BuildContext bc) {
       return Wrap(
@@ -173,6 +174,7 @@ listTileSelectSong(
       valueListenable: mapSelectSong,
       builder: (BuildContext context, value, Widget? child) {
         return ListTile(
+          tileColor: modeDark.value ? Colors.black45 : Colors.white38,
           leading: mapSelectSong.value[keySong] == true
               ? Icon(
                   Icons.check,

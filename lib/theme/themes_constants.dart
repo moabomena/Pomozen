@@ -56,7 +56,7 @@ ThemeData lightTheme = ThemeData(
 ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     drawerTheme:
-        const DrawerThemeData(backgroundColor: Color.fromARGB(255, 51, 49, 49)),
+        const DrawerThemeData(backgroundColor: Color.fromARGB(255, 19, 18, 18)),
     scaffoldBackgroundColor: Colors.black,
     primaryColor: Colors.grey[800],
     backgroundColor: Colors.black,

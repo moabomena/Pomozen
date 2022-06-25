@@ -23,6 +23,7 @@ class SettingsPage extends StatelessWidget {
           context,
           MaterialPageRoute(builder: (context) => const Home()),
           (route) => false);
+      setIndexPage(0);
     }
 
     return true;

@@ -7,17 +7,17 @@ void main() {
   });
 
   test('The default value for the working time is 25 minutes', () {
-    expect(currentSliderValueWork, 25);
+    expect(currentSliderValueWork.value, 25);
   });
   test('The default value for pause should be 5 minutes', () {
-    expect(currentSliderValueShortBreak, 5);
+    expect(currentSliderValueShortBreak.value, 5);
   });
 
   test('The default value for long pause should be 15 minutes', () {
-    expect(currentSliderValueLongBreak, 15);
+    expect(currentSliderValueLongBreak.value, 15);
   });
   test('the remaining time has to be always return 25*60', () {
-    expect(remainingTimer, 1500);
+    expect(remainingTimer.value, 1500);
   });
   test('TotalTime must be 25', () {
     expect(totalTimer.value, 25);

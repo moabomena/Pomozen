@@ -10,8 +10,8 @@ class ProgressIcons extends StatelessWidget {
   Widget build(BuildContext context) {
     final doneIcon = Container(
       margin: const EdgeInsets.only(right: 10.0),
-      width: 15 * .9,
-      height: 15 * .9,
+      width: MediaQuery.of(context).size.width * 0.03,
+      height: MediaQuery.of(context).size.height * 0.03,
       decoration: BoxDecoration(
         color: Colors.greenAccent[400],
         shape: BoxShape.circle,
@@ -28,8 +28,8 @@ class ProgressIcons extends StatelessWidget {
 
     final notDoneIcon = Container(
       margin: const EdgeInsets.only(right: 10.0),
-      width: 15 * .9,
-      height: 15 * .9,
+      width: MediaQuery.of(context).size.width * 0.03,
+      height: MediaQuery.of(context).size.height * 0.03,
       decoration: BoxDecoration(
           color: Theme.of(context).indicatorColor, shape: BoxShape.circle),
     );

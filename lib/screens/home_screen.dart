@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:pomodoro_app/controllers/song_controller.dart';
 import 'package:pomodoro_app/controllers/timer_controller.dart';
+import 'package:pomodoro_app/responsive/dimensions.dart';
 import 'package:pomodoro_app/utils/constants.dart';
 import 'package:pomodoro_app/utils/notifications.dart';
 import 'package:pomodoro_app/widgets/custom_button.dart';
@@ -45,127 +46,155 @@ class Home extends StatelessWidget {
         ], title: const Text('Pomodoro'), centerTitle: true, elevation: 0),
         body: SafeArea(
           child: Center(
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Column(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(5),
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).primaryColor,
-                              shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.circular(8)),
-                          child: ValueListenableBuilder(
-                            valueListenable: pomodoroNum,
-                            builder:
-                                (BuildContext context, value, Widget? child) {
-                              return Center(
-                                child: Text(
-                                  pomodoroNum.value.toString(),
-                                  style: const TextStyle(
-                                      fontSize: 20, fontFamily: 'OpenSans'),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 5.0,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.pomodoroNumber,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.bodyText1,
-                          key: const Key('pomodoro number'),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Container(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
                             padding: const EdgeInsets.all(5),
-                            width: 40,
-                            height: 40,
+                            width: MediaQuery.of(context).size.width *
+                                widthPomodoroNumAndSetNum,
+                            height: MediaQuery.of(context).size.height *
+                                heightPomodoroNumAndSetNum,
                             decoration: BoxDecoration(
                                 color: Theme.of(context).primaryColor,
                                 shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.circular(8)),
+                                borderRadius: BorderRadius.circular(
+                                    MediaQuery.of(context).size.height *
+                                        borderRadiusIndicator)),
                             child: ValueListenableBuilder(
-                                valueListenable: setNum,
-                                builder: (BuildContext context, value,
-                                    Widget? child) {
-                                  return Center(
-                                    child: Text(
-                                      setNum.value.toString(),
-                                      style: const TextStyle(
-                                          fontSize: 20, fontFamily: 'OpenSans'),
-                                    ),
-                                  );
-                                })),
-                        const SizedBox(
-                          height: 5.0,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.set,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.bodyText1,
-                          key: const Key('set'),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-                Expanded(
-                  child: ValueListenableBuilder(
+                              valueListenable: pomodoroNum,
+                              builder:
+                                  (BuildContext context, value, Widget? child) {
+                                return Center(
+                                  child: Text(
+                                    pomodoroNum.value.toString(),
+                                    style: TextStyle(
+                                        fontSize:
+                                            MediaQuery.of(context).size.height *
+                                                fontSizeIndicator,
+                                        fontFamily: 'OpenSans'),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          // const SizedBox(
+                          //   height: 5.0,
+                          // ),
+                          Text(
+                            AppLocalizations.of(context)!.pomodoroNumber,
+                            textAlign: TextAlign.center,
+                            // style: Theme.of(context).textTheme.bodyText1,
+                            style: TextStyle(
+                                fontSize: MediaQuery.of(context).size.width *
+                                    fontSizeTextIndicator),
+                            key: const Key('pomodoro number'),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Container(
+                              padding: const EdgeInsets.all(5),
+                              width: MediaQuery.of(context).size.width *
+                                  widthPomodoroNumAndSetNum,
+                              height: MediaQuery.of(context).size.height *
+                                  heightPomodoroNumAndSetNum,
+                              decoration: BoxDecoration(
+                                  color: Theme.of(context).primaryColor,
+                                  shape: BoxShape.rectangle,
+                                  borderRadius: BorderRadius.circular(
+                                      MediaQuery.of(context).size.height *
+                                          borderRadiusIndicator)),
+                              child: ValueListenableBuilder(
+                                  valueListenable: setNum,
+                                  builder: (BuildContext context, value,
+                                      Widget? child) {
+                                    return Center(
+                                      child: Text(
+                                        setNum.value.toString(),
+                                        style: TextStyle(
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                fontSizeIndicator,
+                                            fontFamily: 'OpenSans'),
+                                      ),
+                                    );
+                                  })),
+                          // const SizedBox(
+                          //   height: 5.0,
+                          // ),
+                          Text(
+                            AppLocalizations.of(context)!.set,
+                            textAlign: TextAlign.center,
+                            // style: Theme.of(context).textTheme.bodyText1,
+                            style: TextStyle(
+                              fontSize: MediaQuery.of(context).size.width *
+                                  fontSizeTextIndicator,
+                            ),
+                            key: const Key('set'),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  // Flexible(
+                  //   fit: FlexFit.loose,
+                  //   child: SizedBox(
+                  //     height: MediaQuery.of(context).size.height * 0.03,
+                  //   ),
+                  // ),
+                  ValueListenableBuilder(
                       valueListenable: remainingTimer,
                       builder: (BuildContext context, value, __) {
                         return Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              ValueListenableBuilder(
-                                  valueListenable: pomodoroStatus,
-                                  builder: (BuildContext context, value,
-                                      Widget? child) {
-                                    return CircularPercentIndicator(
-                                      radius: 125.0,
-                                      // radius:
-                                      //     MediaQuery.of(context).size.width *
-                                      //         0.3,
-                                      lineWidth: 8.0,
-                                      maskFilter: const MaskFilter.blur(
-                                          BlurStyle.solid, 8.0),
-                                      animation: true,
-                                      animationDuration: 1000,
-                                      animateFromLastPercent: true,
-                                      curve: Curves.linear,
-                                      percent: _getPomodoroPercentage(),
-                                      circularStrokeCap:
-                                          CircularStrokeCap.round,
-                                      center: Text(
-                                          _secondsToFormatedString(
-                                              remainingTimer.value),
-                                          style: TextStyle(
-                                            fontSize: 50,
-                                            fontFamily: 'OpenSans',
-                                            fontWeight: FontWeight.w600,
-                                            color: statusColor[
-                                                pomodoroStatus.value],
-                                          )),
-                                      progressColor:
-                                          statusColor[pomodoroStatus.value],
-                                      backgroundColor:
-                                          Theme.of(context).primaryColor,
-                                    );
-                                  }),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ValueListenableBuilder(
+                                    valueListenable: pomodoroStatus,
+                                    builder: (BuildContext context, value,
+                                        Widget? child) {
+                                      return CircularPercentIndicator(
+                                        radius: 125.0,
+                                        // radius:
+                                        //     MediaQuery.of(context).size.width *
+                                        //         0.3,
+                                        lineWidth: 8.0,
+                                        maskFilter: const MaskFilter.blur(
+                                            BlurStyle.solid, 8.0),
+                                        animation: true,
+                                        animationDuration: 1000,
+                                        animateFromLastPercent: true,
+                                        curve: Curves.linear,
+                                        percent: _getPomodoroPercentage(),
+                                        circularStrokeCap:
+                                            CircularStrokeCap.round,
+                                        center: Text(
+                                            _secondsToFormatedString(
+                                                remainingTimer.value),
+                                            style: TextStyle(
+                                              fontSize: 50,
+                                              fontFamily: 'OpenSans',
+                                              fontWeight: FontWeight.w400,
+                                              color: statusColor[
+                                                  pomodoroStatus.value],
+                                            )),
+                                        progressColor:
+                                            statusColor[pomodoroStatus.value],
+                                        backgroundColor:
+                                            Theme.of(context).primaryColor,
+                                      );
+                                    }),
+                              ),
                               const SizedBox(
                                 height: 20,
                               ),
@@ -180,24 +209,34 @@ class Home extends StatelessWidget {
                                 valueListenable: pomodoroStatus,
                                 builder: (BuildContext context, value,
                                     Widget? child) {
-                                  return Text(
-                                    statusDescription[value],
-                                  );
+                                  return Text(statusDescription[value],
+                                      textScaleFactor:
+                                          MediaQuery.of(context).size.width *
+                                              textScaleFactorStatusDescription);
                                 },
                               ),
-                              const SizedBox(
-                                height: 40,
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height *
+                                    heightSizedBox1,
                               ),
                               SizedBox(
-                                  width: double.infinity,
-                                  height: 250,
+                                  // width: double.infinity,
+                                  height: MediaQuery.of(context).size.height *
+                                      heightSizedBox2,
                                   child: Stack(
                                     children: [
                                       AnimatedPositioned(
                                         duration:
                                             const Duration(milliseconds: 300),
-                                        left:
-                                            showButtonReset.value ? 220 : 130.8,
+                                        right: showButtonReset.value
+                                            ? MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                animatedPositionedTrue
+                                            : MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                animatedPositionedFalse,
                                         child: CustomButton(
                                           backgroundColorButton:
                                               Theme.of(context).primaryColor,
@@ -221,9 +260,15 @@ class Home extends StatelessWidget {
                                           return AnimatedPositioned(
                                             duration: const Duration(
                                                 milliseconds: 300),
-                                            right: showButtonReset.value
-                                                ? 220
-                                                : 130.8,
+                                            left: showButtonReset.value
+                                                ? MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    animatedPositionedTrue
+                                                : MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    animatedPositionedFalse,
                                             child: CustomButton(
                                               key: const Key('start pomodoro'),
                                               textButton: mainBtnText.value,
@@ -238,9 +283,9 @@ class Home extends StatelessWidget {
                                     ],
                                   ))
                             ]);
-                      }),
-                )
-              ],
+                      })
+                ],
+              ),
             ),
           ),
         ));

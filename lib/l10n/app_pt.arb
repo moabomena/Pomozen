@@ -27,6 +27,13 @@
     "pleaseChooseASong": "por favor, escolha um toque",
     "save": "Salvar",
     "helloWorld": "Hello World!",
+    "runningPomodoro": "Pomodoro está correndo, hora de se concentrar",
+    "pausedPomodoro": "Pronto para um pomodoro focado?",
+    "runningShortBreak": "correndo pausa curta, hora de relaxar",
+    "pausedShortBreak": "Vamos fazer uma pequena pausa?",
+    "runningLongBreak": "Correndo pausa longa, hora de relaxar",
+    "pausedLongBreak": "Vamos ter uma pausa longa?",
+    "setFinished": "Parabéns, você merece uma pausa longa, pronto para começar?",
     "@helloWorld": {
       "description": "The conventional newborn programmer greeting"
     }

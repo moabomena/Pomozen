@@ -18,7 +18,9 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ButtonTheme(
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.35,
+      height: MediaQuery.of(context).size.height * 0.1,
       child: ElevatedButton(
         style: ButtonStyle(
             elevation: MaterialStateProperty.all(elevationButton),
@@ -28,7 +30,7 @@ class CustomButton extends StatelessWidget {
           textButton!,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 15,
+            fontSize: MediaQuery.of(context).size.height * 0.02,
             color: textColor,
           ),
         ),

@@ -30,8 +30,8 @@ ThemeData lightTheme = ThemeData(
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-            minimumSize: MaterialStateProperty.all<Size>(const Size(150, 100)),
-            maximumSize: MaterialStateProperty.all<Size>(const Size(150, 100)),
+            // minimumSize: MaterialStateProperty.all<Size>(const Size(150, 100)),
+            // maximumSize: MaterialStateProperty.all<Size>(const Size(150, 100)),
             shape: MaterialStateProperty.all<OutlinedBorder>(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
             ),
@@ -72,7 +72,7 @@ ThemeData darkTheme = ThemeData(
           fontSize: 30.0, fontStyle: FontStyle.italic, fontFamily: 'OpenSans'),
       bodyText1: TextStyle(
         color: Colors.white,
-        fontSize: 14.0,
+        // fontSize: 14,
         fontFamily: 'OpenSans',
       ),
       bodyText2: TextStyle(fontSize: 18.0, fontFamily: 'OpenSans'),

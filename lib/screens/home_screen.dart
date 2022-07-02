@@ -9,7 +9,7 @@ import 'package:pomodoro_app/utils/constants.dart';
 import 'package:pomodoro_app/utils/notifications.dart';
 import 'package:pomodoro_app/widgets/custom_button.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
-import 'package:pomodoro_app/screens/settings_page.dart';
+import 'package:pomodoro_app/screens/settings_screen.dart';
 import 'package:pomodoro_app/widgets/drawer/custom_drawer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../controllers/theme_controller.dart';

@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../controllers/ux_controller.dart';
 import '../../screens/home_screen.dart';
-import '../../screens/settings_page.dart';
+import '../../screens/settings_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({Key? key}) : super(key: key);

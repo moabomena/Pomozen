@@ -45,6 +45,7 @@ dependencies:
   flutter_local_notifications: ^9.4.0
   flutter_native_timezone: ^2.0.0
   rxdart: ^0.27.3
+  flutter_svg: ^1.1.1+1
 
 
 dev_dependencies:
@@ -88,6 +89,7 @@ flutter:
     - assets/notification-bell.mp3
     - assets/service-bell-double-ding.mp3
     - assets/small-door-bell.mp3
+    - assets/images/
 
 
   fonts: 

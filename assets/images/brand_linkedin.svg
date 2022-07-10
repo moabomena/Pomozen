@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="67.73333mm"
+   height="67.733345mm"
+   viewBox="0 0 67.73333 67.733345"
+   version="1.1"
+   id="svg6927"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6924" />
+  <g
+     id="layer1"
+     transform="translate(-36.644833,-36.644874)">
+    <g
+       class="inbug"
+       stroke="none"
+       stroke-width="1"
+       fill="none"
+       fill-rule="evenodd"
+       id="g5678"
+       transform="matrix(0.26458333,0,0,0.26458333,180.41845,264.36001)">
+      <g
+         id="g16961"
+         style="display:inline"
+         transform="matrix(12.190476,0,0,12.190476,4560.7948,8590.9059)">
+        <g
+           class="inbug"
+           stroke="none"
+           stroke-width="1"
+           fill="none"
+           fill-rule="evenodd"
+           id="g5678-3"
+           transform="translate(-481.06038,-778.19796)"
+           style="mix-blend-mode:screen;stroke:none;stroke-opacity:1">
+          <path
+             d="M 19.479,0 H 1.583 C 0.727,0 0,0.677 0,1.511 V 19.488 C 0,20.323 0.477,21 1.333,21 H 19.229 C 20.086,21 21,20.323 21,19.488 V 1.511 C 21,0.677 20.336,0 19.479,0"
+             class="bug-text-color"
+             transform="translate(63)"
+             id="path5674-6"
+             style="display:inline;stroke:none;stroke-opacity:1" />
+          <path
+             d="m 81.954586,2.816464 c -5.965333,0 -15.103456,-0.055574 -17.896,0 C 63.202755,2.833496 58.93499,1.2822884 58.946307,2.1162116 l 0.298067,21.9637374 c 0.01133,0.834923 3.090972,2.17025 3.940294,2.063533 L 81.704586,23.816464 C 82.5549,23.709622 53.38249,35.085273 53.230683,34.264188 L 47.409237,2.7774182 c -0.151625,-0.820101 35.402349,0.039046 34.545349,0.039046 z m -11.479,8 h 2.827 v 1.441 h 0.031 c 0.431,-0.777 1.704,-1.566 3.278,-1.566 3.021,0 3.864,1.604 3.864,4.575 v 5.55 h -3 v -5.003 c 0,-1.33 -0.531,-2.497 -1.773,-2.497 -1.508,0 -2.227,1.021 -2.227,2.697 v 4.803 h -3 z m -5,10 h 3 v -10 h -3 z m 3.375,-13.5 c 0,1.036 -0.839,1.875 -1.875,1.875 -1.036,0 -1.875,-0.839 -1.875,-1.875 0,-1.036 0.839,-1.875 1.875,-1.875 1.036,0 1.875,0.839 1.875,1.875 z"
+             class="background"
+             fill="currentColor"
+             id="path5676"
+             style="display:inline;fill:#0a66c2;fill-opacity:1;stroke:none;stroke-opacity:1" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

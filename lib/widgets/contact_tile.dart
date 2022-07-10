@@ -13,7 +13,7 @@ class ContactTile extends StatelessWidget {
       this.gradientColorPrimary,
       this.gradientColorSecondary,
       this.gradientColorTertiary,
-      this.gradientColorquaternary,
+      this.gradientColorQuaternary,
       Key? key})
       : super(key: key);
 
@@ -26,7 +26,7 @@ class ContactTile extends StatelessWidget {
   final Color? gradientColorPrimary;
   final Color? gradientColorSecondary;
   final Color? gradientColorTertiary;
-  final Color? gradientColorquaternary;
+  final Color? gradientColorQuaternary;
   final bool isGradientColorContainer;
 
   @override
@@ -60,7 +60,7 @@ class ContactTile extends StatelessWidget {
                                     gradientColorPrimary!,
                                     gradientColorSecondary!,
                                     gradientColorTertiary!,
-                                    gradientColorquaternary!,
+                                    gradientColorQuaternary!,
                                   ])
                             : null,
                         color: isGradientColorContainer ? null : colorContainer,

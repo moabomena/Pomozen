@@ -40,7 +40,7 @@ class ContactScreen extends StatelessWidget {
                   gradientColorPrimary: Color(0xff833AB4),
                   gradientColorSecondary: Color(0xffE1306C),
                   gradientColorTertiary: Color(0xffF56040),
-                  gradientColorquaternary: Color(0xffFCAF45),
+                  gradientColorQuaternary: Color(0xffFCAF45),
                 ),
                 ContactTile(
                   title: 'Linkedin',

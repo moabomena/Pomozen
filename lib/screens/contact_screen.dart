@@ -25,15 +25,16 @@ class ContactScreen extends StatelessWidget {
         ),
         body: Container(
           padding: const EdgeInsets.all(20),
-          color: Colors.white,
           child: SingleChildScrollView(
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: const [
                   ContactTile(
-                      title: 'Facebook',
-                      subTitle: 'Moab Omena',
-                      pathSvg: 'assets/images/brand_facebook.svg'),
+                    title: 'Facebook',
+                    subTitle: 'Moab Omena',
+                    pathSvg: 'assets/images/brand_facebook.svg',
+                    isBackground: true,
+                  ),
                   ContactTile(
                     title: 'Instagram',
                     subTitle: '@moabomen',
@@ -62,6 +63,7 @@ class ContactScreen extends StatelessWidget {
                   ),
                   ContactTile(
                     title: 'Github',
+                    isContrast: true,
                     subTitle: 'moabomena',
                     pathSvg: 'assets/images/brand_github.svg',
                   ),

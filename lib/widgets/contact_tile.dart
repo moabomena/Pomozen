@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pomodoro_app/controllers/theme_controller.dart';
@@ -17,6 +16,7 @@ class ContactTile extends StatelessWidget {
       this.gradientColorTertiary,
       this.gradientColorQuaternary,
       this.isBackground = false,
+      this.isContrast = false,
       Key? key})
       : super(key: key);
 
@@ -32,6 +32,7 @@ class ContactTile extends StatelessWidget {
   final Color? gradientColorQuaternary;
   final bool isGradientColorContainer;
   final bool isBackground;
+  final bool isContrast;
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +95,9 @@ class ContactTile extends StatelessWidget {
                       )
                     : SvgPicture.asset(
                         pathSvg!,
-                        color: colorSvg,
+                        color: isContrast && modeDark.value
+                            ? Colors.white
+                            : colorSvg,
                         height: 50,
                         width: 50,
                       ),

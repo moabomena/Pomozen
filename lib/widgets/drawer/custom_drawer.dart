@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/screens/about_screen.dart';
 import 'package:pomodoro_app/screens/contact_screen.dart';
 import 'package:pomodoro_app/screens/help_support_screen.dart';
+import 'package:pomodoro_app/screens/use_licenses.dart';
 import 'package:pomodoro_app/widgets/drawer/custom_listile.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -85,7 +87,12 @@ class CustomDrawer extends StatelessWidget {
                 title: AppLocalizations.of(context)!.about,
                 ontap: () {
                   setIndexPage(3);
-                  Navigator.of(context).pop();
+                  setHasDrawer(true);
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AboutScreen()),
+                      (route) => false);
                 }),
             CustomListTile(
               indexSelect: 4,
@@ -111,23 +118,17 @@ class CustomDrawer extends StatelessWidget {
               icon: indexPage.value == 5
                   ? Icons.receipt_long
                   : Icons.receipt_long_outlined,
-              title: AppLocalizations.of(context)!.termsOfService,
+              title: AppLocalizations.of(context)!.useLicense,
               ontap: () {
                 setIndexPage(5);
-                Navigator.of(context).pop();
+                setHasDrawer(true);
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const UseLicenseScreen()),
+                    (route) => false);
               },
             ),
-            CustomListTile(
-              indexSelect: 6,
-              icon: indexPage.value == 6
-                  ? Icons.privacy_tip_rounded
-                  : Icons.privacy_tip_outlined,
-              title: AppLocalizations.of(context)!.privacePolicy,
-              ontap: () {
-                setIndexPage(6);
-                Navigator.of(context).pop();
-              },
-            )
           ],
         ),
       ),

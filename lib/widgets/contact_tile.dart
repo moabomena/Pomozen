@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:pomodoro_app/controllers/theme_controller.dart';
 
 class ContactTile extends StatelessWidget {
   const ContactTile(
@@ -14,6 +16,7 @@ class ContactTile extends StatelessWidget {
       this.gradientColorSecondary,
       this.gradientColorTertiary,
       this.gradientColorQuaternary,
+      this.isBackground = false,
       Key? key})
       : super(key: key);
 
@@ -28,6 +31,7 @@ class ContactTile extends StatelessWidget {
   final Color? gradientColorTertiary;
   final Color? gradientColorQuaternary;
   final bool isGradientColorContainer;
+  final bool isBackground;
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +39,8 @@ class ContactTile extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.only(bottom: 10, top: 10),
       decoration: BoxDecoration(
-          color: const Color(0xfff0f0f0),
-          borderRadius: BorderRadius.circular(16)),
+          color: Theme.of(context).colorScheme.primary,
+          borderRadius: BorderRadius.circular(12)),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Row(
           children: [
@@ -70,12 +74,30 @@ class ContactTile extends StatelessWidget {
                       color: colorSvg,
                     ),
                   )
-                : SvgPicture.asset(
-                    pathSvg!,
-                    color: colorSvg,
-                    height: 50,
-                    width: 50,
-                  ),
+                : isBackground && modeDark.value
+                    ? Stack(
+                        alignment: AlignmentDirectional.bottomCenter,
+                        children: [
+                          Container(
+                            width: 45,
+                            height: 45,
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle, color: Colors.white),
+                          ),
+                          SvgPicture.asset(
+                            pathSvg!,
+                            color: colorSvg,
+                            height: 50,
+                            width: 50,
+                          ),
+                        ],
+                      )
+                    : SvgPicture.asset(
+                        pathSvg!,
+                        color: colorSvg,
+                        height: 50,
+                        width: 50,
+                      ),
             const SizedBox(
               width: 20,
             ),

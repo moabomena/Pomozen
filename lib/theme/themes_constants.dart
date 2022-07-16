@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:pomodoro_app/controllers/theme_controller.dart';
 
 ThemeData lightTheme = ThemeData(
+    colorScheme: const ColorScheme.light(primary: Color(0xfff0f0f0)),
     brightness: Brightness.light,
     drawerTheme: const DrawerThemeData(backgroundColor: Colors.white),
     scaffoldBackgroundColor: Colors.white,
@@ -66,6 +67,7 @@ ThemeData lightTheme = ThemeData(
     listTileTheme: ListTileThemeData(tileColor: Colors.orange[50]));
 
 ThemeData darkTheme = ThemeData(
+    colorScheme: const ColorScheme.dark(primary: Color(0xff444444)),
     brightness: Brightness.dark,
     drawerTheme:
         const DrawerThemeData(backgroundColor: Color.fromARGB(255, 19, 18, 18)),

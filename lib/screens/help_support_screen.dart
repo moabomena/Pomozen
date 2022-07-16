@@ -17,6 +17,7 @@ class HelpSupportScreen extends StatelessWidget {
     return WillPopScope(
       onWillPop: () => willPopCallback(context, 4),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: SizedBox(
             height: 60,
@@ -55,61 +56,66 @@ class HelpSupportScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
           child: Form(
             key: formKey,
-            child: Column(
-              children: [
-                const Text(
-                  'send your feedback to me and i will answer you shortly',
-                  style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 18),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: subjectController,
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Titulo obrigatorio';
-                    }
-                    return null;
-                  },
-                  maxLines: null,
-                  keyboardType: TextInputType.text,
-                  decoration: const InputDecoration(
-                    // isDense: true,
-                    icon: Icon(
-                      Icons.edit_note_rounded,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const Text(
+                    'send your feedback to me and i will answer you shortly',
+                    style: TextStyle(
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.w300,
+                        fontSize: 18),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    controller: subjectController,
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Titulo obrigatorio';
+                      }
+                      return null;
+                    },
+                    maxLines: null,
+                    keyboardType: TextInputType.text,
+                    decoration: const InputDecoration(
+                      // isDense: true,
+                      icon: Icon(
+                        Icons.edit_note_rounded,
+                      ),
+                      hintText: 'write your subject here...',
+                      labelText: 'Subject',
+                      border: OutlineInputBorder(),
                     ),
-                    hintText: 'write your subject here...',
-                    labelText: 'Subject',
-                    border: OutlineInputBorder(),
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: messageController,
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Texto obrigatorio';
-                    }
-                    return null;
-                  },
-                  maxLines: null,
-                  keyboardType: TextInputType.text,
-                  decoration: const InputDecoration(
-                    // isDense: true,
-                    icon: Icon(Icons.edit_note_rounded),
-                    hintText: 'write your text here...',
-                    labelText: 'Text',
-                    border: OutlineInputBorder(),
+                  const SizedBox(
+                    height: 20,
                   ),
-                )
-              ],
+                  TextFormField(
+                    controller: messageController,
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Texto obrigatorio';
+                      }
+                      return null;
+                    },
+                    maxLines: null,
+                    keyboardType: TextInputType.text,
+                    decoration: const InputDecoration(
+                      // isDense: true,
+                      icon: Icon(Icons.edit_note_rounded),
+                      hintText: 'write your text here...',
+                      labelText: 'Text',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 100,
+                  )
+                ],
+              ),
             ),
           ),
         ),

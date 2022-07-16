@@ -266,6 +266,9 @@ class SettingsPage extends StatelessWidget {
                       }),
                   onPressed: () => selectSongsBottomSheet(context),
                 ),
+                const SizedBox(
+                  height: 100,
+                )
               ],
             ),
           ),

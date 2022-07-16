@@ -13,26 +13,15 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../controllers/ux_controller.dart';
 import '../model/settings_slide.dart';
+import '../widgets/drawer/willpop_callback.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
-  Future<bool> _willPopCallback(context) async {
-    if (indexPage.value == 1) {
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const Home()),
-          (route) => false);
-      setIndexPage(0);
-    }
-
-    return true;
-  }
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () => _willPopCallback(context),
+      onWillPop: () => willPopCallback(context, 1),
       child: Scaffold(
         drawer: const CustomDrawer(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

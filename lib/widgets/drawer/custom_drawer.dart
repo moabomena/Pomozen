@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/contact_screen.dart';
+import 'package:pomodoro_app/screens/help_support_screen.dart';
 import 'package:pomodoro_app/widgets/drawer/custom_listile.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -94,7 +95,12 @@ class CustomDrawer extends StatelessWidget {
               title: AppLocalizations.of(context)!.helpsuport,
               ontap: () {
                 setIndexPage(4);
-                Navigator.of(context).pop();
+                setHasDrawer(true);
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HelpSupportScreen()),
+                    (route) => false);
               },
             ),
             const Divider(

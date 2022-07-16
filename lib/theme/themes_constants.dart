@@ -51,6 +51,18 @@ ThemeData lightTheme = ThemeData(
       foregroundColor: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      floatingLabelStyle: const TextStyle(color: Colors.orange),
+      focusColor: Colors.orange,
+      iconColor: MaterialStateColor.resolveWith((states) {
+        if (states.contains(MaterialState.focused)) {
+          return Colors.orange;
+        }
+        return Colors.grey;
+      }),
+      focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.orange)),
+    ),
     listTileTheme: ListTileThemeData(tileColor: Colors.orange[50]));
 
 ThemeData darkTheme = ThemeData(
@@ -99,6 +111,18 @@ ThemeData darkTheme = ThemeData(
       backgroundColor: Colors.deepOrange[700],
       foregroundColor: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      floatingLabelStyle: const TextStyle(color: Colors.orange),
+      focusColor: Colors.orange,
+      iconColor: MaterialStateColor.resolveWith((states) {
+        if (states.contains(MaterialState.focused)) {
+          return Colors.orange;
+        }
+        return Colors.grey;
+      }),
+      focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.orange)),
     ),
     listTileTheme:
         const ListTileThemeData(tileColor: Color.fromARGB(255, 100, 35, 15)));

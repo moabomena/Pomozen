@@ -5,7 +5,7 @@ import 'package:pomodoro_app/controllers/theme_controller.dart';
 ThemeData lightTheme = ThemeData(
     colorScheme: const ColorScheme.light(primary: Color(0xfff0f0f0)),
     brightness: Brightness.light,
-    drawerTheme: const DrawerThemeData(backgroundColor: Colors.white),
+    drawerTheme: const DrawerThemeData(backgroundColor: Colors.deepOrange),
     scaffoldBackgroundColor: Colors.white,
     indicatorColor: Colors.grey[300],
     primaryColor: Colors.grey[200],
@@ -20,7 +20,7 @@ ThemeData lightTheme = ThemeData(
       headline6: TextStyle(
           fontSize: 30.0, fontStyle: FontStyle.italic, fontFamily: 'OpenSans'),
       bodyText1: TextStyle(
-        color: Colors.black,
+        color: Colors.white60,
         fontSize: 14.0,
         fontFamily: 'OpenSans',
       ),
@@ -64,13 +64,12 @@ ThemeData lightTheme = ThemeData(
       focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.orange)),
     ),
-    listTileTheme: ListTileThemeData(tileColor: Colors.orange[50]));
+    listTileTheme: ListTileThemeData(tileColor: Colors.deepOrange[400]));
 
 ThemeData darkTheme = ThemeData(
     colorScheme: const ColorScheme.dark(primary: Color(0xff444444)),
     brightness: Brightness.dark,
-    drawerTheme:
-        const DrawerThemeData(backgroundColor: Color.fromARGB(255, 19, 18, 18)),
+    drawerTheme: const DrawerThemeData(backgroundColor: Color(0xff9E2500)),
     scaffoldBackgroundColor: Colors.black,
     primaryColor: Colors.grey[800],
     backgroundColor: Colors.black,
@@ -85,7 +84,7 @@ ThemeData darkTheme = ThemeData(
       headline6: TextStyle(
           fontSize: 30.0, fontStyle: FontStyle.italic, fontFamily: 'OpenSans'),
       bodyText1: TextStyle(
-        color: Colors.white,
+        color: Colors.white60,
         // fontSize: 14,
         fontFamily: 'OpenSans',
       ),
@@ -126,8 +125,7 @@ ThemeData darkTheme = ThemeData(
       focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.orange)),
     ),
-    listTileTheme:
-        const ListTileThemeData(tileColor: Color.fromARGB(255, 100, 35, 15)));
+    listTileTheme: const ListTileThemeData(tileColor: Color(0xff891A01)));
 
 navigationBarColor() {
   if (modeDark.value == true) {

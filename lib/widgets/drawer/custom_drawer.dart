@@ -18,13 +18,13 @@ class CustomDrawer extends StatelessWidget {
     return ClipRRect(
       clipBehavior: Clip.antiAlias,
       borderRadius: const BorderRadius.only(
-          topRight: Radius.circular(50), bottomRight: Radius.circular(50)),
+          topRight: Radius.circular(32), bottomRight: Radius.circular(32)),
       child: Drawer(
         elevation: 2,
         width: MediaQuery.of(context).size.width * 0.7,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-              topRight: Radius.circular(50), bottomRight: Radius.circular(50)),
+              topRight: Radius.circular(12), bottomRight: Radius.circular(12)),
         ),
         child: ListView(
           padding: EdgeInsets.zero,

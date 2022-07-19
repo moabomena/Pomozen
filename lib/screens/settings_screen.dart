@@ -29,6 +29,7 @@ class SettingsPage extends StatelessWidget {
             height: 60,
             width: 120,
             child: FloatingActionButton.extended(
+              backgroundColor: Colors.deepOrange,
               label: const Text(
                 'Salvar',
                 style: TextStyle(fontSize: 18),

@@ -84,9 +84,6 @@ class Home extends StatelessWidget {
                               },
                             ),
                           ),
-                          // const SizedBox(
-                          //   height: 5.0,
-                          // ),
                           Text(
                             AppLocalizations.of(context)!.pomodoroNumber,
                             textAlign: TextAlign.center,
@@ -128,13 +125,9 @@ class Home extends StatelessWidget {
                                       ),
                                     );
                                   })),
-                          // const SizedBox(
-                          //   height: 5.0,
-                          // ),
                           Text(
                             AppLocalizations.of(context)!.set,
                             textAlign: TextAlign.center,
-                            // style: Theme.of(context).textTheme.bodyText1,
                             style: TextStyle(
                               fontSize: MediaQuery.of(context).size.width *
                                   fontSizeTextIndicator,
@@ -145,12 +138,6 @@ class Home extends StatelessWidget {
                       )
                     ],
                   ),
-                  // Flexible(
-                  //   fit: FlexFit.loose,
-                  //   child: SizedBox(
-                  //     height: MediaQuery.of(context).size.height * 0.03,
-                  //   ),
-                  // ),
                   ValueListenableBuilder(
                       valueListenable: remainingTimer,
                       builder: (BuildContext context, value, __) {
@@ -164,11 +151,13 @@ class Home extends StatelessWidget {
                                     builder: (BuildContext context, value,
                                         Widget? child) {
                                       return CircularPercentIndicator(
-                                        radius: 125.0,
-                                        // radius:
-                                        //     MediaQuery.of(context).size.width *
-                                        //         0.3,
-                                        lineWidth: 8.0,
+                                        // radius: 125.0,
+                                        radius:
+                                            MediaQuery.of(context).size.width *
+                                                0.3,
+                                        lineWidth:
+                                            MediaQuery.of(context).size.width *
+                                                0.02,
                                         maskFilter: const MaskFilter.blur(
                                             BlurStyle.solid, 8.0),
                                         animation: true,
@@ -182,7 +171,10 @@ class Home extends StatelessWidget {
                                             _secondsToFormatedString(
                                                 remainingTimer.value),
                                             style: TextStyle(
-                                              fontSize: 50,
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.06,
                                               fontFamily: 'OpenSans',
                                               fontWeight: FontWeight.w400,
                                               color: statusColor[
@@ -195,8 +187,9 @@ class Home extends StatelessWidget {
                                       );
                                     }),
                               ),
-                              const SizedBox(
-                                height: 20,
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.02,
                               ),
                               ProgressIcons(
                                   total: pomodoriPerset,

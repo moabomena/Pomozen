@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/responsive/dimensions.dart';
 import 'package:pomodoro_app/screens/about_screen.dart';
 import 'package:pomodoro_app/screens/contact_screen.dart';
 import 'package:pomodoro_app/screens/help_support_screen.dart';
@@ -21,7 +22,7 @@ class CustomDrawer extends StatelessWidget {
           topRight: Radius.circular(32), bottomRight: Radius.circular(32)),
       child: Drawer(
         elevation: 2,
-        width: MediaQuery.of(context).size.width * 0.7,
+        width: MediaQuery.of(context).size.width * customDrawerWidth,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(12), bottomRight: Radius.circular(12)),
@@ -32,8 +33,9 @@ class CustomDrawer extends StatelessWidget {
             const DrawerHeader(
                 // decoration: BoxDecoration(color: Colors.blue),
                 child: Text('')),
-            const SizedBox(
-              height: 40,
+            SizedBox(
+              height: MediaQuery.of(context).size.height *
+                  customDrawerSizedBoxHeight,
             ),
             CustomListTile(
                 icon: indexPage.value == 0 ? Icons.home : Icons.home_outlined,
@@ -61,8 +63,9 @@ class CustomDrawer extends StatelessWidget {
                           builder: (context) => const SettingsPage()),
                       (route) => false);
                 }),
-            const Divider(
-              height: 20,
+            Divider(
+              height: MediaQuery.of(context).size.height *
+                  customDrawerDividerHeight,
             ),
             CustomListTile(
                 indexSelect: 2,
@@ -110,8 +113,9 @@ class CustomDrawer extends StatelessWidget {
                     (route) => false);
               },
             ),
-            const Divider(
-              height: 20,
+            Divider(
+              height: MediaQuery.of(context).size.height *
+                  customDrawerDividerHeight,
             ),
             CustomListTile(
               indexSelect: 5,

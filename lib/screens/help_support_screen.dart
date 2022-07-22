@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/controllers/ux_controller.dart';
+import 'package:pomodoro_app/responsive/dimensions.dart';
 import 'package:pomodoro_app/widgets/drawer/custom_drawer.dart';
 import 'package:pomodoro_app/widgets/drawer/willpop_callback.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -20,9 +21,14 @@ class HelpSupportScreen extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: SizedBox(
-            height: 60,
-            width: 120,
+            height: MediaQuery.of(context).size.height * floatingButtonHeight,
+            width: MediaQuery.of(context).size.width * floatingButtonWidth,
             child: FloatingActionButton.extended(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                        MediaQuery.of(context).size.height *
+                            borderFloatingButton)),
+                backgroundColor: Colors.deepOrange,
                 onPressed: () {
                   formKey.currentState?.validate() == true
                       ? launchEmail(
@@ -37,9 +43,11 @@ class HelpSupportScreen extends StatelessWidget {
                             ])
                       : null;
                 },
-                label: const Text(
+                label: Text(
                   'Enviar',
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.height *
+                          textSizeFloatingButton),
                 ))),
         drawer: const CustomDrawer(),
         appBar: AppBar(

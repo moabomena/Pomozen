@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/responsive/dimensions.dart';
 
 class ProgressIcons extends StatelessWidget {
   final int? total;
@@ -10,8 +11,8 @@ class ProgressIcons extends StatelessWidget {
   Widget build(BuildContext context) {
     final doneIcon = Container(
       margin: const EdgeInsets.only(right: 10.0),
-      width: MediaQuery.of(context).size.width * 0.03,
-      height: MediaQuery.of(context).size.height * 0.03,
+      width: MediaQuery.of(context).size.width * progressIconsSize,
+      height: MediaQuery.of(context).size.height * progressIconsSize,
       decoration: BoxDecoration(
         color: Colors.greenAccent[400],
         shape: BoxShape.circle,
@@ -28,8 +29,8 @@ class ProgressIcons extends StatelessWidget {
 
     final notDoneIcon = Container(
       margin: const EdgeInsets.only(right: 10.0),
-      width: MediaQuery.of(context).size.width * 0.03,
-      height: MediaQuery.of(context).size.height * 0.03,
+      width: MediaQuery.of(context).size.width * progressIconsSize,
+      height: MediaQuery.of(context).size.height * progressIconsSize,
       decoration: BoxDecoration(
           color: Theme.of(context).indicatorColor, shape: BoxShape.circle),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/responsive/dimensions.dart';
 
 class CustomButton extends StatelessWidget {
   final VoidCallback? onTap;
@@ -19,8 +20,8 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.35,
-      height: MediaQuery.of(context).size.height * 0.1,
+      width: MediaQuery.of(context).size.width * customButtonWidht,
+      height: MediaQuery.of(context).size.height * customButtonHeight,
       child: ElevatedButton(
         style: ButtonStyle(
             elevation: MaterialStateProperty.all(elevationButton),
@@ -30,7 +31,7 @@ class CustomButton extends StatelessWidget {
           textButton!,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: MediaQuery.of(context).size.height * 0.02,
+            fontSize: MediaQuery.of(context).size.height * customButtonTextSize,
             color: textColor,
           ),
         ),

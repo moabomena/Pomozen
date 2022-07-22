@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/controllers/ux_controller.dart';
+import 'package:pomodoro_app/responsive/dimensions.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile(
@@ -22,7 +23,7 @@ class CustomListTile extends StatelessWidget {
             ? Theme.of(context).listTileTheme.tileColor
             : Colors.transparent,
         leading: Icon(icon,
-            size: MediaQuery.of(context).size.width * 0.06,
+            size: MediaQuery.of(context).size.width * customListTileIconSize,
             color: indexPage.value == indexSelect
                 ? Colors.white
                 : Theme.of(context).textTheme.bodyText1!.color),
@@ -33,7 +34,8 @@ class CustomListTile extends StatelessWidget {
               color: indexPage.value == indexSelect
                   ? Colors.white
                   : Theme.of(context).textTheme.bodyText1!.color,
-              fontSize: MediaQuery.of(context).size.width * 0.045,
+              fontSize:
+                  MediaQuery.of(context).size.width * customListTileFontSize,
               fontWeight: indexPage.value == indexSelect
                   ? FontWeight.w700
                   : FontWeight.w500,

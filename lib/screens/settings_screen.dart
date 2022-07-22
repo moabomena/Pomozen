@@ -4,6 +4,7 @@ import 'package:pomodoro_app/controllers/song_controller.dart';
 import 'package:pomodoro_app/controllers/theme_controller.dart';
 import 'package:pomodoro_app/controllers/timer_controller.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
+import 'package:pomodoro_app/responsive/dimensions.dart';
 import 'package:pomodoro_app/screens/home_screen.dart';
 import 'package:pomodoro_app/theme/themes_constants.dart';
 import 'package:pomodoro_app/widgets/bottom_sheet_songs.dart';
@@ -26,13 +27,19 @@ class SettingsPage extends StatelessWidget {
         drawer: const CustomDrawer(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: SizedBox(
-            height: 60,
-            width: 120,
+            height: MediaQuery.of(context).size.height * floatingButtonHeight,
+            width: MediaQuery.of(context).size.width * floatingButtonWidth,
             child: FloatingActionButton.extended(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(
+                      MediaQuery.of(context).size.height *
+                          borderFloatingButton)),
               backgroundColor: Colors.deepOrange,
-              label: const Text(
+              label: Text(
                 'Salvar',
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.height *
+                        textSizeFloatingButton),
               ),
               onPressed: () {
                 Navigator.pushAndRemoveUntil(

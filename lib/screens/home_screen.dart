@@ -202,7 +202,8 @@ class Home extends StatelessWidget {
                                 valueListenable: pomodoroStatus,
                                 builder: (BuildContext context, value,
                                     Widget? child) {
-                                  return Text(statusDescription[value],
+                                  return Text(
+                                      statusDescriptionFunc(context, value),
                                       textScaleFactor:
                                           MediaQuery.of(context).size.width *
                                               textScaleFactorStatusDescription);

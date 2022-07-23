@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../model/select_songs.dart';
 
 const pomodoriPerset = 4;
 
-const Map<PomodoroStatus, dynamic> statusDescription = {
-  PomodoroStatus.runningPomodoro: 'Pomodoro is running, time to be focused',
-  PomodoroStatus.pausedPomodoro: 'Ready  for a focused pomodoro?',
-  PomodoroStatus.runningShortBreak: 'Short break running, time to relax',
-  PomodoroStatus.pausedShortBreak: 'Let\'s have  a short break?',
-  PomodoroStatus.runningLongBreak: 'Long break running, time to relax',
-  PomodoroStatus.pausedLongBreak: 'Let\'s have  a long break?',
-  PomodoroStatus.setFinished:
-      'Congrats, you deserve a long break, ready to start?',
-};
+statusDescriptionFunc(BuildContext context, PomodoroStatus value) {
+  Map<PomodoroStatus, dynamic> statusDescription = {
+    PomodoroStatus.runningPomodoro:
+        AppLocalizations.of(context)!.runningPomodoro,
+    PomodoroStatus.pausedPomodoro: AppLocalizations.of(context)!.pausedPomodoro,
+    PomodoroStatus.runningShortBreak:
+        AppLocalizations.of(context)!.runningShortBreak,
+    PomodoroStatus.pausedShortBreak:
+        AppLocalizations.of(context)!.pausedShortBreak,
+    PomodoroStatus.runningLongBreak:
+        AppLocalizations.of(context)!.runningLongBreak,
+    PomodoroStatus.pausedLongBreak:
+        AppLocalizations.of(context)!.pausedLongBreak,
+    PomodoroStatus.setFinished: AppLocalizations.of(context)!.setFinished,
+  };
+  return statusDescription[value];
+}
 
 const Map<PomodoroStatus, MaterialColor> statusColor = {
   PomodoroStatus.runningPomodoro: Colors.green,

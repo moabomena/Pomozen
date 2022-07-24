@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/controllers/ux_controller.dart';
 import 'package:pomodoro_app/responsive/dimensions.dart';
-import 'package:pomodoro_app/widgets/drawer/custom_drawer.dart';
-import 'package:pomodoro_app/widgets/drawer/willpop_callback.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HelpSupportScreen extends StatelessWidget {
@@ -15,115 +12,106 @@ class HelpSupportScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () => willPopCallback(context, 4),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: SizedBox(
-            height: MediaQuery.of(context).size.height * floatingButtonHeight,
-            width: MediaQuery.of(context).size.width * floatingButtonWidth,
-            child: FloatingActionButton.extended(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                        MediaQuery.of(context).size.height *
-                            borderFloatingButton)),
-                backgroundColor: Colors.deepOrange,
-                onPressed: () {
-                  formKey.currentState?.validate() == true
-                      ? launchEmail(
-                          toEmail: '1moabomena@gmail.com',
-                          subject: subjectController.text,
-                          message: messageController.text,
-                          cleanTextFields: [
-                              Future.delayed(const Duration(seconds: 2), () {
-                                subjectController.clear();
-                                messageController.clear();
-                              })
-                            ])
-                      : null;
-                },
-                label: Text(
-                  'Enviar',
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: SizedBox(
+          height: MediaQuery.of(context).size.height * floatingButtonHeight,
+          width: MediaQuery.of(context).size.width * floatingButtonWidth,
+          child: FloatingActionButton.extended(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(
+                      MediaQuery.of(context).size.height *
+                          borderFloatingButton)),
+              backgroundColor: Colors.deepOrange,
+              onPressed: () {
+                formKey.currentState?.validate() == true
+                    ? launchEmail(
+                        toEmail: '1moabomena@gmail.com',
+                        subject: subjectController.text,
+                        message: messageController.text,
+                        cleanTextFields: [
+                            Future.delayed(const Duration(seconds: 2), () {
+                              subjectController.clear();
+                              messageController.clear();
+                            })
+                          ])
+                    : null;
+              },
+              label: Text(
+                'Enviar',
+                style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.height *
+                        textSizeFloatingButton),
+              ))),
+      appBar: AppBar(
+        title: const Text('Help and support'),
+        centerTitle: true,
+        elevation: 0,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+        child: Form(
+          key: formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const Text(
+                  'send your feedback to me and i will answer you shortly',
                   style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.height *
-                          textSizeFloatingButton),
-                ))),
-        drawer: const CustomDrawer(),
-        appBar: AppBar(
-          leading: !hasDrawer.value
-              ? IconButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  icon: const Icon(Icons.arrow_back))
-              : null,
-          title: const Text('Help and support'),
-          centerTitle: true,
-          elevation: 0,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
-          child: Form(
-            key: formKey,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const Text(
-                    'send your feedback to me and i will answer you shortly',
-                    style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                        fontWeight: FontWeight.w300,
-                        fontSize: 18),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: subjectController,
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Titulo obrigatorio';
-                      }
-                      return null;
-                    },
-                    maxLines: null,
-                    keyboardType: TextInputType.text,
-                    decoration: const InputDecoration(
-                      // isDense: true,
-                      icon: Icon(
-                        Icons.edit_note_rounded,
-                      ),
-                      hintText: 'write your subject here...',
-                      labelText: 'Subject',
-                      border: OutlineInputBorder(),
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 18),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  controller: subjectController,
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Titulo obrigatorio';
+                    }
+                    return null;
+                  },
+                  maxLines: null,
+                  keyboardType: TextInputType.text,
+                  decoration: const InputDecoration(
+                    // isDense: true,
+                    icon: Icon(
+                      Icons.edit_note_rounded,
                     ),
+                    hintText: 'write your subject here...',
+                    labelText: 'Subject',
+                    border: OutlineInputBorder(),
                   ),
-                  const SizedBox(
-                    height: 20,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  controller: messageController,
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Texto obrigatorio';
+                    }
+                    return null;
+                  },
+                  maxLines: null,
+                  keyboardType: TextInputType.text,
+                  decoration: const InputDecoration(
+                    // isDense: true,
+                    icon: Icon(Icons.edit_note_rounded),
+                    hintText: 'write your text here...',
+                    labelText: 'Text',
+                    border: OutlineInputBorder(),
                   ),
-                  TextFormField(
-                    controller: messageController,
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Texto obrigatorio';
-                      }
-                      return null;
-                    },
-                    maxLines: null,
-                    keyboardType: TextInputType.text,
-                    decoration: const InputDecoration(
-                      // isDense: true,
-                      icon: Icon(Icons.edit_note_rounded),
-                      hintText: 'write your text here...',
-                      labelText: 'Text',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 100,
-                  )
-                ],
-              ),
+                ),
+                const SizedBox(
+                  height: 100,
+                )
+              ],
             ),
           ),
         ),

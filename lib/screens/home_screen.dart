@@ -13,7 +13,6 @@ import 'package:pomodoro_app/screens/settings_screen.dart';
 import 'package:pomodoro_app/widgets/drawer/custom_drawer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../controllers/theme_controller.dart';
-import '../controllers/ux_controller.dart';
 import '../widgets/progress_icons.dart';
 
 class Home extends StatelessWidget {
@@ -33,7 +32,6 @@ class Home extends StatelessWidget {
                   Icons.settings_outlined,
                 ),
                 onPressed: () {
-                  setHasDrawer(false);
                   Navigator.push(
                       context,
                       MaterialPageRoute(

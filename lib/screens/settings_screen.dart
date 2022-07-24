@@ -9,276 +9,262 @@ import 'package:pomodoro_app/screens/home_screen.dart';
 import 'package:pomodoro_app/theme/themes_constants.dart';
 import 'package:pomodoro_app/widgets/bottom_sheet_songs.dart';
 import 'package:pomodoro_app/widgets/custom_slider.dart';
-import 'package:pomodoro_app/widgets/drawer/custom_drawer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../controllers/ux_controller.dart';
 import '../model/settings_slide.dart';
-import '../widgets/drawer/willpop_callback.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () => willPopCallback(context, 1),
-      child: Scaffold(
-        drawer: const CustomDrawer(),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: SizedBox(
-            height: MediaQuery.of(context).size.height * floatingButtonHeight,
-            width: MediaQuery.of(context).size.width * floatingButtonWidth,
-            child: FloatingActionButton.extended(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                      MediaQuery.of(context).size.height *
-                          borderFloatingButton)),
-              backgroundColor: Colors.deepOrange,
-              label: Text(
-                'Salvar',
-                style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.height *
-                        textSizeFloatingButton),
-              ),
+    return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: SizedBox(
+          height: MediaQuery.of(context).size.height * floatingButtonHeight,
+          width: MediaQuery.of(context).size.width * floatingButtonWidth,
+          child: FloatingActionButton.extended(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                    MediaQuery.of(context).size.height * borderFloatingButton)),
+            backgroundColor: Colors.deepOrange,
+            label: Text(
+              'Salvar',
+              style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.height *
+                      textSizeFloatingButton),
+            ),
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Home()),
+                  (route) => false);
+              setIndexPage(0);
+
+              resetPomodoroNum();
+              resetSetNum();
+              setPomodoroStatus(PomodoroStatus.pausedPomodoro);
+              setValueTimerNotification(currentSliderValueWork.value);
+              timer.value.cancel();
+
+              setRemainingTime(totalTimer.value = currentSliderValueWork.value);
+
+              setTotalTimer(currentSliderValueWork.value);
+
+              setShortBreak(currentSliderValueShortBreak.value);
+              setLongBreak(currentSliderValueLongBreak.value);
+
+              setMainBtnText(AppLocalizations.of(context)!.startPomodoro);
+              setShowButtonReset(false);
+              switchSelectItemSong();
+              choseIntl();
+            },
+          )),
+      appBar: AppBar(
+        actions: [
+          IconButton(
               onPressed: () {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Home()),
-                    (route) => false);
-                setIndexPage(0);
-
-                resetPomodoroNum();
-                resetSetNum();
-                setPomodoroStatus(PomodoroStatus.pausedPomodoro);
-                setValueTimerNotification(currentSliderValueWork.value);
-                timer.value.cancel();
-
-                setRemainingTime(
-                    totalTimer.value = currentSliderValueWork.value);
-
-                setTotalTimer(currentSliderValueWork.value);
-
-                setShortBreak(currentSliderValueShortBreak.value);
-                setLongBreak(currentSliderValueLongBreak.value);
-
-                setMainBtnText(AppLocalizations.of(context)!.startPomodoro);
-                setShowButtonReset(false);
-                switchSelectItemSong();
-                choseIntl();
+                _resetSlider(ResetSlider.resetWork);
+                _resetSlider(ResetSlider.resetShortBreak);
+                _resetSlider(ResetSlider.resetLongBreak);
+                _resetTextButtonSong();
               },
-            )),
-        appBar: AppBar(
-          leading: !hasDrawer.value
-              ? IconButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  icon: const Icon(Icons.arrow_back))
-              : null,
-          actions: [
-            IconButton(
-                onPressed: () {
-                  _resetSlider(ResetSlider.resetWork);
-                  _resetSlider(ResetSlider.resetShortBreak);
-                  _resetSlider(ResetSlider.resetLongBreak);
-                  _resetTextButtonSong();
-                },
-                icon: const Icon(Icons.refresh_rounded))
-          ],
-          title: Text(AppLocalizations.of(context)!.settings),
-          elevation: 0,
-          centerTitle: true,
-        ),
-        body: Container(
-          padding: const EdgeInsets.all(12),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.modedark,
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),
+              icon: const Icon(Icons.refresh_rounded))
+        ],
+        title: Text(AppLocalizations.of(context)!.settings),
+        elevation: 0,
+        centerTitle: true,
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(12),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.modedark,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
                     ),
-                    ValueListenableBuilder(
-                      valueListenable: modeDark,
-                      builder: (BuildContext context, value, Widget? child) {
-                        return Switch(
-                          value: modeDark.value,
-                          splashRadius: 15,
-                          activeTrackColor: Colors.deepOrange[200],
-                          activeColor: Colors.deepOrange,
-                          onChanged: (value) {
-                            modeDark.value = value;
-                            navigationBarColor();
-                          },
-                        );
-                      },
-                    )
-                  ],
-                ),
-                const Divider(
-                  height: 30,
-                ),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: ValueListenableBuilder(
-                    valueListenable: chosenValueLanguage,
+                  ),
+                  ValueListenableBuilder(
+                    valueListenable: modeDark,
                     builder: (BuildContext context, value, Widget? child) {
-                      return DropdownButton<String>(
-                        underline: const SizedBox(),
-                        dropdownColor: Theme.of(context).primaryColor,
-                        alignment: AlignmentDirectional.center,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(8)),
-                        value: chosenValueLanguage.value,
-                        elevation: 0,
-                        items: <String>[
-                          'English',
-                          'Spanish',
-                          'Portuguese',
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            alignment: AlignmentDirectional.center,
-                            value: value,
-                            child: Text(
-                              value,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'OpenSans'),
-                            ),
-                          );
-                        }).toList(),
-                        hint: Text(
-                          AppLocalizations.of(context)!.pleaseChooseASong,
-                          style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'OpenSans'),
-                        ),
-                        onChanged: (String? value) {
-                          setChosenValueLanguage(value);
+                      return Switch(
+                        value: modeDark.value,
+                        splashRadius: 15,
+                        activeTrackColor: Colors.deepOrange[200],
+                        activeColor: Colors.deepOrange,
+                        onChanged: (value) {
+                          modeDark.value = value;
+                          navigationBarColor();
                         },
                       );
                     },
-                  ),
-                ),
-                const Divider(
-                  height: 30,
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-                Text(
-                  AppLocalizations.of(context)!.work,
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                ValueListenableBuilder(
-                  valueListenable: currentSliderValueWork,
+                  )
+                ],
+              ),
+              const Divider(
+                height: 30,
+              ),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(8)),
+                child: ValueListenableBuilder(
+                  valueListenable: chosenValueLanguage,
                   builder: (BuildContext context, value, Widget? child) {
-                    return SliderSettingsTimers(
-                        activeTrackColor: Colors.red[700]!,
-                        inactiveTrackColor: Colors.red[100]!,
-                        thumbColor: Colors.redAccent,
-                        overlayColor: Colors.red.withAlpha(32),
-                        thumbRadius: 20,
-                        slider: Slider(
-                            value: currentSliderValueWork.value.toDouble(),
-                            min: 1.0,
-                            max: 60.0,
-                            onChanged: (double value) {
-                              setTimerWorkSlider(value.round());
-                            }));
-                  },
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-                Text(
-                  AppLocalizations.of(context)!.shortBreak,
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                ValueListenableBuilder(
-                  valueListenable: currentSliderValueShortBreak,
-                  builder: (BuildContext context, value, Widget? child) {
-                    return SliderSettingsTimers(
-                      activeTrackColor: Colors.green[700]!,
-                      inactiveTrackColor: Colors.green[100]!,
-                      thumbColor: Colors.greenAccent,
-                      overlayColor: Colors.green.withAlpha(32),
-                      thumbRadius: 20,
-                      slider: Slider(
-                        value: currentSliderValueShortBreak.value.toDouble(),
-                        min: 1.0,
-                        max: 60.0,
-                        onChanged: (double value) {
-                          setTimerShortBreakSlider(value.round());
-                        },
+                    return DropdownButton<String>(
+                      underline: const SizedBox(),
+                      dropdownColor: Theme.of(context).primaryColor,
+                      alignment: AlignmentDirectional.center,
+                      borderRadius: const BorderRadius.all(Radius.circular(8)),
+                      value: chosenValueLanguage.value,
+                      elevation: 0,
+                      items: <String>[
+                        'English',
+                        'Spanish',
+                        'Portuguese',
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          alignment: AlignmentDirectional.center,
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'OpenSans'),
+                          ),
+                        );
+                      }).toList(),
+                      hint: Text(
+                        AppLocalizations.of(context)!.pleaseChooseASong,
+                        style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'OpenSans'),
                       ),
+                      onChanged: (String? value) {
+                        setChosenValueLanguage(value);
+                      },
                     );
                   },
                 ),
-                const SizedBox(
-                  height: 40,
+              ),
+              const Divider(
+                height: 30,
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              Text(
+                AppLocalizations.of(context)!.work,
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
                 ),
-                Text(
-                  AppLocalizations.of(context)!.longBreak,
-                  style: const TextStyle(
-                      fontSize: 15, fontWeight: FontWeight.bold),
-                ),
-                ValueListenableBuilder(
-                  valueListenable: currentSliderValueLongBreak,
-                  builder: (BuildContext context, value, Widget? child) {
-                    return SliderSettingsTimers(
-                        activeTrackColor: Colors.orange[700]!,
-                        inactiveTrackColor: Colors.orange[100]!,
-                        thumbColor: Colors.orangeAccent,
-                        overlayColor: Colors.orange.withAlpha(32),
-                        thumbRadius: 20,
-                        slider: Slider(
-                          value: currentSliderValueLongBreak.value.toDouble(),
+              ),
+              ValueListenableBuilder(
+                valueListenable: currentSliderValueWork,
+                builder: (BuildContext context, value, Widget? child) {
+                  return SliderSettingsTimers(
+                      activeTrackColor: Colors.red[700]!,
+                      inactiveTrackColor: Colors.red[100]!,
+                      thumbColor: Colors.redAccent,
+                      overlayColor: Colors.red.withAlpha(32),
+                      thumbRadius: 20,
+                      slider: Slider(
+                          value: currentSliderValueWork.value.toDouble(),
                           min: 1.0,
                           max: 60.0,
                           onChanged: (double value) {
-                            setTimerLongBreakSlider(value.round());
-                          },
-                        ));
-                  },
+                            setTimerWorkSlider(value.round());
+                          }));
+                },
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              Text(
+                AppLocalizations.of(context)!.shortBreak,
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(
-                  height: 40,
-                ),
-                const Divider(
-                  height: 30,
-                ),
-                TextButton(
-                  child: ValueListenableBuilder(
-                      valueListenable: textButtonSong,
-                      builder:
-                          (BuildContext context, String value, Widget? child) {
-                        return Text(textButtonSong.value,
-                            style: const TextStyle(fontFamily: 'OpenSans'));
-                      }),
-                  onPressed: () => selectSongsBottomSheet(context),
-                ),
-                const SizedBox(
-                  height: 100,
-                )
-              ],
-            ),
+              ),
+              ValueListenableBuilder(
+                valueListenable: currentSliderValueShortBreak,
+                builder: (BuildContext context, value, Widget? child) {
+                  return SliderSettingsTimers(
+                    activeTrackColor: Colors.green[700]!,
+                    inactiveTrackColor: Colors.green[100]!,
+                    thumbColor: Colors.greenAccent,
+                    overlayColor: Colors.green.withAlpha(32),
+                    thumbRadius: 20,
+                    slider: Slider(
+                      value: currentSliderValueShortBreak.value.toDouble(),
+                      min: 1.0,
+                      max: 60.0,
+                      onChanged: (double value) {
+                        setTimerShortBreakSlider(value.round());
+                      },
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              Text(
+                AppLocalizations.of(context)!.longBreak,
+                style:
+                    const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              ),
+              ValueListenableBuilder(
+                valueListenable: currentSliderValueLongBreak,
+                builder: (BuildContext context, value, Widget? child) {
+                  return SliderSettingsTimers(
+                      activeTrackColor: Colors.orange[700]!,
+                      inactiveTrackColor: Colors.orange[100]!,
+                      thumbColor: Colors.orangeAccent,
+                      overlayColor: Colors.orange.withAlpha(32),
+                      thumbRadius: 20,
+                      slider: Slider(
+                        value: currentSliderValueLongBreak.value.toDouble(),
+                        min: 1.0,
+                        max: 60.0,
+                        onChanged: (double value) {
+                          setTimerLongBreakSlider(value.round());
+                        },
+                      ));
+                },
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              const Divider(
+                height: 30,
+              ),
+              TextButton(
+                child: ValueListenableBuilder(
+                    valueListenable: textButtonSong,
+                    builder:
+                        (BuildContext context, String value, Widget? child) {
+                      return Text(textButtonSong.value,
+                          style: const TextStyle(fontFamily: 'OpenSans'));
+                    }),
+                onPressed: () => selectSongsBottomSheet(context),
+              ),
+              const SizedBox(
+                height: 100,
+              )
+            ],
           ),
         ),
       ),

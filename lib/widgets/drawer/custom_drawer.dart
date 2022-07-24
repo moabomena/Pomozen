@@ -8,7 +8,6 @@ import 'package:pomodoro_app/widgets/drawer/custom_listile.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../controllers/ux_controller.dart';
-import '../../screens/home_screen.dart';
 import '../../screens/settings_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -30,9 +29,7 @@ class CustomDrawer extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-                // decoration: BoxDecoration(color: Colors.blue),
-                child: Text('')),
+            const DrawerHeader(child: Text('')),
             SizedBox(
               height: MediaQuery.of(context).size.height *
                   customDrawerSizedBoxHeight,
@@ -42,11 +39,10 @@ class CustomDrawer extends StatelessWidget {
                 title: AppLocalizations.of(context)!.home,
                 indexSelect: 0,
                 ontap: () {
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Home()),
-                      (route) => false);
-                  setIndexPage(0);
+                  Future.delayed(const Duration(milliseconds: 500), () {
+                    setIndexPage(0);
+                  });
+                  Navigator.of(context).pop();
                 }),
             CustomListTile(
                 icon: indexPage.value == 1
@@ -55,13 +51,11 @@ class CustomDrawer extends StatelessWidget {
                 title: AppLocalizations.of(context)!.settings,
                 indexSelect: 1,
                 ontap: () {
-                  setHasDrawer(true);
-                  setIndexPage(1);
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SettingsPage()),
-                      (route) => false);
+                  Future.delayed(const Duration(milliseconds: 500), () {
+                    setIndexPage(1);
+                  });
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const SettingsPage()));
                 }),
             Divider(
               height: MediaQuery.of(context).size.height *
@@ -74,13 +68,11 @@ class CustomDrawer extends StatelessWidget {
                     : Icons.mail_outline_rounded,
                 title: AppLocalizations.of(context)!.contactUs,
                 ontap: () {
-                  setIndexPage(2);
-                  setHasDrawer(true);
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ContactScreen()),
-                      (route) => false);
+                  Future.delayed(const Duration(milliseconds: 500), () {
+                    setIndexPage(2);
+                  });
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const ContactScreen()));
                 }),
             CustomListTile(
                 indexSelect: 3,
@@ -89,13 +81,11 @@ class CustomDrawer extends StatelessWidget {
                     : Icons.info_outline_rounded,
                 title: AppLocalizations.of(context)!.about,
                 ontap: () {
-                  setIndexPage(3);
-                  setHasDrawer(true);
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const AboutScreen()),
-                      (route) => false);
+                  Future.delayed(const Duration(milliseconds: 500), () {
+                    setIndexPage(3);
+                  });
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const AboutScreen()));
                 }),
             CustomListTile(
               indexSelect: 4,
@@ -104,13 +94,11 @@ class CustomDrawer extends StatelessWidget {
                   : Icons.help_outline_sharp,
               title: AppLocalizations.of(context)!.helpsuport,
               ontap: () {
-                setIndexPage(4);
-                setHasDrawer(true);
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => HelpSupportScreen()),
-                    (route) => false);
+                Future.delayed(const Duration(milliseconds: 500), () {
+                  setIndexPage(4);
+                });
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => HelpSupportScreen()));
               },
             ),
             Divider(
@@ -124,13 +112,11 @@ class CustomDrawer extends StatelessWidget {
                   : Icons.receipt_long_outlined,
               title: AppLocalizations.of(context)!.useLicense,
               ontap: () {
-                setIndexPage(5);
-                setHasDrawer(true);
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const UseLicenseScreen()),
-                    (route) => false);
+                Future.delayed(const Duration(milliseconds: 500), () {
+                  setIndexPage(5);
+                });
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => const UseLicenseScreen()));
               },
             ),
           ],

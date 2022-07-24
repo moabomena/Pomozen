@@ -37,7 +37,7 @@ ThemeData lightTheme = ThemeData(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
             ),
             backgroundColor:
-                MaterialStateProperty.all<Color>(Colors.deepOrange))),
+                MaterialStateProperty.all<Color>(Colors.deepOrange[400]!))),
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(Colors.grey[200]),
@@ -53,16 +53,16 @@ ThemeData lightTheme = ThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
     ),
     inputDecorationTheme: InputDecorationTheme(
-      floatingLabelStyle: const TextStyle(color: Colors.orange),
-      focusColor: Colors.orange,
+      floatingLabelStyle: TextStyle(color: Colors.deepOrange[400]!),
+      focusColor: Colors.deepOrange[400],
       iconColor: MaterialStateColor.resolveWith((states) {
         if (states.contains(MaterialState.focused)) {
-          return Colors.orange;
+          return Colors.deepOrange[400]!;
         }
         return Colors.grey;
       }),
-      focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.orange)),
+      focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.deepOrange[400]!)),
     ),
     listTileTheme: ListTileThemeData(tileColor: Colors.deepOrange[400]));
 
@@ -114,16 +114,16 @@ ThemeData darkTheme = ThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
     ),
     inputDecorationTheme: InputDecorationTheme(
-      floatingLabelStyle: const TextStyle(color: Colors.orange),
-      focusColor: Colors.orange,
+      floatingLabelStyle: TextStyle(color: Colors.deepOrange[400]!),
+      focusColor: Colors.deepOrange[400],
       iconColor: MaterialStateColor.resolveWith((states) {
         if (states.contains(MaterialState.focused)) {
-          return Colors.orange;
+          return Colors.deepOrange[400]!;
         }
         return Colors.grey;
       }),
-      focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.orange)),
+      focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.deepOrange[400]!)),
     ),
     listTileTheme: const ListTileThemeData(tileColor: Color(0xff891A01)));
 

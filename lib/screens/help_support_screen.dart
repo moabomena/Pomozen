@@ -23,7 +23,6 @@ class HelpSupportScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(
                       MediaQuery.of(context).size.height *
                           borderFloatingButton)),
-              backgroundColor: Colors.deepOrange,
               onPressed: () {
                 formKey.currentState?.validate() == true
                     ? launchEmail(

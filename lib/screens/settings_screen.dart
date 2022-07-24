@@ -28,7 +28,6 @@ class SettingsPage extends StatelessWidget {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(
                     MediaQuery.of(context).size.height * borderFloatingButton)),
-            backgroundColor: Colors.deepOrange,
             label: Text(
               'Salvar',
               style: TextStyle(

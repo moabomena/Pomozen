@@ -264,6 +264,7 @@ class Home extends StatelessWidget {
                                             child: CustomButton(
                                               key: const Key('start pomodoro'),
                                               textButton: mainBtnText.value,
+                                              textColor: Colors.white,
                                               onTap: () {
                                                 _mainButtonPressed(context);
                                                 setShowButtonReset(true);

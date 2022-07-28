@@ -54,6 +54,17 @@ dev_dependencies:
     sdk: flutter
   integration_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.9.3
+
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/icon.png"
+
+  # WARNING: Icons with alpha channel are not allowed in the Apple App Store.
+  # Set "remove_alpha_ios: true" to remove it.
+  # remove_alpha_ios: true 
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

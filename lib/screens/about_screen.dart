@@ -1,8 +1,35 @@
 // import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
-class AboutScreen extends StatelessWidget {
+class AboutScreen extends StatefulWidget {
   const AboutScreen({Key? key}) : super(key: key);
+
+  @override
+  State<AboutScreen> createState() => _AboutScreenState();
+}
+
+class _AboutScreenState extends State<AboutScreen> {
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+    buildSignature: 'Unknown',
+  );
+
+  @override
+  void initState() {
+    _initPackageInfo();
+    super.initState();
+  }
+
+  Future<void> _initPackageInfo() async {
+    final info = await PackageInfo.fromPlatform();
+    setState(() {
+      _packageInfo = info;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +40,7 @@ class AboutScreen extends StatelessWidget {
         padding: const EdgeInsets.only(top: 20, right: 15, left: 15),
         child: SingleChildScrollView(
           child: Column(
-            children: const [
+            children: [
               Text(
                 '    [Pomodoro]  e um gerenciador de tempo para suas tarefas.',
                 textAlign: TextAlign.justify,
@@ -34,9 +61,8 @@ class AboutScreen extends StatelessWidget {
                     fontWeight: FontWeight.w600, fontFamily: 'OpenSans'),
               ),
               Divider(),
-              //TODO: depois usar o pacote package_info_plus para retornar a versao do aplicativo que esta no pubspec.yalm toda vesz que atualizar a versao retorna na tela do client.
               Text(
-                'version : 1.0.0+1',
+                'version : ' + _packageInfo.version,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.deepOrange,

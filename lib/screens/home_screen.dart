@@ -43,11 +43,13 @@ class Home extends StatelessWidget {
           ),
         ], title: const Text('Pomodoro'), centerTitle: true, elevation: 0),
         body: SafeArea(
-          child: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Row(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.only(top: 20),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 40),
+                  child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -73,6 +75,7 @@ class Home extends StatelessWidget {
                                   child: Text(
                                     pomodoroNum.value.toString(),
                                     style: TextStyle(
+                                        fontWeight: FontWeight.w300,
                                         fontSize:
                                             MediaQuery.of(context).size.height *
                                                 fontSizeIndicator,
@@ -85,8 +88,8 @@ class Home extends StatelessWidget {
                           Text(
                             AppLocalizations.of(context)!.pomodoroNumber,
                             textAlign: TextAlign.center,
-                            // style: Theme.of(context).textTheme.bodyText1,
                             style: TextStyle(
+                                fontWeight: FontWeight.w300,
                                 fontSize: MediaQuery.of(context).size.width *
                                     fontSizeTextIndicator),
                             key: const Key('pomodoro number'),
@@ -115,6 +118,7 @@ class Home extends StatelessWidget {
                                       child: Text(
                                         setNum.value.toString(),
                                         style: TextStyle(
+                                            fontWeight: FontWeight.w300,
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .height *
@@ -127,6 +131,7 @@ class Home extends StatelessWidget {
                             AppLocalizations.of(context)!.set,
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                              fontWeight: FontWeight.w300,
                               fontSize: MediaQuery.of(context).size.width *
                                   fontSizeTextIndicator,
                             ),
@@ -136,149 +141,157 @@ class Home extends StatelessWidget {
                       )
                     ],
                   ),
-                  ValueListenableBuilder(
-                      valueListenable: remainingTimer,
-                      builder: (BuildContext context, value, __) {
-                        return Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ValueListenableBuilder(
-                                    valueListenable: pomodoroStatus,
-                                    builder: (BuildContext context, value,
-                                        Widget? child) {
-                                      return CircularPercentIndicator(
-                                        // radius: 125.0,
-                                        radius:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        lineWidth:
-                                            MediaQuery.of(context).size.width *
-                                                0.02,
-                                        maskFilter: const MaskFilter.blur(
-                                            BlurStyle.solid, 8.0),
-                                        animation: true,
-                                        animationDuration: 1000,
-                                        animateFromLastPercent: true,
-                                        curve: Curves.linear,
-                                        percent: _getPomodoroPercentage(),
-                                        circularStrokeCap:
-                                            CircularStrokeCap.round,
-                                        center: Text(
-                                            _secondsToFormatedString(
-                                                remainingTimer.value),
-                                            style: TextStyle(
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.06,
-                                              fontFamily: 'OpenSans',
-                                              fontWeight: FontWeight.w400,
-                                              color: statusColor[
-                                                  pomodoroStatus.value],
-                                            )),
-                                        progressColor:
-                                            statusColor[pomodoroStatus.value],
-                                        backgroundColor:
-                                            Theme.of(context).primaryColor,
-                                      );
-                                    }),
-                              ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.02,
-                              ),
-                              ProgressIcons(
-                                  total: pomodoriPerset,
-                                  done: pomodoroNum.value -
-                                      (setNum.value * pomodoriPerset)),
-                              const SizedBox(
-                                height: 60,
-                              ),
-                              ValueListenableBuilder<PomodoroStatus>(
-                                valueListenable: pomodoroStatus,
-                                builder: (BuildContext context, value,
-                                    Widget? child) {
-                                  return Text(
-                                      statusDescriptionFunc(context, value),
-                                      textScaleFactor:
+                ),
+                ValueListenableBuilder(
+                    valueListenable: remainingTimer,
+                    builder: (BuildContext context, value, __) {
+                      return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ValueListenableBuilder(
+                                  valueListenable: pomodoroStatus,
+                                  builder: (BuildContext context, value,
+                                      Widget? child) {
+                                    return CircularPercentIndicator(
+                                      // radius: 125.0,
+                                      radius:
                                           MediaQuery.of(context).size.width *
-                                              textScaleFactorStatusDescription);
-                                },
-                              ),
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height *
-                                    heightSizedBox1,
-                              ),
-                              SizedBox(
-                                  // width: double.infinity,
-                                  height: MediaQuery.of(context).size.height *
-                                      heightSizedBox2,
-                                  child: Stack(
-                                    children: [
-                                      AnimatedPositioned(
-                                        duration:
-                                            const Duration(milliseconds: 300),
-                                        right: showButtonReset.value
-                                            ? MediaQuery.of(context)
+                                              0.3,
+                                      lineWidth:
+                                          MediaQuery.of(context).size.width *
+                                              0.02,
+                                      maskFilter: const MaskFilter.blur(
+                                          BlurStyle.solid, 8.0),
+                                      animation: true,
+                                      animationDuration: 1000,
+                                      animateFromLastPercent: true,
+                                      curve: Curves.linear,
+                                      percent: _getPomodoroPercentage(),
+                                      circularStrokeCap:
+                                          CircularStrokeCap.round,
+                                      center: Text(
+                                          _secondsToFormatedString(
+                                              remainingTimer.value),
+                                          style: TextStyle(
+                                            fontSize: MediaQuery.of(context)
                                                     .size
-                                                    .width *
-                                                animatedPositionedTrue
-                                            : MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                animatedPositionedFalse,
-                                        child: CustomButton(
-                                          backgroundColorButton:
-                                              Theme.of(context).primaryColor,
-                                          elevationButton: 0,
-                                          textColor: modeDark.value
-                                              ? Colors.white54
-                                              : Colors.black54,
-                                          textButton:
-                                              AppLocalizations.of(context)!
-                                                  .reset,
-                                          onTap: () {
-                                            _resetButtonPressed(context);
-                                            setShowButtonReset(false);
-                                          },
+                                                    .height *
+                                                0.06,
+                                            fontFamily: 'OpenSans',
+                                            fontWeight: FontWeight.w400,
+                                            color: statusColor[
+                                                pomodoroStatus.value],
+                                          )),
+                                      progressColor:
+                                          statusColor[pomodoroStatus.value],
+                                      backgroundColor:
+                                          Theme.of(context).primaryColor,
+                                    );
+                                  }),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.02,
+                            ),
+                            ProgressIcons(
+                                total: pomodoriPerset,
+                                done: pomodoroNum.value -
+                                    (setNum.value * pomodoriPerset)),
+                            const SizedBox(
+                              height: 60,
+                            ),
+                            ValueListenableBuilder<PomodoroStatus>(
+                              valueListenable: pomodoroStatus,
+                              builder:
+                                  (BuildContext context, value, Widget? child) {
+                                return SizedBox(
+                                  height: 60,
+                                  child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20),
+                                      child: Text(
+                                        statusDescriptionFunc(context, value),
+                                        textScaleFactor: MediaQuery.of(context)
+                                                .size
+                                                .width *
+                                            textScaleFactorStatusDescription,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w300,
                                         ),
-                                      ),
-                                      ValueListenableBuilder(
-                                        valueListenable: mainBtnText,
-                                        builder: (BuildContext context, value,
-                                            Widget? child) {
-                                          return AnimatedPositioned(
-                                            duration: const Duration(
-                                                milliseconds: 300),
-                                            left: showButtonReset.value
-                                                ? MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    animatedPositionedTrue
-                                                : MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    animatedPositionedFalse,
-                                            child: CustomButton(
-                                              key: const Key('start pomodoro'),
-                                              textButton: mainBtnText.value,
-                                              textColor: Colors.white,
-                                              onTap: () {
-                                                _mainButtonPressed(context);
-                                                setShowButtonReset(true);
-                                              },
-                                            ),
-                                          );
+                                      )),
+                                );
+                              },
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height *
+                                  heightSizedBox1,
+                            ),
+                            SizedBox(
+                                // width: double.infinity,
+                                height: MediaQuery.of(context).size.height *
+                                    heightSizedBox2,
+                                child: Stack(
+                                  children: [
+                                    AnimatedPositioned(
+                                      duration:
+                                          const Duration(milliseconds: 300),
+                                      right: showButtonReset.value
+                                          ? MediaQuery.of(context).size.width *
+                                              animatedPositionedTrue
+                                          : MediaQuery.of(context).size.width *
+                                              animatedPositionedFalse,
+                                      child: CustomButton(
+                                        backgroundColorButton:
+                                            Theme.of(context).primaryColor,
+                                        elevationButton: 0,
+                                        textColor: modeDark.value
+                                            ? Colors.white54
+                                            : Colors.black54,
+                                        textButton:
+                                            AppLocalizations.of(context)!.reset,
+                                        onTap: () {
+                                          _resetButtonPressed(context);
+                                          setShowButtonReset(false);
                                         },
-                                      )
-                                    ],
-                                  ))
-                            ]);
-                      })
-                ],
-              ),
+                                      ),
+                                    ),
+                                    ValueListenableBuilder(
+                                      valueListenable: mainBtnText,
+                                      builder: (BuildContext context, value,
+                                          Widget? child) {
+                                        return AnimatedPositioned(
+                                          duration:
+                                              const Duration(milliseconds: 300),
+                                          left: showButtonReset.value
+                                              ? MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  animatedPositionedTrue
+                                              : MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  animatedPositionedFalse,
+                                          child: CustomButton(
+                                            key: const Key('start pomodoro'),
+                                            textButton: mainBtnText.value,
+                                            textColor: Colors.white,
+                                            elevationButton:
+                                                showButtonReset.value ? 6 : 0,
+                                            onTap: () {
+                                              _mainButtonPressed(context);
+                                              setShowButtonReset(true);
+                                            },
+                                          ),
+                                        );
+                                      },
+                                    )
+                                  ],
+                                ))
+                          ]);
+                    })
+              ],
             ),
           ),
         ));

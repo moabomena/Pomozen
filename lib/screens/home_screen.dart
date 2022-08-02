@@ -13,12 +13,26 @@ import 'package:pomodoro_app/screens/settings_screen.dart';
 import 'package:pomodoro_app/widgets/drawer/custom_drawer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../controllers/theme_controller.dart';
+import '../services/prefs_service.dart';
 import '../widgets/progress_icons.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   static final songController2 = SongController2();
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    PrefsService().readTheme();
+    PrefsService().readIntl();
+    PrefsService().readLang();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

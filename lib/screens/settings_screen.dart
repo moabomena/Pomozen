@@ -6,6 +6,7 @@ import 'package:pomodoro_app/controllers/timer_controller.dart';
 import 'package:pomodoro_app/model/pomodoro_status.dart';
 import 'package:pomodoro_app/responsive/dimensions.dart';
 import 'package:pomodoro_app/screens/home_screen.dart';
+import 'package:pomodoro_app/services/prefs_service.dart';
 import 'package:pomodoro_app/theme/themes_constants.dart';
 import 'package:pomodoro_app/widgets/bottom_sheet_songs.dart';
 import 'package:pomodoro_app/widgets/custom_slider.dart';
@@ -58,6 +59,8 @@ class SettingsPage extends StatelessWidget {
               setShowButtonReset(false);
               switchSelectItemSong();
               choseIntl();
+              PrefsService().setInter();
+              PrefsService().setLang();
             },
           )),
       appBar: AppBar(
@@ -98,8 +101,9 @@ class SettingsPage extends StatelessWidget {
                         splashRadius: 15,
                         activeTrackColor: Colors.deepOrange[200],
                         activeColor: Colors.deepOrange,
-                        onChanged: (value) {
+                        onChanged: (value) async {
                           modeDark.value = value;
+                          await PrefsService().setTheme();
                           navigationBarColor();
                         },
                       );

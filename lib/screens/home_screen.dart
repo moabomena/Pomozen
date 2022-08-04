@@ -5,6 +5,10 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:pomodoro_app/controllers/song_controller.dart';
 import 'package:pomodoro_app/controllers/timer_controller.dart';
 import 'package:pomodoro_app/responsive/dimensions.dart';
+import 'package:pomodoro_app/services/prefs_service_intl.dart';
+import 'package:pomodoro_app/services/prefs_service_lang.dart';
+import 'package:pomodoro_app/services/prefs_service_theme.dart';
+import 'package:pomodoro_app/services/storage_prefs.dart';
 import 'package:pomodoro_app/utils/constants.dart';
 import 'package:pomodoro_app/utils/notifications.dart';
 import 'package:pomodoro_app/widgets/custom_button.dart';
@@ -13,7 +17,6 @@ import 'package:pomodoro_app/screens/settings_screen.dart';
 import 'package:pomodoro_app/widgets/drawer/custom_drawer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../controllers/theme_controller.dart';
-import '../services/prefs_service.dart';
 import '../widgets/progress_icons.dart';
 
 class Home extends StatefulWidget {
@@ -26,11 +29,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  StoragePrefs _storagePrefsTheme = new StoragePrefs(PrefsServiceTheme());
+  StoragePrefs _storagePrefsIntl = new StoragePrefs(PrefsServiceIntl());
+  StoragePrefs _storagePrefsLang = new StoragePrefs(PrefsServiceLang());
+
   @override
   void initState() {
-    PrefsService().readTheme();
-    PrefsService().readIntl();
-    PrefsService().readLang();
+    _storagePrefsTheme.prefsServiceInterface!.read();
+    _storagePrefsIntl.prefsServiceInterface!.read();
+    _storagePrefsLang.prefsServiceInterface!.read();
     super.initState();
   }
 

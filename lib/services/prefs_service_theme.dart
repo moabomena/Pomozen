@@ -6,7 +6,7 @@ class PrefsServiceTheme implements PrefsServiceInterface {
   static final String _keyTheme = 'theme';
 
   @override
-  Future<void> read() async {
+  Future<void> get() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     modeDark.value = prefs.getBool(_keyTheme) ?? false;
   }

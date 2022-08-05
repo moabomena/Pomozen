@@ -6,7 +6,7 @@ class PrefsServiceIntl implements PrefsServiceInterface {
   static final String _keyIntl = 'intl';
 
   @override
-  Future<void> read() async {
+  Future<void> get() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     intl.value = prefs.getString(_keyIntl) ?? 'en';
   }

@@ -6,7 +6,7 @@ class PrefsServiceLang implements PrefsServiceInterface {
   static final String _keyChosenLang = 'lang';
 
   @override
-  Future<void> read() async {
+  Future<void> get() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     chosenValueLanguage.value = prefs.getString(_keyChosenLang) ?? 'English';
   }

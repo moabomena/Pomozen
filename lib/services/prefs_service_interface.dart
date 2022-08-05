@@ -1,4 +1,4 @@
 abstract class PrefsServiceInterface {
-  void read();
+  void get();
   void set();
 }

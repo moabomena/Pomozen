@@ -35,9 +35,9 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    _storagePrefsTheme.prefsServiceInterface!.read();
-    _storagePrefsIntl.prefsServiceInterface!.read();
-    _storagePrefsLang.prefsServiceInterface!.read();
+    _storagePrefsTheme.prefsServiceInterface!.get();
+    _storagePrefsIntl.prefsServiceInterface!.get();
+    _storagePrefsLang.prefsServiceInterface!.get();
     super.initState();
   }
 

@@ -176,13 +176,8 @@ class _HomeState extends State<Home> {
                                   builder: (BuildContext context, value,
                                       Widget? child) {
                                     return CircularPercentIndicator(
-                                      // radius: 125.0,
-                                      radius:
-                                          MediaQuery.of(context).size.width *
-                                              0.3,
-                                      lineWidth:
-                                          MediaQuery.of(context).size.width *
-                                              0.02,
+                                      radius: 125.0,
+                                      lineWidth: 8.0,
                                       maskFilter: const MaskFilter.blur(
                                           BlurStyle.solid, 8.0),
                                       animation: true,
@@ -196,10 +191,7 @@ class _HomeState extends State<Home> {
                                           _secondsToFormatedString(
                                               remainingTimer.value),
                                           style: TextStyle(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.06,
+                                            fontSize: 50,
                                             fontFamily: 'OpenSans',
                                             fontWeight: FontWeight.w400,
                                             color: statusColor[

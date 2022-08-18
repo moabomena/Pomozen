@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
 import '../model/select_songs.dart';
@@ -19,7 +20,7 @@ final mapSelectSong = ValueNotifier<Map>({
   13: false,
 });
 
-ValueNotifier<String> textButtonSong = ValueNotifier('please choose a song');
+ValueNotifier<String> textButtonSong = ValueNotifier('unknown');
 
 ValueNotifier<String> fileNameMusic = ValueNotifier('bell.mp3');
 

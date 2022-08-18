@@ -266,7 +266,10 @@ class SettingsPage extends StatelessWidget {
                     valueListenable: textButtonSong,
                     builder:
                         (BuildContext context, String value, Widget? child) {
-                      return Text(textButtonSong.value,
+                      return Text(
+                          textButtonSong.value != 'unknown'
+                              ? textButtonSong.value
+                              : AppLocalizations.of(context)!.pleaseChooseASong,
                           style: const TextStyle(fontFamily: 'OpenSans'));
                     }),
                 onPressed: () => selectSongsBottomSheet(context),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/widgets/contact_tile.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ContactScreen extends StatelessWidget {
   const ContactScreen({Key? key}) : super(key: key);
@@ -8,7 +9,7 @@ class ContactScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Contact us'),
+        title: Text(AppLocalizations.of(context)!.contactUs),
         centerTitle: true,
         elevation: 0,
       ),
@@ -18,14 +19,14 @@ class ContactScreen extends StatelessWidget {
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: const [
-                ContactTile(
+/*                 ContactTile(
                   title: 'Facebook',
                   subTitle: 'moabomena',
                   pathSvg: 'assets/images/brand_facebook.svg',
                   isBackground: true,
                   url:
                       "https://www.facebook.com/profile.php?id=100008947051777",
-                ),
+                ), */
                 ContactTile(
                   title: 'Instagram',
                   subTitle: 'moabomena',

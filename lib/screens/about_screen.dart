@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({Key? key}) : super(key: key);
@@ -33,20 +34,22 @@ class _AboutScreenState extends State<AboutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          AppBar(title: const Text('About'), centerTitle: true, elevation: 0),
+      appBar: AppBar(
+          title: Text(AppLocalizations.of(context)!.about),
+          centerTitle: true,
+          elevation: 0),
       body: Padding(
         padding: const EdgeInsets.only(top: 20, right: 15, left: 15),
         child: SingleChildScrollView(
           child: Column(
             children: [
               Text(
-                '    [Pomodoro]  e um gerenciador de tempo para suas tarefas.',
+                AppLocalizations.of(context)!.textAboutIntro,
                 textAlign: TextAlign.justify,
               ),
               Divider(),
               Text(
-                '''   [Pomodoro] é software livre; você pode redistribuí-lo e/ou modificá-lo sob os termos da Licença Pública Geral GNU (GNU General Public License), conforme publicada pela Free Software Foundation; tanto a versão 2 da Licença como (a seu critério) qualquer versão mais nova. \n   O [Pomodoro] é distribuído na expectativa de ser útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIALIZAÇÃO ou de ADEQUAÇÃO A QUALQUER PROPÓSITO EM PARTICULAR. Consulte a Licença Pública Geral GNU (GNU General Public License) para obter mais detalhes. \n    Você deve ter recebido uma cópia da Licença Pública Geral GNU (GNU General Public License) junto com o [Pomodoro]; caso contrário, escreva para a Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA. ''',
+                AppLocalizations.of(context)!.textAbout,
                 textAlign: TextAlign.justify,
                 style: TextStyle(fontFamily: 'OpenSans'),
               ),
@@ -54,14 +57,14 @@ class _AboutScreenState extends State<AboutScreen> {
                 height: 20,
               ),
               Text(
-                'Criado por Moab Omena \nDesenvolvedor Flutter Full Stack, 2022',
+                AppLocalizations.of(context)!.textAboutCreator,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: FontWeight.w600, fontFamily: 'OpenSans'),
               ),
               Divider(),
               Text(
-                'version : ' + _packageInfo.version,
+                AppLocalizations.of(context)!.version + _packageInfo.version,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.deepOrange,

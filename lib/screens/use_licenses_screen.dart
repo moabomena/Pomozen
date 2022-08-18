@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UseLicenseScreen extends StatefulWidget {
   const UseLicenseScreen({Key? key}) : super(key: key);
@@ -49,7 +50,7 @@ class _UseLicenseScreenState extends State<UseLicenseScreen> {
               )
             : null,
         appBar: AppBar(
-          title: const Text('Use license'),
+          title: Text(AppLocalizations.of(context)!.useLicense),
           centerTitle: true,
           elevation: 0,
         ),

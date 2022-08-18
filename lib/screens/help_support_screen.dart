@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/responsive/dimensions.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HelpSupportScreen extends StatelessWidget {
   HelpSupportScreen({Key? key}) : super(key: key);
@@ -38,13 +39,13 @@ class HelpSupportScreen extends StatelessWidget {
                     : null;
               },
               label: Text(
-                'Enviar',
+                AppLocalizations.of(context)!.submit,
                 style: TextStyle(
                     fontSize: MediaQuery.of(context).size.height *
                         textSizeFloatingButton),
               ))),
       appBar: AppBar(
-        title: const Text('Help and support'),
+        title: Text(AppLocalizations.of(context)!.helpsuport),
         centerTitle: true,
         elevation: 0,
       ),
@@ -55,8 +56,8 @@ class HelpSupportScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const Text(
-                  'send your feedback to me and i will answer you shortly',
+                Text(
+                  AppLocalizations.of(context)!.suportText,
                   style: TextStyle(
                       fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.w300,
@@ -76,13 +77,13 @@ class HelpSupportScreen extends StatelessWidget {
                   },
                   maxLines: null,
                   keyboardType: TextInputType.text,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     // isDense: true,
                     icon: Icon(
                       Icons.edit_note_rounded,
                     ),
-                    hintText: 'write your subject here...',
-                    labelText: 'Subject',
+                    hintText: AppLocalizations.of(context)!.subjectText,
+                    labelText: AppLocalizations.of(context)!.subject,
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -99,11 +100,11 @@ class HelpSupportScreen extends StatelessWidget {
                   },
                   maxLines: null,
                   keyboardType: TextInputType.text,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     // isDense: true,
                     icon: Icon(Icons.edit_note_rounded),
-                    hintText: 'write your text here...',
-                    labelText: 'Text',
+                    hintText: AppLocalizations.of(context)!.textHint,
+                    labelText: AppLocalizations.of(context)!.text,
                     border: OutlineInputBorder(),
                   ),
                 ),

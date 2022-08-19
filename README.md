@@ -4,6 +4,8 @@ Pomozen e um gerenciador de tempo facil, amigavel, customizavel e moderno.
 
 [![License](https://img.shields.io/badge/LICENSE-GPLV3-blue)](LICENSE "LICENSE")
 [![TEST](https://img.shields.io/badge/TESTS-PASSING-brightgreen)](#README)
+[![FLUTTER](https://img.shields.io/badge/FLUTTER-SDK-blue)](https://flutter.io/)
+[![DART](https://img.shields.io/badge/DART-2.17.6-blue)](https://dart.dev/)
 
 - [Beneficios](#beneficios)
 - [Como funciona](#como-funciona)

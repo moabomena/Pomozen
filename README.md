@@ -2,6 +2,14 @@
 
 Pomozen e um gerenciador de tempo facil, amigavel, customizavel e moderno.
 
+[![License](https://img.shields.io/badge/LICENSE-GPLV3-blue)](LICENSE "LICENSE")
+[![TEST](https://img.shields.io/badge/TESTS-PASSING-brightgreen)](#README)
+
+- [Beneficios](#beneficios)
+- [Como funciona](#como-funciona)
+- [Features](#features)
+- [dependeces](#dependeces)
+- [License](#license)
 
 ## Beneficios 
 1. Gerencie seu tempo de forma inteligente
@@ -30,7 +38,7 @@ Pomozen e um gerenciador de tempo facil, amigavel, customizavel e moderno.
 * teste de integracao
 
 
-## dependeces
+## Dependeces
 * gerenciador de estado: ValueNotifier
 * flutter local notifications
 * flutter svg
@@ -40,3 +48,6 @@ Pomozen e um gerenciador de tempo facil, amigavel, customizavel e moderno.
 * flutter native splash
 * flutter test
 * flutter integration test
+
+## License
+This repository is under GPL license. You can see the [LICENSE](https://github.com/moabomena/Pomozen/blob/master/LICENSE) file for more details.

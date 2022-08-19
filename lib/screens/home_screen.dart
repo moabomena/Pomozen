@@ -62,7 +62,7 @@ class _HomeState extends State<Home> {
               );
             },
           ),
-        ], title: const Text('Pomodoro'), centerTitle: true, elevation: 0),
+        ], title: const Text('Pomozen'), centerTitle: true, elevation: 0),
         body: SafeArea(
           child: SingleChildScrollView(
             padding: EdgeInsets.only(top: 20),

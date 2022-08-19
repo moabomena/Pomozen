@@ -1,21 +1,42 @@
-# pomodoro_app
+# Pomozen 
 
-A new Flutter project.
-dd
-
+Pomozen e um gerenciador de tempo facil e amigavel, customizavel e moderno.
 
 
-[![License](https://img.shields.io/badge/	eclipse-marketplace)]
+## Beneficios 
+1. Gerencie seu tempo de forma inteligente
+2. Faca mais em menos tempo
+3. Melhore seu foco
+4. Evite distracoes
+5. Seja mais produtivo
+6. Valorize cada minuto do seu dia
+7. Preserva  a motivacao
+8. Melhora o planejamento de projetos
 
-## Getting Started
+## Como funciona
+* Dedique-se  por 25 minutos na execucao da tarefa
+* Faca uma pausa de 5 minutos
+* Inicie outro pomodoro(25 minutos de dedicacao + 5 minutos de pausa)
+* Apos 4 pomodoros faca uma pausa de 15 minutos
+* inicie outro ciclo de pomodoros
 
-This project is a starting point for a Flutter application.
+## Features
+* notificacao em tempo real
+* 13 toques
+* modo escuro
+* animacoes suaves
+* traducao para ingles, portugues e espanhol
+* teste unitarios
+* teste de integracao
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## dependeces
+* gerenciador de estado: ValueNotifier
+* flutter local notifications
+* flutter svg
+* url launcher
+* shared preferences
+* flutter icons
+* flutter native splash
+* flutter test
+* flutter integration test

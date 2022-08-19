@@ -1,6 +1,6 @@
 # Pomozen 
 
-Pomozen e um gerenciador de tempo facil e amigavel, customizavel e moderno.
+Pomozen e um gerenciador de tempo facil, amigavel, customizavel e moderno.
 
 
 ## Beneficios 

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pomodoro_app/controllers/song_controller.dart';
-import 'package:pomodoro_app/model/select_songs.dart';
+import 'package:Pomozen/controllers/song_controller.dart';
+import 'package:Pomozen/model/select_songs.dart';
 
 void main() {
   test('Value must be (bell.mp3)', () {

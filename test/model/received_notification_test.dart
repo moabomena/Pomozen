@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pomodoro_app/model/received_notification.dart';
+import 'package:Pomozen/model/received_notification.dart';
 
 void main() {
   ReceivedNotification receivedNotification = ReceivedNotification(

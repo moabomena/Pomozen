@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/model/pomodoro_status.dart';
+import 'package:Pomozen/model/pomodoro_status.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../model/select_songs.dart';

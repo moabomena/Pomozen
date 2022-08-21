@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/responsive/dimensions.dart';
-import 'package:pomodoro_app/screens/about_screen.dart';
-import 'package:pomodoro_app/screens/contact_screen.dart';
-import 'package:pomodoro_app/screens/help_support_screen.dart';
-import 'package:pomodoro_app/widgets/drawer/custom_listile.dart';
+import 'package:Pomozen/responsive/dimensions.dart';
+import 'package:Pomozen/screens/about_screen.dart';
+import 'package:Pomozen/screens/contact_screen.dart';
+import 'package:Pomozen/screens/help_support_screen.dart';
+import 'package:Pomozen/widgets/drawer/custom_listile.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../controllers/ux_controller.dart';

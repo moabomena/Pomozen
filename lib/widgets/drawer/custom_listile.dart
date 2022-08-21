@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/controllers/ux_controller.dart';
-import 'package:pomodoro_app/responsive/dimensions.dart';
+import 'package:Pomozen/controllers/ux_controller.dart';
+import 'package:Pomozen/responsive/dimensions.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile(

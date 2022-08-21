@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:pomodoro_app/model/pomodoro_status.dart';
+import 'package:Pomozen/model/pomodoro_status.dart';
 
 final ValueNotifier<PomodoroStatus> pomodoroStatus =
     ValueNotifier(PomodoroStatus.pausedPomodoro);

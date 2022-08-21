@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/controllers/intl_controller.dart';
-import 'package:pomodoro_app/controllers/theme_controller.dart';
-import 'package:pomodoro_app/screens/home_screen.dart';
+import 'package:Pomozen/controllers/intl_controller.dart';
+import 'package:Pomozen/controllers/theme_controller.dart';
+import 'package:Pomozen/screens/home_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'package:pomodoro_app/theme/themes_constants.dart';
+import 'package:Pomozen/theme/themes_constants.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

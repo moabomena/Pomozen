@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/responsive/dimensions.dart';
+import 'package:Pomozen/responsive/dimensions.dart';
 
 class CustomButton extends StatelessWidget {
   final VoidCallback? onTap;

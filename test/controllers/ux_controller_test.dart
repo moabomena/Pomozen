@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pomodoro_app/controllers/ux_controller.dart';
+import 'package:Pomozen/controllers/ux_controller.dart';
 
 void main() {
   test('test index page of drawer select', () {

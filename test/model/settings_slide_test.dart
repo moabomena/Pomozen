@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pomodoro_app/model/settings_slide.dart';
+import 'package:Pomozen/model/settings_slide.dart';
 
 void main() {
   test('the quantity must always be 3 of ResetSlider', () {

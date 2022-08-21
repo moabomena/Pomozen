@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:pomodoro_app/controllers/theme_controller.dart';
-import 'package:pomodoro_app/responsive/dimensions.dart';
+import 'package:Pomozen/controllers/theme_controller.dart';
+import 'package:Pomozen/responsive/dimensions.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactTile extends StatelessWidget {

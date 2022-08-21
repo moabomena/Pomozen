@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pomodoro_app/model/pomodoro_status.dart';
+import 'package:Pomozen/model/pomodoro_status.dart';
 
 void main() {
   test('always return 7 elements of PomodoroStatus', () {

@@ -1,5 +1,5 @@
-import 'package:pomodoro_app/controllers/intl_controller.dart';
-import 'package:pomodoro_app/services/prefs_service_interface.dart';
+import 'package:Pomozen/controllers/intl_controller.dart';
+import 'package:Pomozen/services/prefs_service_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PrefsServiceIntl implements PrefsServiceInterface {

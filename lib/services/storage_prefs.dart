@@ -1,4 +1,4 @@
-import 'package:pomodoro_app/services/prefs_service_interface.dart';
+import 'package:Pomozen/services/prefs_service_interface.dart';
 
 class StoragePrefs {
   PrefsServiceInterface? prefsServiceInterface;

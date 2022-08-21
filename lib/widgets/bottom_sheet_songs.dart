@@ -1,7 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/controllers/song_controller.dart';
-import 'package:pomodoro_app/utils/constants.dart';
+import 'package:Pomozen/controllers/song_controller.dart';
+import 'package:Pomozen/utils/constants.dart';
 
 import '../controllers/theme_controller.dart';
 import '../model/select_songs.dart';

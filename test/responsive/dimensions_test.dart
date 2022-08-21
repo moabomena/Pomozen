@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pomodoro_app/responsive/dimensions.dart';
+import 'package:Pomozen/responsive/dimensions.dart';
 
 void main() {
   test('witdh of pomodoro Num and set num should be 0.1', () {

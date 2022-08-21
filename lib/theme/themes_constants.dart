@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pomodoro_app/controllers/theme_controller.dart';
+import 'package:Pomozen/controllers/theme_controller.dart';
 
 ThemeData lightTheme = ThemeData(
     colorScheme: const ColorScheme.light(primary: Color(0xfff0f0f0)),

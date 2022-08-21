@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pomodoro_app/controllers/timer_controller.dart';
+import 'package:Pomozen/controllers/timer_controller.dart';
 
 void main() {
   test('showButtonReset has to be false', () {

@@ -45,6 +45,7 @@ Pomozen is an easy, friendly, customizable and modern time manager.
 * real-time notification
 * 13 ringtones
 * dark mode
+* responsive layout
 * smooth animations
 * translation into english, portuguese and spanish
 * unit test

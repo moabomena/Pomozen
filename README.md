@@ -6,6 +6,7 @@ Pomozen is an easy, friendly, customizable and modern time manager.
 [![TEST](https://img.shields.io/badge/TESTS-PASSING-brightgreen)](#README)
 [![FLUTTER](https://img.shields.io/badge/FLUTTER-SDK-blue)](https://flutter.io/)
 [![DART](https://img.shields.io/badge/DART-2.17.6-blue)](https://dart.dev/)
+[![Download](https://img.shields.io/badge/Download-Pomozen-orange)](https://github.com/moabomena/Pomozen/releases/download/v1.0/app-release.apk)
 
 
 ![video1](https://user-images.githubusercontent.com/48559649/185965080-f4064aca-1008-4a67-8345-4f5e5bf6ed55.gif) ![video2](https://user-images.githubusercontent.com/48559649/185965392-160960b0-b972-4e58-abd0-5c8d0286e72b.gif) 

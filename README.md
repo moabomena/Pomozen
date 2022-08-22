@@ -1,47 +1,58 @@
 # Pomozen 
 
-Pomozen e um gerenciador de tempo facil, amigavel, customizavel e moderno.
+Pomozen is an easy, friendly, customizable and modern time manager.
 
 [![License](https://img.shields.io/badge/LICENSE-GPLV3-blue)](LICENSE "LICENSE")
 [![TEST](https://img.shields.io/badge/TESTS-PASSING-brightgreen)](#README)
 [![FLUTTER](https://img.shields.io/badge/FLUTTER-SDK-blue)](https://flutter.io/)
 [![DART](https://img.shields.io/badge/DART-2.17.6-blue)](https://dart.dev/)
 
-- [Beneficios](#beneficios)
-- [Como funciona](#como-funciona)
+
+![video1](https://user-images.githubusercontent.com/48559649/185965080-f4064aca-1008-4a67-8345-4f5e5bf6ed55.gif) ![video2](https://user-images.githubusercontent.com/48559649/185965392-160960b0-b972-4e58-abd0-5c8d0286e72b.gif) 
+![video3](https://user-images.githubusercontent.com/48559649/185966847-02e78b74-0f13-4c6a-8bd0-ffe90047c63a.gif)
+
+
+
+
+
+
+
+
+- [Benefits](#benefits)
+- [How it works](#how-it-works)
 - [Features](#features)
-- [dependeces](#dependeces)
+- [Dependencies](#dependencies)
 - [License](#license)
 
-## Beneficios 
-1. Gerencie seu tempo de forma inteligente
-2. Faca mais em menos tempo
-3. Melhore seu foco
-4. Evite distracoes
-5. Seja mais produtivo
-6. Valorize cada minuto do seu dia
-7. Preserva  a motivacao
-8. Melhora o planejamento de projetos
+## Benefits 
+1. Manage your time smartly
+2. Do more in less time
+3. improve your focus
+4. avoid distractions
+5. be more productive
+6. Cherish every minute of your day
+7. preserve the motivation
+8. Improve project planning
 
-## Como funciona
-* Dedique-se  por 25 minutos na execucao da tarefa
-* Faca uma pausa de 5 minutos
-* Inicie outro pomodoro(25 minutos de dedicacao + 5 minutos de pausa)
-* Apos 4 pomodoros faca uma pausa de 15 minutos
-* inicie outro ciclo de pomodoros
+## How it works
+* Dedicate yourself for 25 minutes to the task
+* Take a 5 minute break
+* Start another pomodoro (25 minutes of dedication + 5 minutes of break)
+* After 4 pomodoros, take a 15-minute break.
+* start another pomodoro cycle
 
 ## Features
-* notificacao em tempo real
-* 13 toques
-* modo escuro
-* animacoes suaves
-* traducao para ingles, portugues e espanhol
-* teste unitarios
-* teste de integracao
+* real-time notification
+* 13 ringtones
+* dark mode
+* smooth animations
+* translation into english, portuguese and spanish
+* unit test
+* integration test
 
 
-## Dependeces
-* gerenciador de estado: ValueNotifier
+## Dependencies
+* state manager: ValueNotifier
 * flutter local notifications
 * flutter svg
 * url launcher
@@ -53,3 +64,7 @@ Pomozen e um gerenciador de tempo facil, amigavel, customizavel e moderno.
 
 ## License
 This repository is under GPL license. You can see the [LICENSE](https://github.com/moabomena/Pomozen/blob/master/LICENSE) file for more details.
+
+***
+
+Created with ❤️ by [Moab Omena](https://github.com/moabomena)
